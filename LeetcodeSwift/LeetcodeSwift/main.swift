@@ -9,6 +9,7 @@
 import Foundation
 
 var handle = QueenHandle();
-var n = 8,x = 0,y = 0,xMax = 7,yMax = 7;
-    handle.callback(x: &x, y: &y, n: &n, xMax: xMax, yMax: yMax);
+
+var n = 8,x = 0,y = 0;
+    handle.callback(x: x, y: y, n: n);
     handle.printWays();

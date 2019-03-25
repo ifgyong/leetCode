@@ -20,23 +20,37 @@ struct Point {
 
 /// 8皇后算法
 struct Queen {
-    var locations:Point = Point(x: 0, y: 0);
-    func unrejectWith(queen:Queen) -> Bool {
-        let x   = queen.locations.x;
-        let y   = queen.locations.y;
-        let x1   = self.locations.x;
-        let y1  = self.locations.y;
-        if x == x1 || y == y1 ||
-            (abs(x-x1) == abs(y-y1)){
-            return false
-        }
-        return true
+    var x:Int = 0;
+    var y:Int = 0;
+    init(x:Int,y:Int) {
+        self.x = x;
+        self.y = y;
     }
-    func printQueen() -> Void {
+    
+  public  func unrejectWith(queen:Queen) -> Bool {
+        var ff = true;
+        autoreleasepool{
+            let x   = queen.x;
+            let y   = queen.y;
+            let x1   = self.x ;
+            let y1  = self.y ;
+            
+            if  (x == x1 || y == y1 ||
+                (abs(x-x1) == abs(y-y1))) &&
+                (x>=0 && y >= 0 && x<=7 && y <= 7) &&
+                (x1 >= 0 && y1 >= 0 && x1 <= 7 && y1 <= 7){
+                ff = false
+            }else{
+                ff = true;
+            }
+        }
+        return ff;
+    }
+  public  func printQueen() -> Void {
         var ss = ""
 
         for i in 0...8 {
-            if i == self.locations.x {
+            if i == self.x {
                 ss += "* "
             }else{
                 ss += "_ "
@@ -57,59 +71,73 @@ struct QueenHandle {
         if count == 0 {
             return true;
         }
-        for k in 0..<count{
-            let qSub = queens[k];
-            if qSub.unrejectWith(queen: queen) == false{
-                //有能打架的皇后
-                pass = false;
-                break;
+        let q1 = Queen(x: queen.x, y: queen.y);
+        
+        autoreleasepool{
+            for k in 0..<count{
+                let qSub = Queen(x: queens[k].x, y: queens[k].y);
+                if qSub.unrejectWith(queen: q1) == false{
+                    //有能打架的皇后
+                    pass = false;
+                    break;
+                }
             }
-        }
+        };
+        
         return pass;
     }
     //递归解法
-    mutating func callback(x:inout Int,y:inout Int , n:inout
-        Int,xMax:Int,yMax:Int) -> Void {
-        let q = Queen(locations: Point(x: x, y: y));
+    mutating func callback(x: Int,y: Int , n: Int) -> Void {
+        let q = Queen(x: x, y: y);
+        var xx = x;
+        var yy = y;
+        
+        
+        if xx >= n || yy >= n {
+            return;
+        }
         let can = self.canStandWithOthers(queens: self.queensArray, queen: q);
         if can {
             self.queensArray.append(q);
-            y += 1;
-            x = 0;
-            if y > yMax
-            {
-                if (self.queensArray.count == n){
+            xx = 0;
+            //解法
+            if (self.queensArray.count < n){
+                yy = q.y + 1;
+                callback(x: xx, y: yy, n: n);
+            }else{//找到其中一个方案
                 self.queensWay.append(self.queensArray);
-                    self.queensArray.removeAll();
-                    x = self.queensWay.count;
-                    y = 0;
-                    if (x == n){return}else{
-                        callback(x: &x, y: &y, n: &n, xMax: xMax, yMax: yMax);
-                    }
+                self.printOneWay(List: self.queensArray);
+                self.queensArray.removeLast();
+                xx = q.x + 1;
+                yy = q.y;
+                if (xx >= n){
+                    let queenSub2 = self.queensArray.removeLast();
+                    xx = queenSub2.x+1;
+                    yy = queenSub2.y;
+                    callback(x: xx, y: yy, n:n);
                 }else{
-                    if self.queensArray.count > 0{
-                        let lastQ = self.queensArray.removeLast();
-                        x = lastQ.locations.x + 1;
-                        y -= 1;
-                    }
+                    callback(x: xx, y: yy, n:n);
                 }
-            }else if(y <= yMax){
-                callback(x: &x, y: &y, n: &n, xMax: xMax, yMax: yMax);
             }
-        }else if(x < xMax){
-            x += 1;
-            callback(x: &x, y: &y, n: &n, xMax: xMax, yMax: yMax);
-        }else if(x >= xMax){
-            if self.queensArray.count > 0{
-                let lastQ = self.queensArray.removeLast();
-                x = lastQ.locations.x + 1;
-                y -= 1;
-                if x > xMax{
+        }else {//添加失败
+            if(xx < n-1){
+                xx += 1;
+                callback(x: xx, y: yy, n:n);
+            }else if(xx >= n-1){
+                if self.queensArray.count > 0{
                     let lastQ = self.queensArray.removeLast();
-                    x = lastQ.locations.x + 1;
-                    y -= 1;
-                }
-                callback(x: &x, y: &y, n: &n, xMax: xMax, yMax: yMax);
+                    xx = lastQ.x + 1;
+                    yy = lastQ.y;
+                    
+                    if xx > n-1{
+                        let lastQ2 = self.queensArray.removeLast();
+                        xx = lastQ2.x + 1;
+                        yy = lastQ2.y;
+                    }
+                    if xx >= n-1 && yy == 0{
+                        return;
+                    }
+                    callback(x: xx, y: yy, n:n);                }
             }
         }
     }
@@ -117,7 +145,7 @@ struct QueenHandle {
     public mutating func handle() -> Void {
         var number = 0
         
-        while number<8 {
+        while number<92 {
             self.find(index: number);
             //首行的8种可能
             if self.queensArray.count == 8 {
@@ -134,7 +162,7 @@ struct QueenHandle {
     var x = index;
     while y<8 {
         while x<8{
-            let queen = Queen(locations: Point(x: x, y: y));
+            let queen = Queen(x: x, y: y);
             let count = self.queensArray.count;
             
             if count>0 {
@@ -166,7 +194,7 @@ struct QueenHandle {
             if self.queensArray.count > 0{
                 while x > 7{
                     //回溯法 寻找上一个可能的皇后 当x==8，继续找上一行的皇后
-                    x = self.queensArray.removeLast().locations.x + 1;
+                    x = self.queensArray.removeLast().x + 1;
                     y -= 1;
                 }
             }else{
@@ -180,12 +208,25 @@ struct QueenHandle {
         for i in 0..<count {
             let queens = self.queensWay[i];
             let countSub = queens.count;
+            var s = "";
+            
             for j in 0..<countSub{
                 let q = queens[j];
-                q.printQueen();
+                s += "\(q.x)";
             }
-            print("--------------------");
+            print(s);
         }
+        print("皇后数量：\(self.queensWay.count)--------------------");
+    }
+    public func printOneWay(List:[Queen]) -> Void{
+            let countSub = List.count;
+            var s = "";
+            for j in 0..<countSub{
+                let q = List[j];
+                s += "\(q.x)";
+            }
+            print(s);
+        print("皇后数量：\(self.queensWay.count)--------------------");
     }
 }
 
