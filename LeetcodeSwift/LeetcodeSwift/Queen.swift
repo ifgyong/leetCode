@@ -19,7 +19,7 @@ struct Point {
 }
 
 /// 8皇后算法
-struct Queen {
+class Queen:NSObject {
     var x:Int = 0;
     var y:Int = 0;
     init(x:Int,y:Int) {
@@ -28,27 +28,24 @@ struct Queen {
     }
     
   public  func unrejectWith(queen:Queen) -> Bool {
-        var ff = true;
-        autoreleasepool{
-            let x   = queen.x;
-            let y   = queen.y;
-            let x1   = self.x ;
-            let y1  = self.y ;
-            
-            if  (x == x1 || y == y1 ||
-                (abs(x-x1) == abs(y-y1))) &&
-                (x>=0 && y >= 0 && x<=7 && y <= 7) &&
-                (x1 >= 0 && y1 >= 0 && x1 <= 7 && y1 <= 7){
-                ff = false
-            }else{
-                ff = true;
-            }
-        }
-        return ff;
+    var ff = true;
+    let pp = queen;
+    
+    let x:Int   = pp.x;
+    let y:Int   = pp.y;
+    let x1:Int  = self.x ;
+    let y1:Int  = self.y ;
+    
+    if  (x == x1 || y == y1 ||
+        (abs(x-x1) == abs(y-y1))){
+        ff = false
+    }else{
+        ff = true;
+    }
+    return ff;
     }
   public  func printQueen() -> Void {
         var ss = ""
-
         for i in 0...8 {
             if i == self.x {
                 ss += "* "
@@ -71,18 +68,22 @@ struct QueenHandle {
         if count == 0 {
             return true;
         }
-        let q1 = Queen(x: queen.x, y: queen.y);
+        let q1 = Queen(x: queen.x,
+                       y: queen.y);
         
-        autoreleasepool{
             for k in 0..<count{
-                let qSub = Queen(x: queens[k].x, y: queens[k].y);
+                let subP = Queen(x: 0, y: 0);
+                subP.x = queens[k].x;
+                subP.y = queens[k].y;
+
+                let qSub = Queen(x: subP.x,
+                                 y: subP.y);
                 if qSub.unrejectWith(queen: q1) == false{
                     //有能打架的皇后
                     pass = false;
                     break;
                 }
             }
-        };
         
         return pass;
     }
@@ -93,7 +94,7 @@ struct QueenHandle {
         var yy = y;
         
         
-        if xx >= n || yy >= n {
+        if xx >= n || yy >= n || xx < 0 || yy < 0 {
             return;
         }
         let can = self.canStandWithOthers(queens: self.queensArray, queen: q);
@@ -134,26 +135,29 @@ struct QueenHandle {
                         xx = lastQ2.x + 1;
                         yy = lastQ2.y;
                     }
-                    if xx >= n-1 && yy == 0{
+                    if xx >= n && yy == 0{
                         return;
+                    }else{
+                        callback(x: xx, y: yy, n:n);
                     }
-                    callback(x: xx, y: yy, n:n);                }
+                }
             }
         }
     }
     //迭代解法
     public mutating func handle() -> Void {
         var number = 0
-        
-        while number<92 {
-            self.find(index: number);
-            //首行的8种可能
-            if self.queensArray.count == 8 {
-                self.queensWay.append(self.queensArray);
-            }
-            self.queensArray.removeAll();
-            number += 1;
-        }
+        self.find(index: number);
+
+//        while number<92 {
+//            self.find(index: number);
+//            //首行的8种可能
+//            if self.queensArray.count == 8 {
+//                self.queensWay.append(self.queensArray);
+//            }
+//            self.queensArray.removeAll();
+//            number += 1;
+//        }
     
     }
     public mutating func find(index:Int) -> Void
@@ -177,28 +181,40 @@ struct QueenHandle {
                 }
                 if pass{//添加成功
                     self.queensArray.append(queen);
-                    break;
+                    if(self.queensArray.count == 8){
+                        self.queensWay.append(self.queensArray);
+                        self.queensArray.removeLast();
+                        x = queen.x + 1;
+                        y = queen.y;
+                        if x == 8{
+                            let  last = self.queensArray.removeLast();
+                            x = last.x + 1;
+                            y = last.y;
+                        }
+                    }else{
+                        x = 0;
+                        y = queen.y + 1;
+                    }
                 }else{
                     x += 1;
+                    if x == 8{
+                        let  last = self.queensArray.removeLast();
+                        x = last.x + 1;
+                        y = last.y;
+                        if x == 8 && self.queensArray.count > 0{
+                            let  last2 = self.queensArray.removeLast();
+                            x = last2.x + 1;
+                            y = last2.y;
+                        }
+                    }
+                    if x == 8 && y == 0{
+                        x = 8;
+                        y = 8;//跳出循环
+                    }
                 }
             }else{//添加成功跳出循环
                 self.queensArray.append(queen);
                 break;
-            }
-        }
-        //每一行找出一个 跳下一行
-        if(self.queensArray.count == y+1){
-            y += 1;
-            x = 0;
-        }else{
-            if self.queensArray.count > 0{
-                while x > 7{
-                    //回溯法 寻找上一个可能的皇后 当x==8，继续找上一行的皇后
-                    x = self.queensArray.removeLast().x + 1;
-                    y -= 1;
-                }
-            }else{
-                y += 1;
             }
         }
     }
