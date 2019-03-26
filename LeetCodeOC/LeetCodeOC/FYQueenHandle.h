@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-+ (void)doIt;
++ (void)doItWithCallBack:(BOOL)callback;
 
 - (void)handle;
 +(BOOL)fightQueen:(Queen*)queen inList:(NSArray *)array;

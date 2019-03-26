@@ -11,7 +11,7 @@
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         // insert code here...
-        [FYQueenHandle doIt];
+        [FYQueenHandle doItWithCallBack:YES];
     }
     return 0;
 }

@@ -9,6 +9,12 @@
 #import "Queen.h"
 
 @implementation Queen
+-(instancetype)initWithX:(NSInteger)x X:(NSInteger)y{
+    self = [super init];
+    self.x = x;
+    self.y = y;
+    return self;
+}
 -(NSString *)description{
     return [NSString stringWithFormat:@"x:%ld y:%ld",(long)self.x,(long)self.y];
 }

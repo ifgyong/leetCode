@@ -92,6 +92,7 @@ struct QueenHandle {
         let q = Queen(x: x, y: y);
         var xx = x;
         var yy = y;
+        let xyMax = n - 1;
         
         
         if xx >= n || yy >= n || xx < 0 || yy < 0 {
@@ -100,11 +101,13 @@ struct QueenHandle {
         let can = self.canStandWithOthers(queens: self.queensArray, queen: q);
         if can {
             self.queensArray.append(q);
-            xx = 0;
             //解法
             if (self.queensArray.count < n){
+                xx = 0;
                 yy = q.y + 1;
-                callback(x: xx, y: yy, n: n);
+                callback(x: xx,
+                         y: yy,
+                         n: n);
             }else{//找到其中一个方案
                 self.queensWay.append(self.queensArray);
                 self.printOneWay(List: self.queensArray);
@@ -115,50 +118,40 @@ struct QueenHandle {
                     let queenSub2 = self.queensArray.removeLast();
                     xx = queenSub2.x+1;
                     yy = queenSub2.y;
-                    callback(x: xx, y: yy, n:n);
+                    callback(x: xx,
+                             y: yy,
+                             n:n);
                 }else{
-                    callback(x: xx, y: yy, n:n);
+                    callback(x: xx,
+                             y: yy,
+                             n:n);
                 }
             }
         }else {//添加失败
-            if(xx < n-1){
+            if(xx < xyMax){
                 xx += 1;
-                callback(x: xx, y: yy, n:n);
-            }else if(xx >= n-1){
+                callback(x: xx,
+                         y: yy,
+                         n:n);
+            }else if(xx >= xyMax){
                 if self.queensArray.count > 0{
                     let lastQ = self.queensArray.removeLast();
                     xx = lastQ.x + 1;
                     yy = lastQ.y;
-                    
-                    if xx > n-1{
+                    if xx > xyMax && self.queensArray.count > 0{
                         let lastQ2 = self.queensArray.removeLast();
                         xx = lastQ2.x + 1;
                         yy = lastQ2.y;
                     }
-                    if xx >= n && yy == 0{
-                        return;
-                    }else{
-                        callback(x: xx, y: yy, n:n);
-                    }
+                    callback(x: xx, y: yy, n:n);
                 }
             }
         }
     }
     //迭代解法
     public mutating func handle() -> Void {
-        var number = 0
+        let number = 0
         self.find(index: number);
-
-//        while number<92 {
-//            self.find(index: number);
-//            //首行的8种可能
-//            if self.queensArray.count == 8 {
-//                self.queensWay.append(self.queensArray);
-//            }
-//            self.queensArray.removeAll();
-//            number += 1;
-//        }
-    
     }
     public mutating func find(index:Int) -> Void
 {
@@ -214,7 +207,8 @@ struct QueenHandle {
                 }
             }else{//添加成功跳出循环
                 self.queensArray.append(queen);
-                break;
+                x = 0;
+                y = queen.y + 1;
             }
         }
     }
