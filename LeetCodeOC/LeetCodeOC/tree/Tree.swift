@@ -24,34 +24,69 @@ class Tree : NSObject {
 class Treehandle: NSObject {
     var valsArray = [Int]();
     var treesAray = [Tree]();
+    var depth = 0;
+    
     
     func handle() -> Void {
         let t = createTree();
         travIn_C(tree: t);
         printTree(list: self.valsArray);
-        
-        self.valsArray.removeAll();
-        travIn_L(tree: t);
-        printTree(list: self.valsArray);
-
-        self.valsArray.removeAll();
-        travIn_R(tree: t);
-        printTree(list: self.valsArray);
-
-        self.valsArray.removeAll();
+//        
+//        self.valsArray.removeAll();
+//        travIn_L(tree: t);
+//        printTree(list: self.valsArray);
+//
+//        self.valsArray.removeAll();
+//        travIn_R(tree: t);
+//        printTree(list: self.valsArray);
+//
+//        self.valsArray.removeAll();
     }
     
     func createTree() -> Tree {
-        let top = Tree.loadTree(val: 0);
-        let l_1 = Tree.loadTree(val: 1);
-        let l_2 = Tree.loadTree(val: 2);
-        let r_1 = Tree.loadTree(val: 3);
-        let r_2 = Tree.loadTree(val: 4);
-        top.left = l_1;
-        top.right = r_1;
-        l_1.left = l_2;
-        r_1.left = r_2;
+//        let top = Tree.loadTree(val: 0);
+//        let l_1 = Tree.loadTree(val: 1);
+//        let l_2 = Tree.loadTree(val: 2);
+//        let r_1 = Tree.loadTree(val: 3);
+//        let r_2 = Tree.loadTree(val: 4);
+//        top.left = l_1;
+//        top.right = r_1;
+//        l_1.left = l_2;
+//        r_1.left = r_2;
+//        return top;
+        let list = [0,1,2,3,4,5,6,7,8,9,10];
+        
+        let top:Tree = Tree.loadTree(val: list[0]);
+        
+        self.depth = depth(list: list);
+        top = createTreeWithArray(t: top, dept: 0, index: 0,count: list.count,inlineIndex: 0);
         return top;
+        
+    }
+    func depth(list:[Int]) -> Int {
+        var count = list.count;
+        var  number = 0
+        
+        while count>0 {
+            count /= 2;
+            number += 1;
+        }
+        return number;
+    }
+    func createTreeWithArray(t:Tree,dept:Int,index:Int,count :Int,inlineIndex:Int) -> Tree {
+        if t == nil {
+            if depth > self.depth || index >= count{
+                return nil;
+            }
+        }
+        t.left = createTreeWithArray(t: t, dept: dept,
+                                     index: index+1,count: count,
+                                     inlineIndex: inlineIndex + dept*2);
+        t.right = createTreeWithArray(t: t, dept: dept,
+                                      index: index+2,count: count,
+                                      inlineIndex: inlineIndex+dept*2+1);
+        
+        return t;
     }
     func travIn_C(tree:Tree?) -> Void {
         if tree == nil{

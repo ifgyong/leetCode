@@ -24,53 +24,71 @@ class Tree : NSObject {
 class Treehandle: NSObject {
     var valsArray = [Int]();
     var treesAray = [Tree]();
+    var depth = 0;
+    var vals = [Int]();
+    var top:Tree?;
     
     func handle() -> Void {
         let t = createTree();
-        travIn_C(tree: t);
-        printTree(list: self.valsArray,type: 1);
+        trav_L_r(tree: t!);
+        for i in 0..<self.treesAray.count {
+            let t = self.treesAray[i];
+            self.valsArray.append(t.val);
+        }
+        printTree(list: self.valsArray,type: 3);
         self.valsArray.removeAll();
-        
-        travIn_I_C(tree: t);
-        printTree(list: self.valsArray,type: 1);
-        self.valsArray.removeAll();
-        
-        travIn_I_L(tree: t);
-        printTree(list: self.valsArray,type: 0);
-        self.valsArray.removeAll();
-        
-        travIn_L(tree: t);
-        printTree(list: self.valsArray,type: 0);
-        self.valsArray.removeAll();
-        
-        
-        travIn_R(tree: t);
-        printTree(list: self.valsArray,type: 2);
-        self.valsArray.removeAll();
-        travIn_I_R(tree: t);
-        printTree(list: self.valsArray,type: 2);
-        self.valsArray.removeAll();
+//
+//        travIn_I_C(tree: t);
+//        printTree(list: self.valsArray,type: 1);
+//        self.valsArray.removeAll();
+//
+//        travIn_I_L(tree: t);
+//        printTree(list: self.valsArray,type: 0);
+//        self.valsArray.removeAll();
+//
+//        travIn_L(tree: t);
+//        printTree(list: self.valsArray,type: 0);
+//        self.valsArray.removeAll();
+//
+//
+//        travIn_R(tree: t);
+//        printTree(list: self.valsArray,type: 2);
+//        self.valsArray.removeAll();
+//        travIn_I_R(tree: t);
+//        printTree(list: self.valsArray,type: 2);
+//        self.valsArray.removeAll();
     }
-    
-    func createTree() -> Tree {
-        //    0
-        //   1  2
-        // 3 4 5 6
-        let top = Tree.loadTree(val: 0);
-        let l_1 = Tree.loadTree(val: 1);
-        let l_2 = Tree.loadTree(val: 3);
-        let l_4 = Tree.loadTree(val: 4);
-        let r_1 = Tree.loadTree(val: 2);
-        let r_2 = Tree.loadTree(val: 5);
-        let r_3 = Tree.loadTree(val: 6);
-
-        top.left = l_1;
-        top.right = r_1;
-        l_1.left = l_2;
-        l_1.right = l_4;
-        r_1.left = r_2;
-        r_1.right = r_3;
+    func createTree() -> Tree? {
+        self.vals = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+        
+        self.top = createTreeWithArray(list: self.vals);
         return top;
+    }
+    func createTreeWithArray(list:[Int]) -> Tree {
+        let length = list.count/2-1;
+        
+        var tArray:[Tree] = [Tree]();
+        
+        //生成数组 🌲
+        for i in 0..<list.count{
+            let tsub = Tree.loadTree(val: list[i]);
+            tArray.append(tsub);
+        }
+        //构造二叉树🌲
+        for i in 0..<length{
+            let t :Tree = tArray[i];
+            //构造左孩子
+            t.left = tArray[i*2+1];
+            //构造右孩子
+            t.right = tArray[i*2+2];
+        }
+        //构造最后一个做孩子
+        tArray[length].left = tArray[length*2+1];
+        if list.count%2 == 1{//若数组为奇数则存在右孩子
+            tArray[length].right = tArray.last;
+        }
+        //返回 topTree
+        return tArray[0];
     }
     //中序遍历
     func travIn_C(tree:Tree?) -> Void {
@@ -176,6 +194,22 @@ class Treehandle: NSObject {
             }
         }
     }
+    //层序遍历
+    func trav_L_r(tree:Tree) -> Void {
+        var i = 0
+        self.treesAray.append(tree);
+        while true {
+            if i >= self.treesAray.count{break};
+            let t = self.treesAray[i];
+            if t.left != nil{
+                self.treesAray.append(t.left ?? Tree());
+            }
+            if t.right != nil{
+                self.treesAray.append(t.right ?? Tree());
+            }
+            i += 1;
+        }
+    }
     func printTree(list:[Int],type:Int) -> Void {
         if type == 0 {
             print("前序遍历");
@@ -183,6 +217,8 @@ class Treehandle: NSObject {
             print("中序遍历");
         }else if type == 2{
             print("后序遍历");
+        }else if type == 3{
+            print("层序遍历");
         }
         print(list);
     }
