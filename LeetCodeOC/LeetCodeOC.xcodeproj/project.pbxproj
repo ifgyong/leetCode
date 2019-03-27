@@ -10,7 +10,6 @@
 		A5A8280D224902C100482A81 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A8280C224902C100482A81 /* main.m */; };
 		EE27F3DF224B015700B52B7B /* Queen.m in Sources */ = {isa = PBXBuildFile; fileRef = EE27F3D8224B015700B52B7B /* Queen.m */; };
 		EE27F3E0224B015700B52B7B /* FYQueenHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = EE27F3DB224B015700B52B7B /* FYQueenHandle.m */; };
-		EE27F3E1224B015700B52B7B /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE27F3DD224B015700B52B7B /* Tree.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,7 +31,6 @@
 		EE27F3D9224B015700B52B7B /* FYQueenHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FYQueenHandle.h; sourceTree = "<group>"; };
 		EE27F3DA224B015700B52B7B /* Queen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queen.h; sourceTree = "<group>"; };
 		EE27F3DB224B015700B52B7B /* FYQueenHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FYQueenHandle.m; sourceTree = "<group>"; };
-		EE27F3DD224B015700B52B7B /* Tree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 		EE27F3DE224B015700B52B7B /* LeetCodeOC-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LeetCodeOC-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,7 +85,6 @@
 		EE27F3DC224B015700B52B7B /* tree */ = {
 			isa = PBXGroup;
 			children = (
-				EE27F3DD224B015700B52B7B /* Tree.swift */,
 				EE27F3DE224B015700B52B7B /* LeetCodeOC-Bridging-Header.h */,
 			);
 			path = tree;
@@ -151,7 +148,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE27F3DF224B015700B52B7B /* Queen.m in Sources */,
-				EE27F3E1224B015700B52B7B /* Tree.swift in Sources */,
 				A5A8280D224902C100482A81 /* main.m in Sources */,
 				EE27F3E0224B015700B52B7B /* FYQueenHandle.m in Sources */,
 			);
