@@ -13,10 +13,11 @@
     FYQueenHandle *handle=[FYQueenHandle new];
     if (callback) {
         [handle callBackx:0 y:0 number:8 maxXY:7];
+        NSLog(@"%@",handle.description);
     }else{
         [handle handle];
     }
-    NSLog(@"%@",handle.description);
+    
 }
 - (NSMutableArray *)queensLine{
     if (_queensLine == nil) {
@@ -112,6 +113,7 @@
                            inList:self.queensLine] == NO) {
         [self.queensLine addObject:q];
         if (self.queensLine.count == number) {
+            [self printArray:self.queensLine];
             [self.queenMutArray addObject:self.queensLine];
             [self.queensLine removeLastObject];//删除最后的那一个皇后
             x += 1;
@@ -164,7 +166,28 @@
     
     
 }
+-(void)printArray:(NSArray *)list{
+    NSMutableString *str=[NSMutableString string];
+    NSArray * array = self.queensLine;
+    NSInteger count = array.count;
+    for (NSInteger j = 0;j < count ; j ++) {
+        Queen *q = array[j];
+        [str appendString:[NSString stringWithFormat:@"%ld",q.x]];
+    }
+    [str appendString:@"\n"];
+    NSLog(@"%@",str);
+}
 - (NSString *)description{
-    return [NSString stringWithFormat:@"皇后：%ld",self.queenMutArray.count];
+    NSMutableString *str=[NSMutableString string];
+    for (NSInteger i = 0; i < self.queenMutArray.count; i ++) {
+        NSArray * array = self.queenMutArray[i];
+        NSInteger count = array.count;
+        for (NSInteger j = 0;j < count ; j ++) {
+            Queen *q = array[i][j];
+            [str appendString:[NSString stringWithFormat:@"%ld",q.x]];
+        }
+        [str appendString:@"\n"];
+    }
+    return [NSString stringWithFormat:@"%@\n皇后：%ld",str,self.queenMutArray.count];
 }
 @end

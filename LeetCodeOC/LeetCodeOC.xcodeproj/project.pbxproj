@@ -10,6 +10,7 @@
 		A5A8280D224902C100482A81 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A8280C224902C100482A81 /* main.m */; };
 		A5A82815224902D700482A81 /* Queen.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A82814224902D700482A81 /* Queen.m */; };
 		A5A828182249030A00482A81 /* FYQueenHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A828172249030A00482A81 /* FYQueenHandle.m */; };
+		EE27F3D6224A2BCB00B52B7B /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE27F3D5224A2BCB00B52B7B /* Tree.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,8 @@
 		A5A82814224902D700482A81 /* Queen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Queen.m; sourceTree = "<group>"; };
 		A5A828162249030A00482A81 /* FYQueenHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYQueenHandle.h; sourceTree = "<group>"; };
 		A5A828172249030A00482A81 /* FYQueenHandle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYQueenHandle.m; sourceTree = "<group>"; };
+		EE27F3D4224A2BCA00B52B7B /* LeetCodeOC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LeetCodeOC-Bridging-Header.h"; sourceTree = "<group>"; };
+		EE27F3D5224A2BCB00B52B7B /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,13 +66,31 @@
 		A5A8280B224902C100482A81 /* LeetCodeOC */ = {
 			isa = PBXGroup;
 			children = (
+				EE27F3CC224A26A800B52B7B /* 二叉树 */,
+				EE27F3CD224A26B200B52B7B /* n皇后问题 */,
 				A5A8280C224902C100482A81 /* main.m */,
+			);
+			path = LeetCodeOC;
+			sourceTree = "<group>";
+		};
+		EE27F3CC224A26A800B52B7B /* 二叉树 */ = {
+			isa = PBXGroup;
+			children = (
+				EE27F3D5224A2BCB00B52B7B /* Tree.swift */,
+				EE27F3D4224A2BCA00B52B7B /* LeetCodeOC-Bridging-Header.h */,
+			);
+			path = "二叉树";
+			sourceTree = "<group>";
+		};
+		EE27F3CD224A26B200B52B7B /* n皇后问题 */ = {
+			isa = PBXGroup;
+			children = (
 				A5A82813224902D700482A81 /* Queen.h */,
 				A5A82814224902D700482A81 /* Queen.m */,
 				A5A828162249030A00482A81 /* FYQueenHandle.h */,
 				A5A828172249030A00482A81 /* FYQueenHandle.m */,
 			);
-			path = LeetCodeOC;
+			path = "n皇后问题";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -103,6 +124,7 @@
 				TargetAttributes = {
 					A5A82808224902C100482A81 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -128,6 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE27F3D6224A2BCB00B52B7B /* Tree.swift in Sources */,
 				A5A82815224902D700482A81 /* Queen.m in Sources */,
 				A5A8280D224902C100482A81 /* main.m in Sources */,
 				A5A828182249030A00482A81 /* FYQueenHandle.m in Sources */,
@@ -251,18 +274,35 @@
 		A5A82811224902C100482A81 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PU5CP57746;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LeetCodeOC/二叉树/LeetCodeOC-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
 		A5A82812224902C100482A81 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PU5CP57746;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LeetCodeOC/二叉树/LeetCodeOC-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
