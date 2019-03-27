@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A5A827F82245059D00482A81 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A827F72245059D00482A81 /* main.swift */; };
 		A5A827FF224505CC00482A81 /* Queen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A827FE224505CC00482A81 /* Queen.swift */; };
+		EE27F3E4224B02A000B52B7B /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE27F3E3224B02A000B52B7B /* Tree.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,6 +28,7 @@
 		A5A827F42245059D00482A81 /* LeetcodeSwift */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LeetcodeSwift; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5A827F72245059D00482A81 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		A5A827FE224505CC00482A81 /* Queen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queen.swift; sourceTree = "<group>"; };
+		EE27F3E3224B02A000B52B7B /* Tree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,10 +61,19 @@
 		A5A827F62245059D00482A81 /* LeetcodeSwift */ = {
 			isa = PBXGroup;
 			children = (
+				EE27F3E2224B028F00B52B7B /* tree */,
 				A5A827F72245059D00482A81 /* main.swift */,
 				A5A827FE224505CC00482A81 /* Queen.swift */,
 			);
 			path = LeetcodeSwift;
+			sourceTree = "<group>";
+		};
+		EE27F3E2224B028F00B52B7B /* tree */ = {
+			isa = PBXGroup;
+			children = (
+				EE27F3E3224B02A000B52B7B /* Tree.swift */,
+			);
+			path = tree;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,6 +133,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE27F3E4224B02A000B52B7B /* Tree.swift in Sources */,
 				A5A827FF224505CC00482A81 /* Queen.swift in Sources */,
 				A5A827F82245059D00482A81 /* main.swift in Sources */,
 			);

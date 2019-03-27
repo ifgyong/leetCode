@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		A5A8280D224902C100482A81 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A8280C224902C100482A81 /* main.m */; };
-		A5A82815224902D700482A81 /* Queen.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A82814224902D700482A81 /* Queen.m */; };
-		A5A828182249030A00482A81 /* FYQueenHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A828172249030A00482A81 /* FYQueenHandle.m */; };
-		EE27F3D6224A2BCB00B52B7B /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE27F3D5224A2BCB00B52B7B /* Tree.swift */; };
+		EE27F3DF224B015700B52B7B /* Queen.m in Sources */ = {isa = PBXBuildFile; fileRef = EE27F3D8224B015700B52B7B /* Queen.m */; };
+		EE27F3E0224B015700B52B7B /* FYQueenHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = EE27F3DB224B015700B52B7B /* FYQueenHandle.m */; };
+		EE27F3E1224B015700B52B7B /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE27F3DD224B015700B52B7B /* Tree.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,12 +28,12 @@
 /* Begin PBXFileReference section */
 		A5A82809224902C100482A81 /* LeetCodeOC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LeetCodeOC; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5A8280C224902C100482A81 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A5A82813224902D700482A81 /* Queen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Queen.h; sourceTree = "<group>"; };
-		A5A82814224902D700482A81 /* Queen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Queen.m; sourceTree = "<group>"; };
-		A5A828162249030A00482A81 /* FYQueenHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYQueenHandle.h; sourceTree = "<group>"; };
-		A5A828172249030A00482A81 /* FYQueenHandle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYQueenHandle.m; sourceTree = "<group>"; };
-		EE27F3D4224A2BCA00B52B7B /* LeetCodeOC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LeetCodeOC-Bridging-Header.h"; sourceTree = "<group>"; };
-		EE27F3D5224A2BCB00B52B7B /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
+		EE27F3D8224B015700B52B7B /* Queen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queen.m; sourceTree = "<group>"; };
+		EE27F3D9224B015700B52B7B /* FYQueenHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FYQueenHandle.h; sourceTree = "<group>"; };
+		EE27F3DA224B015700B52B7B /* Queen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queen.h; sourceTree = "<group>"; };
+		EE27F3DB224B015700B52B7B /* FYQueenHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FYQueenHandle.m; sourceTree = "<group>"; };
+		EE27F3DD224B015700B52B7B /* Tree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
+		EE27F3DE224B015700B52B7B /* LeetCodeOC-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LeetCodeOC-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,31 +66,31 @@
 		A5A8280B224902C100482A81 /* LeetCodeOC */ = {
 			isa = PBXGroup;
 			children = (
-				EE27F3CC224A26A800B52B7B /* 二叉树 */,
-				EE27F3CD224A26B200B52B7B /* n皇后问题 */,
+				EE27F3D7224B015700B52B7B /* queen */,
+				EE27F3DC224B015700B52B7B /* tree */,
 				A5A8280C224902C100482A81 /* main.m */,
 			);
 			path = LeetCodeOC;
 			sourceTree = "<group>";
 		};
-		EE27F3CC224A26A800B52B7B /* 二叉树 */ = {
+		EE27F3D7224B015700B52B7B /* queen */ = {
 			isa = PBXGroup;
 			children = (
-				EE27F3D5224A2BCB00B52B7B /* Tree.swift */,
-				EE27F3D4224A2BCA00B52B7B /* LeetCodeOC-Bridging-Header.h */,
+				EE27F3DA224B015700B52B7B /* Queen.h */,
+				EE27F3D8224B015700B52B7B /* Queen.m */,
+				EE27F3D9224B015700B52B7B /* FYQueenHandle.h */,
+				EE27F3DB224B015700B52B7B /* FYQueenHandle.m */,
 			);
-			path = "二叉树";
+			path = queen;
 			sourceTree = "<group>";
 		};
-		EE27F3CD224A26B200B52B7B /* n皇后问题 */ = {
+		EE27F3DC224B015700B52B7B /* tree */ = {
 			isa = PBXGroup;
 			children = (
-				A5A82813224902D700482A81 /* Queen.h */,
-				A5A82814224902D700482A81 /* Queen.m */,
-				A5A828162249030A00482A81 /* FYQueenHandle.h */,
-				A5A828172249030A00482A81 /* FYQueenHandle.m */,
+				EE27F3DD224B015700B52B7B /* Tree.swift */,
+				EE27F3DE224B015700B52B7B /* LeetCodeOC-Bridging-Header.h */,
 			);
-			path = "n皇后问题";
+			path = tree;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,10 +150,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE27F3D6224A2BCB00B52B7B /* Tree.swift in Sources */,
-				A5A82815224902D700482A81 /* Queen.m in Sources */,
+				EE27F3DF224B015700B52B7B /* Queen.m in Sources */,
+				EE27F3E1224B015700B52B7B /* Tree.swift in Sources */,
 				A5A8280D224902C100482A81 /* main.m in Sources */,
-				A5A828182249030A00482A81 /* FYQueenHandle.m in Sources */,
+				EE27F3E0224B015700B52B7B /* FYQueenHandle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

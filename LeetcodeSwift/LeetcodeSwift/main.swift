@@ -8,9 +8,15 @@
 
 import Foundation
 
-var handle = QueenHandle();
+//var handle = QueenHandle();
+//
+//var n = 8,x = 0,y = 0;
+//    handle.callback(x: x, y: y, n: n);
+////handle.handle();
+//    handle.printWays();
 
-var n = 8,x = 0,y = 0;
-    handle.callback(x: x, y: y, n: n);
-//handle.handle();
-    handle.printWays();
+
+var handle = Treehandle();
+let t = handle.createTree();
+handle.handle();
+
