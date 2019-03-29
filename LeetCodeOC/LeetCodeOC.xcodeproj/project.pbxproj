@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A50D524D224D05D8007BBD1F /* FYOffer4.m in Sources */ = {isa = PBXBuildFile; fileRef = A50D524C224D05D8007BBD1F /* FYOffer4.m */; };
 		A5A8280D224902C100482A81 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A8280C224902C100482A81 /* main.m */; };
 		EE27F3DF224B015700B52B7B /* Queen.m in Sources */ = {isa = PBXBuildFile; fileRef = EE27F3D8224B015700B52B7B /* Queen.m */; };
 		EE27F3E0224B015700B52B7B /* FYQueenHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = EE27F3DB224B015700B52B7B /* FYQueenHandle.m */; };
@@ -25,6 +26,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A50D524B224D05D8007BBD1F /* FYOffer4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYOffer4.h; sourceTree = "<group>"; };
+		A50D524C224D05D8007BBD1F /* FYOffer4.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYOffer4.m; sourceTree = "<group>"; };
 		A5A82809224902C100482A81 /* LeetCodeOC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LeetCodeOC; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5A8280C224902C100482A81 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EE27F3D8224B015700B52B7B /* Queen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queen.m; sourceTree = "<group>"; };
@@ -45,6 +48,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A50D524A224D059A007BBD1F /* offer */ = {
+			isa = PBXGroup;
+			children = (
+				A50D524B224D05D8007BBD1F /* FYOffer4.h */,
+				A50D524C224D05D8007BBD1F /* FYOffer4.m */,
+			);
+			path = offer;
+			sourceTree = "<group>";
+		};
 		A5A82800224902C100482A81 = {
 			isa = PBXGroup;
 			children = (
@@ -67,6 +79,7 @@
 				EE27F3D7224B015700B52B7B /* queen */,
 				EE27F3DC224B015700B52B7B /* tree */,
 				A5A8280C224902C100482A81 /* main.m */,
+				A50D524A224D059A007BBD1F /* offer */,
 			);
 			path = LeetCodeOC;
 			sourceTree = "<group>";
@@ -149,6 +162,7 @@
 			files = (
 				EE27F3DF224B015700B52B7B /* Queen.m in Sources */,
 				A5A8280D224902C100482A81 /* main.m in Sources */,
+				A50D524D224D05D8007BBD1F /* FYOffer4.m in Sources */,
 				EE27F3E0224B015700B52B7B /* FYQueenHandle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
