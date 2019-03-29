@@ -10,6 +10,11 @@
 		A5A827F82245059D00482A81 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A827F72245059D00482A81 /* main.swift */; };
 		A5A827FF224505CC00482A81 /* Queen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A827FE224505CC00482A81 /* Queen.swift */; };
 		EE27F3E4224B02A000B52B7B /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE27F3E3224B02A000B52B7B /* Tree.swift */; };
+		EE27F3E7224B6C3C00B52B7B /* addTwoNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE27F3E6224B6C3C00B52B7B /* addTwoNumber.swift */; };
+		EE27F3E9224B755900B52B7B /* sameValueTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE27F3E8224B755900B52B7B /* sameValueTree.swift */; };
+		EE27F3EB224B7F1B00B52B7B /* MinimunTimeDifference.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE27F3EA224B7F1B00B52B7B /* MinimunTimeDifference.swift */; };
+		EE27F3ED224C6E1000B52B7B /* findMaxAverage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE27F3EC224C6E1000B52B7B /* findMaxAverage.swift */; };
+		EE8A0E54224DA7FF0029BDCD /* StringAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8A0E53224DA7FF0029BDCD /* StringAction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +34,11 @@
 		A5A827F72245059D00482A81 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		A5A827FE224505CC00482A81 /* Queen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queen.swift; sourceTree = "<group>"; };
 		EE27F3E3224B02A000B52B7B /* Tree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
+		EE27F3E6224B6C3C00B52B7B /* addTwoNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addTwoNumber.swift; sourceTree = "<group>"; };
+		EE27F3E8224B755900B52B7B /* sameValueTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sameValueTree.swift; sourceTree = "<group>"; };
+		EE27F3EA224B7F1B00B52B7B /* MinimunTimeDifference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimunTimeDifference.swift; sourceTree = "<group>"; };
+		EE27F3EC224C6E1000B52B7B /* findMaxAverage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = findMaxAverage.swift; sourceTree = "<group>"; };
+		EE8A0E53224DA7FF0029BDCD /* StringAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringAction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +71,7 @@
 		A5A827F62245059D00482A81 /* LeetcodeSwift */ = {
 			isa = PBXGroup;
 			children = (
+				EE27F3E5224B6C2B00B52B7B /* leetcode */,
 				EE27F3E2224B028F00B52B7B /* tree */,
 				A5A827F72245059D00482A81 /* main.swift */,
 				A5A827FE224505CC00482A81 /* Queen.swift */,
@@ -74,6 +85,18 @@
 				EE27F3E3224B02A000B52B7B /* Tree.swift */,
 			);
 			path = tree;
+			sourceTree = "<group>";
+		};
+		EE27F3E5224B6C2B00B52B7B /* leetcode */ = {
+			isa = PBXGroup;
+			children = (
+				EE27F3E6224B6C3C00B52B7B /* addTwoNumber.swift */,
+				EE27F3E8224B755900B52B7B /* sameValueTree.swift */,
+				EE27F3EA224B7F1B00B52B7B /* MinimunTimeDifference.swift */,
+				EE27F3EC224C6E1000B52B7B /* findMaxAverage.swift */,
+				EE8A0E53224DA7FF0029BDCD /* StringAction.swift */,
+			);
+			name = leetcode;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,8 +157,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE27F3E4224B02A000B52B7B /* Tree.swift in Sources */,
+				EE27F3E7224B6C3C00B52B7B /* addTwoNumber.swift in Sources */,
+				EE8A0E54224DA7FF0029BDCD /* StringAction.swift in Sources */,
 				A5A827FF224505CC00482A81 /* Queen.swift in Sources */,
+				EE27F3EB224B7F1B00B52B7B /* MinimunTimeDifference.swift in Sources */,
+				EE27F3ED224C6E1000B52B7B /* findMaxAverage.swift in Sources */,
 				A5A827F82245059D00482A81 /* main.swift in Sources */,
+				EE27F3E9224B755900B52B7B /* sameValueTree.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

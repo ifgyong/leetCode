@@ -16,7 +16,11 @@ import Foundation
 //    handle.printWays();
 
 
-var handle = Treehandle();
-let t = handle.createTree();
-handle.handle();
+//var handle = Treehandle();
+//let t = handle.createTree();
+//handle.handle();
+//let x =  myPow(x: 2.0000, n: 10);
+//print(x);
 
+let x = maxProduct([2,0]);
+print(x);
