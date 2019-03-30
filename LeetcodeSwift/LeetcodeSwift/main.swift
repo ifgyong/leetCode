@@ -18,5 +18,8 @@ import Foundation
 
 // quickSort(list: &list, low: 0, high: list.count-1);
 //print(list);
+let length = 12;
 
-print(cutCount(length: 9));
+print(cutCount(length: length));
+print(cutlineCount_suloution(length: length));
+
