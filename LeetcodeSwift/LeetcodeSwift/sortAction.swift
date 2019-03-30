@@ -7,6 +7,32 @@
 //
 
 import Foundation
+//贪婪算法剪绳子
+func cutCount(length:Int) -> Int{
+    
+    if length == 0 {
+        return 0;
+    }else if length == 1{
+        return 1;
+    }else if length == 2{
+        return 2;
+    }else if length == 3{
+        return 3;
+    }
+    var timeof3 = length/3;
+    if length%3 == 1 {
+        timeof3 -= 1;
+    }
+    let timeof2 = (length - timeof3 * 3)/2;
+    
+    return Int(pow(3.0,Double(timeof3))*pow(2, Double(timeof2)));
+}
+
+
+
+
+
+
 func quickSort(list:inout [Int],low:Int,high:Int) -> Void {
     if low >= high {
         return;
