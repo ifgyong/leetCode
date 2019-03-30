@@ -7,6 +7,8 @@
 //
 
 import Foundation
+
+
 //z乘积最大子序列  性能比较慢
 func maxProduct(_ nums: [Int]) -> Int {
     

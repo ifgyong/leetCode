@@ -14,6 +14,7 @@ import Foundation
 //handle.handle();
 //let x =  myPow(x: 2.0000, n: 10);
 //print(x);
+var list = [0,4,3,2,1,5,6]
 
-let x = maxProduct([2,0]);
-print(x);
+ quickSort(list: &list, low: 0, high: list.count-1);
+print(list);
