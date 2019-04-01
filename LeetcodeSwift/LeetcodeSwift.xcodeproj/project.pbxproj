@@ -15,6 +15,7 @@
 		EE27F3EB224B7F1B00B52B7B /* MinimunTimeDifference.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE27F3EA224B7F1B00B52B7B /* MinimunTimeDifference.swift */; };
 		EE27F3ED224C6E1000B52B7B /* findMaxAverage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE27F3EC224C6E1000B52B7B /* findMaxAverage.swift */; };
 		EE8A0E54224DA7FF0029BDCD /* StringAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8A0E53224DA7FF0029BDCD /* StringAction.swift */; };
+		EE8A0E82224E17720029BDCD /* IntAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8A0E81224E17720029BDCD /* IntAction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,6 +40,7 @@
 		EE27F3EA224B7F1B00B52B7B /* MinimunTimeDifference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimunTimeDifference.swift; sourceTree = "<group>"; };
 		EE27F3EC224C6E1000B52B7B /* findMaxAverage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = findMaxAverage.swift; sourceTree = "<group>"; };
 		EE8A0E53224DA7FF0029BDCD /* StringAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringAction.swift; sourceTree = "<group>"; };
+		EE8A0E81224E17720029BDCD /* IntAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntAction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 				EE27F3EA224B7F1B00B52B7B /* MinimunTimeDifference.swift */,
 				EE27F3EC224C6E1000B52B7B /* findMaxAverage.swift */,
 				EE8A0E53224DA7FF0029BDCD /* StringAction.swift */,
+				EE8A0E81224E17720029BDCD /* IntAction.swift */,
 			);
 			name = leetcode;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 				EE8A0E54224DA7FF0029BDCD /* StringAction.swift in Sources */,
 				A5A827FF224505CC00482A81 /* Queen.swift in Sources */,
 				EE27F3EB224B7F1B00B52B7B /* MinimunTimeDifference.swift in Sources */,
+				EE8A0E82224E17720029BDCD /* IntAction.swift in Sources */,
 				EE27F3ED224C6E1000B52B7B /* findMaxAverage.swift in Sources */,
 				A5A827F82245059D00482A81 /* main.swift in Sources */,
 				EE27F3E9224B755900B52B7B /* sameValueTree.swift in Sources */,

@@ -24,7 +24,7 @@ public class ListNode {
 			newNode.val = newNode.val % 10;
 			
 			
-			if (l1 == null || l2 == null) {
+			if (l1 == null && l2 == null) {
 				if (sub.val == 0) {
 					newNode.next = null;
 				} else {
