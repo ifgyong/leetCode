@@ -7,6 +7,20 @@
 //
 
 import Foundation
+//统计二进制的 1的数字个数
+//负数统计陷入死循环
+func numberToTwoAndOneCount(n:Int) ->Int{
+    var x = n;
+    var count = 0;
+    
+    while x>0 {
+        if x&1 == 1{
+            count += 1;
+        }
+        x = x>>1;
+    }
+    return count;
+}
 //贪婪算法剪绳子
 func cutCount(length:Int) -> Int{
     

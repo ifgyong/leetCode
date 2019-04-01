@@ -20,6 +20,6 @@ import Foundation
 //print(list);
 let length = 12;
 
-print(cutCount(length: length));
-print(cutlineCount_suloution(length: length));
+print(numberToTwoAndOneCount(n: 6));
+//print(cutlineCount_suloution(length: length));
 

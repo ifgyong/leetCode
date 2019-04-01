@@ -7,15 +7,12 @@
 //
 
 #include <iostream>
+#include "numberAction.hpp"
+
+
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    for (int i = 0; i < 2; ++i) {
-//        std::cout<<i<<std::endl;
-    }
-    int i = 0;
-    std::cout<<i++<<std::endl;
-    std::cout<<++i<<std::endl;
+    int i = numberOf1(5);
+    std::cout<<i<<std::endl;
     return 0;
 }
