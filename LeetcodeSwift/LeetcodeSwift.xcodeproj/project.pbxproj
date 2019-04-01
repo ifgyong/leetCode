@@ -16,6 +16,7 @@
 		EE27F3EB224B7F1B00B52B7B /* MinimunTimeDifference.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE27F3EA224B7F1B00B52B7B /* MinimunTimeDifference.swift */; };
 		EE27F3ED224C6E1000B52B7B /* findMaxAverage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE27F3EC224C6E1000B52B7B /* findMaxAverage.swift */; };
 		EE8A0E54224DA7FF0029BDCD /* StringAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8A0E53224DA7FF0029BDCD /* StringAction.swift */; };
+		EE8A0E852251D42D0029BDCD /* TreeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8A0E842251D42D0029BDCD /* TreeAction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,6 +42,8 @@
 		EE27F3EA224B7F1B00B52B7B /* MinimunTimeDifference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimunTimeDifference.swift; sourceTree = "<group>"; };
 		EE27F3EC224C6E1000B52B7B /* findMaxAverage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = findMaxAverage.swift; sourceTree = "<group>"; };
 		EE8A0E53224DA7FF0029BDCD /* StringAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringAction.swift; sourceTree = "<group>"; };
+		EE8A0E81224E17720029BDCD /* IntAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntAction.swift; sourceTree = "<group>"; };
+		EE8A0E842251D42D0029BDCD /* TreeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeAction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +62,7 @@
 			children = (
 				A5A827F62245059D00482A81 /* LeetcodeSwift */,
 				A5A827F52245059D00482A81 /* Products */,
+				EE8A0E83225194420029BDCD /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,8 +102,17 @@
 				EE27F3EC224C6E1000B52B7B /* findMaxAverage.swift */,
 				EE8A0E53224DA7FF0029BDCD /* StringAction.swift */,
 				A50D524E224E6208007BBD1F /* sortAction.swift */,
+				EE8A0E842251D42D0029BDCD /* TreeAction.swift */,
 			);
 			name = leetcode;
+			sourceTree = "<group>";
+		};
+		EE8A0E83225194420029BDCD /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				EE8A0E81224E17720029BDCD /* IntAction.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,6 +177,7 @@
 				A50D524F224E6208007BBD1F /* sortAction.swift in Sources */,
 				EE8A0E54224DA7FF0029BDCD /* StringAction.swift in Sources */,
 				A5A827FF224505CC00482A81 /* Queen.swift in Sources */,
+				EE8A0E852251D42D0029BDCD /* TreeAction.swift in Sources */,
 				EE27F3EB224B7F1B00B52B7B /* MinimunTimeDifference.swift in Sources */,
 				EE27F3ED224C6E1000B52B7B /* findMaxAverage.swift in Sources */,
 				A5A827F82245059D00482A81 /* main.swift in Sources */,

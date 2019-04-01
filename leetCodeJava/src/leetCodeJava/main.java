@@ -11,8 +11,9 @@ public class main {
 		// TODO Auto-generated method stub
 		
 		StringAciton stringAciton = new StringAciton();
-		stringAciton.main();
-
+//		int x=Integer.parseInt("4193");
+		boolean x = stringAciton.isPalindrome(1221);
+		System.out.println(x);
 	}
 
 }

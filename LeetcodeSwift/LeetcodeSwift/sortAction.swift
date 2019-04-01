@@ -20,6 +20,33 @@ func numberToTwoAndOneCount(n:Int) ->Int{
         x = x>>1;
     }
     return count;
+func divide(_ dividend: Int, _ divisor: Int) -> Int {
+    
+    let di = dividend>0;
+    let di2 = divisor>0;
+    var new_d = abs(dividend);
+    let di2_new = abs(divisor);
+    var  count = 0;
+    
+    while new_d >= abs(divisor) {
+        new_d -= di2_new;
+        count += 1;
+    }
+    if (di2 && di)||(di2==false && di==false){
+        let max = Int(pow(2.0, 31)-1)
+        
+        if count > max{
+            return max;
+        }
+        return count;
+    }else{
+        let  min = -Int(pow(2.0, 31))
+        
+        if 0-count < min{
+            return min;
+        }
+        return 0-count;
+    }
 }
 //贪婪算法剪绳子
 func cutCount(length:Int) -> Int{
@@ -72,7 +99,7 @@ func cutlineCount_suloution(length:Int) -> Int{
 
 
 func quickSort(list:inout [Int],low:Int,high:Int) -> Void {
-    if low >= high {
+    if low >= high || low < 0 || list.count == 0 || high > list.count-1 {
         return;
     }
     var l = low;
@@ -95,12 +122,11 @@ func quickSort(list:inout [Int],low:Int,high:Int) -> Void {
         if l < h{
             //判断 是由于list[h] >pro 引起中断的  所以list[l]<pro 为空的list[h]接受新的list[l]的值
             list[h] = list[l];
-            h += 1;
+            h -= 1;
         }
         list[l] = pro; //将哨兵存储到最后空的值
     }
-    quickSort(list: &list, low: low, high: l);
+    quickSort(list: &list, low: low, high: l-1);
     quickSort(list: &list, low: l+1, high: high);
-    
-    
+}
 }
