@@ -16,6 +16,18 @@ import Foundation
           self.val = val
           self.next = nil
       }
+    public func desc(){
+        var ss = self;
+        
+        while ss.val != -1 {
+            print(ss.val)
+            if ss.next == nil{
+                ss.val = -1;
+            }else{
+                ss = ss.next ?? ListNode(-1);
+            }
+        }
+    }
   }
  
 class Solution {

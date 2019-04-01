@@ -15,15 +15,11 @@ import Foundation
 //let x =  myPow(x: 2.0000, n: 10);
 //print(x);
 var list = [1,2,5,3,1,2,10,5];
-quickSort(list: &list, low: 0, high: list.count-1);
-print(list);
-//var list = [0,4,3,2,1,5,6]
-
-// quickSort(list: &list, low: 0, high: list.count-1);
-//print(list);
-let length = 12;
-
-print(cutCount(length: length));
-print(cutlineCount_suloution(length: length));
-
->>>>>>> 2fd248de47aad0b2318e7b7a8658b8cab7962f38
+let n1 = ListNode(0);
+let n2 = ListNode(1);
+let n3 = ListNode(2);
+let n4 = ListNode(3);
+n1.next = n2;
+n2.next = n3
+n3.next = n4
+print (divide(-2147483648,-1))
