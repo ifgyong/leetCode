@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A50D524F224E6208007BBD1F /* sortAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50D524E224E6208007BBD1F /* sortAction.swift */; };
 		A5A827F82245059D00482A81 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A827F72245059D00482A81 /* main.swift */; };
 		A5A827FF224505CC00482A81 /* Queen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A827FE224505CC00482A81 /* Queen.swift */; };
 		EE27F3E4224B02A000B52B7B /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE27F3E3224B02A000B52B7B /* Tree.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A50D524E224E6208007BBD1F /* sortAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sortAction.swift; sourceTree = "<group>"; };
 		A5A827F42245059D00482A81 /* LeetcodeSwift */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LeetcodeSwift; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5A827F72245059D00482A81 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		A5A827FE224505CC00482A81 /* Queen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queen.swift; sourceTree = "<group>"; };
@@ -97,7 +99,7 @@
 				EE27F3EA224B7F1B00B52B7B /* MinimunTimeDifference.swift */,
 				EE27F3EC224C6E1000B52B7B /* findMaxAverage.swift */,
 				EE8A0E53224DA7FF0029BDCD /* StringAction.swift */,
-				EE8A0E81224E17720029BDCD /* IntAction.swift */,
+				A50D524E224E6208007BBD1F /* sortAction.swift */,
 			);
 			name = leetcode;
 			sourceTree = "<group>";
@@ -161,6 +163,7 @@
 			files = (
 				EE27F3E4224B02A000B52B7B /* Tree.swift in Sources */,
 				EE27F3E7224B6C3C00B52B7B /* addTwoNumber.swift in Sources */,
+				A50D524F224E6208007BBD1F /* sortAction.swift in Sources */,
 				EE8A0E54224DA7FF0029BDCD /* StringAction.swift in Sources */,
 				A5A827FF224505CC00482A81 /* Queen.swift in Sources */,
 				EE27F3EB224B7F1B00B52B7B /* MinimunTimeDifference.swift in Sources */,

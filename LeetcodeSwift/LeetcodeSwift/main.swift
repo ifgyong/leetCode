@@ -8,13 +8,6 @@
 
 import Foundation
 
-//var handle = QueenHandle();
-//
-//var n = 8,x = 0,y = 0;
-//    handle.callback(x: x, y: y, n: n);
-////handle.handle();
-//    handle.printWays();
-
 
 //var handle = Treehandle();
 //let t = handle.createTree();
@@ -24,3 +17,13 @@ import Foundation
 var list = [1,2,5,3,1,2,10,5];
 quickSort(list: &list, low: 0, high: list.count-1);
 print(list);
+//var list = [0,4,3,2,1,5,6]
+
+// quickSort(list: &list, low: 0, high: list.count-1);
+//print(list);
+let length = 12;
+
+print(cutCount(length: length));
+print(cutlineCount_suloution(length: length));
+
+>>>>>>> 2fd248de47aad0b2318e7b7a8658b8cab7962f38
