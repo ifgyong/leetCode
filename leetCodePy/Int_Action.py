@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-#//
 #//                       _oo0oo_
 #//                      o8888888o
 #//                      88" . "88
