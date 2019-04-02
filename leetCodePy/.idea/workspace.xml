@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c92c09a3-701c-4172-966c-7bcb968c1ee1" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/leetCodePy.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/leetCodePy.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/List.py" beforeDir="false" afterPath="$PROJECT_DIR$/List.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/string_Aciton.py" beforeDir="false" afterPath="$PROJECT_DIR$/string_Aciton.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Int_Action.py" beforeDir="false" afterPath="$PROJECT_DIR$/Int_Action.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tree_Action.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tree_Action.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/string_Aciton.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="320">
-              <caret line="148" selection-start-line="148" selection-end-line="148" />
+              <caret line="148" lean-forward="true" selection-start-line="148" selection-end-line="148" />
               <folding>
                 <element signature="e#1101#1802#0" />
                 <element signature="e#1837#2437#0" />
@@ -43,15 +39,25 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Int_Action.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="103" column="27" selection-start-line="103" selection-start-column="27" selection-end-line="103" selection-end-column="27" />
+            <state relative-caret-position="351">
+              <caret line="131" column="21" selection-start-line="131" selection-start-column="21" selection-end-line="131" selection-end-column="21" />
               <folding>
                 <element signature="e#1450#2171#0" />
                 <element signature="e#1766#2117#0" />
+                <element signature="e#3561#3912#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tree_Action.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="299">
+              <caret line="48" column="30" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -95,9 +101,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/List.py" />
+        <option value="$PROJECT_DIR$/string_Aciton.py" />
         <option value="$PROJECT_DIR$/Tree_Action.py" />
         <option value="$PROJECT_DIR$/Int_Action.py" />
-        <option value="$PROJECT_DIR$/string_Aciton.py" />
       </list>
     </option>
   </component>
@@ -110,7 +116,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="47" />
-    <option name="y" value="23" />
+    <option name="y" value="31" />
     <option name="width" value="1375" />
     <option name="height" value="846" />
   </component>
@@ -177,7 +183,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Int_Action">
+  <component name="RunManager" selected="Python.tree_action">
     <configuration name="Int_Action" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="leetCodePy" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -310,15 +316,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1554099474078</updated>
-      <workItem from="1554176626743" duration="6613000" />
+      <workItem from="1554176626743" duration="10484000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6613000" />
+    <option name="totallyTimeSpent" value="10484000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="47" y="23" width="1375" height="846" extended-state="0" />
+    <frame x="47" y="31" width="1375" height="846" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2528132" />
@@ -328,7 +334,7 @@
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.1997264" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.27633378" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39808482" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -350,6 +356,15 @@
     <option name="version" value="1" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Tree_Action.py</url>
+          <line>38</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="isVisiable" />
@@ -357,17 +372,10 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/leetCodePy$Int_Action.coverage" NAME="Int_Action Coverage Results" MODIFIED="1554187244675" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/leetCodePy$tree_action.coverage" NAME="tree_action Coverage Results" MODIFIED="1554193005751" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/leetCodePy$Int_Action.coverage" NAME="Int_Action Coverage Results" MODIFIED="1554191187479" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Tree_Action.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Library/Caches/PyCharm2017.2/python_stubs/776880377/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-613">
@@ -401,21 +409,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Int_Action.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="103" column="27" selection-start-line="103" selection-start-column="27" selection-end-line="103" selection-end-column="27" />
-          <folding>
-            <element signature="e#1450#2171#0" />
-            <element signature="e#1766#2117#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/string_Aciton.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
-          <caret line="148" selection-start-line="148" selection-end-line="148" />
+          <caret line="148" lean-forward="true" selection-start-line="148" selection-end-line="148" />
           <folding>
             <element signature="e#1101#1802#0" />
             <element signature="e#1837#2437#0" />
@@ -425,6 +422,25 @@
             <element signature="e#4911#5149#0" />
             <marker date="1554187738701" expanded="true" signature="1082:1086" ph="..." />
             <marker date="1554187738701" expanded="true" signature="1818:1822" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tree_Action.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="48" column="30" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Int_Action.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="131" column="21" selection-start-line="131" selection-start-column="21" selection-end-line="131" selection-end-column="21" />
+          <folding>
+            <element signature="e#1450#2171#0" />
+            <element signature="e#1766#2117#0" />
+            <element signature="e#3561#3912#0" />
           </folding>
         </state>
       </provider>

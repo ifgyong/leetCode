@@ -110,8 +110,45 @@ def isValidSudoku( board: [list]) -> bool:
             break
 
     return isVisiable
-for i in range(0,3,3):
-    print(i)
+
+
+def rotate( matrix: [list]) -> None:
+    h =  matrix
+    for i in range(len(h)):
+        sub = []
+        count=  len(h)-1
+        for j in range(len(h[i])):
+            matrix[i][count] = h[j][i]
+            count -= 1
+        # h.append(sub)
+    for i in range(len(matrix)):
+        print(matrix[i])
+
+
+def maxSubArray(self, nums: list[int]) -> int:
+    for i in range(1,len(nums)):
+        if nums[i-1]>0:
+            nums[i] = nums[i] + nums[i-1]
+    return  max(nums)
+ll = [
+  [ 5, 1, 9,11],
+  [ 2, 4, 8,10],
+  [13, 3, 6, 7],
+  [15,14,12,16]
+]
+rotate(ll)
+# def spiralOrder( matrix: [list[int]]) -> list[int]:
+#     if len(matrix) == 0:return []
+#     xMax = len(matrix)
+#     yMax = len(matrix[0])
+#     if yMax == 1:
+#         return  matrix[0]
+#     x,y = 0 ,0
+
+
+
+
+
 ar =  [["5","3",".",".","7",".",".",".","."],
        ["6",".",".","1","9","5",".",".","."],
        [".","9","8",".",".",".",".","6","."],
@@ -121,4 +158,4 @@ ar =  [["5","3",".",".","7",".",".",".","."],
        [".","6",".",".",".",".","2","8","."],
        [".",".",".","4","1","9",".",".","5"],
        [".",".",".",".","8",".",".","7","9"]]
-print( isValidSudoku(ar))
+# print( isValidSudoku(ar))
