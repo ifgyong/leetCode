@@ -1,6 +1,5 @@
-# !/usr/bin/env python
-#!/usr/bin/python3
 
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 #//
 #//                       _oo0oo_
@@ -87,8 +86,70 @@ def isValid( s: str) -> bool:
         return  True;
     return False;
 
-def searchInsert(nums: List[int], target: int) -> int:
-    print(1)
-    return  1;
-
 #searchInsert({1,2,3,4},target=4);
+def longesPalindrome(s:str)->str:
+    def isPalindrome(subStr:str) ->bool:
+        length = int(len(subStr)/2)
+        fullLength = len(subStr);
+        isp = True;
+        for i in range(0,length):
+            l = subStr[i]
+            r = subStr[fullLength-i-1]
+            if l != r:
+                isp = False
+                break
+        return  isp;
+    maxLength = 0;
+    pali = ""
+    if len(s)<2:
+        return  s;
+    for i in reversed(range(0,len(s)+1)):
+        if maxLength != 0:
+            break;
+        for j in range(0,len(s)-i+1):
+            sub = s[j:j+i]
+            sub_l = len(sub)
+            if sub_l > 1:
+                isSub = isPalindrome(sub)
+                if isSub:
+                    pali = sub
+                    maxLength = sub_l
+                    break;
+            else:
+                maxLength = 1
+                pali = sub;
+                break;
+    return  pali;
+longstr = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabcaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+
+# 72 ms 最长回文字符串
+def longestPalindrome2( s: str) -> str:
+    if len(s) == 0:
+        return ""
+    maxLen = 1
+    start = 0
+    for  i in reversed(range(len(s))):
+        if i-maxLen >= 1 and s[i-maxLen-1:i+1] == s[maxLen-1:i+1][::-1]:
+            start = i - maxLen -1
+            maxLen += 1
+            continue;
+        if i - maxLen>=0 and  s[i - maxLen - 1:i + 1] == s[i - maxLen - 1:i + 1][::-1]:
+            start = i - maxLen
+            maxLen += 1
+    return  s[start:start+maxLen]
+
+def longestValidParentheses( s: str) -> int:
+    maxlen = 1;
+    start = 0;
+    for i in range(len(s)):
+        old = s[i-maxlen-1:i+1]
+        new =  s[i-maxlen-1:i+1][::-1]
+        if i-maxlen>=1 and old == new:
+            maxlen +=2;
+            start = i-maxlen-1;
+    return maxlen
+
+
+ss = "()()()";
+s = longestValidParentheses(ss)
+print(s)

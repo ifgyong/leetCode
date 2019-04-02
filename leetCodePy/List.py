@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 #//
 #//                       _oo0oo_
@@ -36,17 +36,6 @@ class ListNode:
         self.next = None
 
 class Solution(object):
-    def swapPairs(self, head: ListNode) -> ListNode:
-        pro = ListNode(0)
-        pro.next = head;
-
-        tail = pro;
-
-        while  True:
-            if  tail.next.next:
-                tail
-
-        return ListNode(0);
     def mergeKLists(self, lists):
 
         if len(lists)==0 :return None;
@@ -95,10 +84,3 @@ c2= ListNode(2)
 d1 = ListNode(1)
 d2 = ListNode(3)
 
-
-l1.next = l2
-c1.next = c2;
-d1.next = d2
-ss =  Solution();
-ss = ss.mergeKLists([l1,c1,d1]);
-print();
