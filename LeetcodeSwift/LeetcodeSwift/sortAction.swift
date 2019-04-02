@@ -7,6 +7,19 @@
 //
 
 import Foundation
+//统计二进制的 1的数字个数
+//负数统计陷入死循环
+func numberToTwoAndOneCount(n:Int) ->Int{
+    var x = n;
+    var count = 0;
+    
+    while x>0 {
+        if x&1 == 1{
+            count += 1;
+        }
+        x = x>>1;
+    }
+    return count;
 func divide(_ dividend: Int, _ divisor: Int) -> Int {
     
     let di = dividend>0;
@@ -34,8 +47,6 @@ func divide(_ dividend: Int, _ divisor: Int) -> Int {
         }
         return 0-count;
     }
-    
-    
 }
 //贪婪算法剪绳子
 func cutCount(length:Int) -> Int{
@@ -117,6 +128,5 @@ func quickSort(list:inout [Int],low:Int,high:Int) -> Void {
     }
     quickSort(list: &list, low: low, high: l-1);
     quickSort(list: &list, low: l+1, high: high);
-    
-    
+}
 }
