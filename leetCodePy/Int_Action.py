@@ -126,10 +126,12 @@ def rotate( matrix: [list]) -> None:
 
 # 保存左边的》0的值，小余0 则不保存 则保存的数据是从左往右的最大值
 def maxSubArray( nums: [int]) -> int:
+    maxNum=0;
     for i in range(1,len(nums)):
         if nums[i-1]>0:
             nums[i] = nums[i] + nums[i-1]
-    return  max(nums)
+            maxNum = nums[i] if nums[i]>maxNum else maxNum
+    return  maxNum
 class Interval:
     def __init__(self, s=0, e=0):
         self.start = s
@@ -146,7 +148,6 @@ def merge( intervals: [Interval]) -> [Interval]:
         minS = min( val.start,val2.start)
         maxE = max(val.end,val2.end)
         return Interval(minS,maxE)
-
     while i > 0:
         l:Interval = intervals[i]
         l_l:Interval = intervals[i-1]
