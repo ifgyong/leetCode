@@ -1,4 +1,6 @@
-#!/usr/bin/env python
+# !/usr/bin/env python
+#!/usr/bin/python3
+
 # -*- coding: utf-8 -*-
 #//
 #//                       _oo0oo_
@@ -85,8 +87,8 @@ def isValid( s: str) -> bool:
         return  True;
     return False;
 
+def searchInsert(nums: List[int], target: int) -> int:
+    print(1)
+    return  1;
 
-s  = "{[]}"
-print( isValid2(s));
-
-
+#searchInsert({1,2,3,4},target=4);
