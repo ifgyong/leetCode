@@ -49,7 +49,7 @@ def searchInsert( nums:list, target:int)->int:
     """
     if nums.__contains__(target):return nums.index(target,0,len(nums))
     if target<nums[0] :
-        return 0;
+        return 0
     if target > nums[len(nums) - 1]:
         return len(nums)
     def sear(num:list,target:int,low:int,high:int)->int:
@@ -110,7 +110,7 @@ def isValidSudoku( board: [list]) -> bool:
 
     return isVisiable
 
-
+#翻转数组
 def rotate( matrix: [list]) -> None:
     h =  matrix
     for i in range(len(h)):
@@ -119,7 +119,6 @@ def rotate( matrix: [list]) -> None:
         for j in range(len(h[i])):
             matrix[i][count] = h[j][i]
             count -= 1
-        # h.append(sub)
     for i in range(len(matrix)):
         print(matrix[i])
 

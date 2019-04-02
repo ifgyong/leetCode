@@ -28,7 +28,7 @@
 # @Site    : http://fgyong.cn 兜兜转转的技术博客
 # @File    : List.py
 # @Software: PyCharm
-import types;
+import types
 class ListNode:
     def __init__(self, x):
         self.val = x
@@ -37,19 +37,19 @@ class ListNode:
 class Solution(object):
     def mergeKLists(self, lists):
 
-        if len(lists)==0 :return None;
-        l_head = ListNode(0);
-        l_head.next = lists[0];
+        if len(lists)==0 :return None
+        l_head = ListNode(0)
+        l_head.next = lists[0]
         i = 0;
         while i<len(lists)-1:
-            subnode = lists[i];
+            subnode = lists[i]
             while True:
                 if hasattr(subnode,'_next'):
-                    subnode = subnode.next;
+                   subnode = subnode.next
                 else:
-                    break;
-            subnode2 = lists[i+1];
-            subnode.next = subnode2;
+                    break
+            subnode2 = lists[i+1]
+            subnode.next = subnode2
             i +=1;
 
         array = []
@@ -64,17 +64,16 @@ class Solution(object):
         array.sort();
         print(array);
         while i < len(array):
-            # l_head.val = array[i]
-            new_node = ListNode(array[i]);
-            l_head.next = new_node;
-            l_head = l_head.next;
-            i += 1;
+            new_node = ListNode(array[i])
+            l_head.next = new_node
+            l_head = l_head.next
+            i += 1
 
-        return last_node.next;
+        return last_node.next
 
 
-l1 = ListNode(1);
-l2 = ListNode(4);
+l1 = ListNode(1)
+l2 = ListNode(4)
 
 
 c1= ListNode(1)
