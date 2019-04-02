@@ -124,20 +124,54 @@ def rotate( matrix: [list]) -> None:
     for i in range(len(matrix)):
         print(matrix[i])
 
-
-def maxSubArray(self, nums: list[int]) -> int:
+# 保存左边的》0的值，小余0 则不保存 则保存的数据是从左往右的最大值
+def maxSubArray( nums: [int]) -> int:
     for i in range(1,len(nums)):
         if nums[i-1]>0:
             nums[i] = nums[i] + nums[i-1]
     return  max(nums)
+class Interval:
+    def __init__(self, s=0, e=0):
+        self.start = s
+        self.end = e
+    def p(self):
+        print("s:",self.start,"end:",self.end)
+def merge( intervals: [Interval]) -> [Interval]:
+    i = len(intervals)-1
+    def cons(val:Interval,val2:Interval):
+        if val.end < val2.start or val.start>val2.end:
+            return False;
+        return True;
+    def join(val:Interval,val2:Interval):
+        minS = min( val.start,val2.start)
+        maxE = max(val.end,val2.end)
+        return Interval(minS,maxE)
+
+    while i > 0:
+        l:Interval = intervals[i]
+        l_l:Interval = intervals[i-1]
+        if cons(l_l,l):
+            intervals.__delitem__(i)
+            intervals.__delitem__(i-1)
+            res = join(l_l,l)
+            intervals.append(res)
+            i -= 1
+        else:
+            i -= 1
+    return  intervals
+
 ll = [
   [ 5, 1, 9,11],
   [ 2, 4, 8,10],
   [13, 3, 6, 7],
   [15,14,12,16]
 ]
-
-rotate(ll)
+res = Interval(1,3)
+res1 = Interval(0,2)
+res2 = Interval(3,5)
+rr = merge([res,res1,res2])
+for i in rr:
+    i.p()
 # def spiralOrder( matrix: [list[int]]) -> list[int]:
 #     if len(matrix) == 0:return []
 #     xMax = len(matrix)

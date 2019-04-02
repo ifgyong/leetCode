@@ -52,6 +52,76 @@ def isValidBST( root: TreeNode) -> bool:
         elif root.left is None and root.right is None:
             return True
     return isBST(root)
+#102
+def levelOrder( root:TreeNode):
+    if root is None:return []
+    vales =[]
+    count = 0
+    nodes =[root]
+    levelCount = 0
+    while count<len(nodes):
+        sub =[]
+        for i in range(count,len(nodes)):
+            t = nodes[i]
+            sub.append(t.val)
+            count += 1
+            if t.left:
+                nodes.append(t.left)
+            if t.right:
+                nodes.append(t.right)
+        vales.append(sub[::-1])
+    return vales
+#103
+def zigzagLevelOrder( root: TreeNode) -> [[int]]:
+    if root is None:return []
+    vales =[]
+    count = 0
+    nodes =[root]
+    from_left_right = True
+
+    while count<len(nodes):
+        sub =[]
+
+        for i in range(count,len(nodes)):
+            t = nodes[i]
+            sub.append(t.val)
+            count += 1
+            if t.left:
+                nodes.append(t.left)
+            if t.right:
+                nodes.append(t.right)
+        if from_left_right ==False:
+            from_left_right = True
+            vales.append(sub[::-1])
+        else:
+            from_left_right = False
+            vales.append(sub)
+    return vales
+
+    return [[]]
+# class Solution:
+    # 144
+def preorderTraversal( root: TreeNode) -> [int]:
+    if root is None:return []
+    def proNode(root:TreeNode,l:list):
+            l.append(root.val)
+            if root.left:
+                 proNode(root.left,l)
+            if root.right:
+                 proNode(root.right,l)
+    l = []
+    proNode(root,l)
+    return l
+
+
+
+
+
+
+
+
+
+
 n1 = TreeNode(5)
 n2 = TreeNode(1)
 n3 = TreeNode(4)
