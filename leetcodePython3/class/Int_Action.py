@@ -171,13 +171,6 @@ res2 = Interval(3,5)
 rr = merge([res,res1,res2])
 for i in rr:
     i.p()
-# def spiralOrder( matrix: [list[int]]) -> list[int]:
-#     if len(matrix) == 0:return []
-#     xMax = len(matrix)
-#     yMax = len(matrix[0])
-#     if yMax == 1:
-#         return  matrix[0]
-#     x,y = 0 ,0
 
 
 
