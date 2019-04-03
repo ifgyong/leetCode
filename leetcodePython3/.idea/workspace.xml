@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4bafe12c-533d-43d2-b8c6-3b12e046e201" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/leetcodePython3.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/class/Stack_Aciton.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/class/Int_Action.py" beforeDir="false" afterPath="$PROJECT_DIR$/class/Int_Action.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/class/List.py" beforeDir="false" afterPath="$PROJECT_DIR$/class/List.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/class/Tree_Action.py" beforeDir="false" afterPath="$PROJECT_DIR$/class/Tree_Action.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/class/string_Aciton.py" beforeDir="false" afterPath="$PROJECT_DIR$/class/string_Aciton.py" afterDir="false" />
-    </list>
+    <list default="true" id="4bafe12c-533d-43d2-b8c6-3b12e046e201" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +23,7 @@
         <entry file="file://$PROJECT_DIR$/class/string_Aciton.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="179">
-              <caret line="151" column="13" selection-start-line="151" selection-start-column="13" selection-end-line="151" selection-end-column="13" />
+              <caret line="151" column="13" lean-forward="true" selection-start-line="151" selection-start-column="13" selection-end-line="151" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -66,7 +54,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/class/Int_Action.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1464">
+            <state relative-caret-position="200">
               <caret line="208" column="10" lean-forward="true" selection-start-line="208" selection-start-column="10" selection-end-line="208" selection-end-column="10" />
               <folding>
                 <element signature="e#2214#3473#0" />
@@ -272,23 +260,22 @@
       <workItem from="1554251976656" duration="21558000" />
       <workItem from="1554280361884" duration="447000" />
       <workItem from="1554284419157" duration="1258000" />
-      <workItem from="1554299288038" duration="68000" />
+      <workItem from="1554299288038" duration="379000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23331000" />
+    <option name="totallyTimeSpent" value="23642000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="55" y="23" width="1225" height="777" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26120034" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26120034" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4996249" weight="0.32968536" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4996249" visible="true" weight="0.20656635" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4996249" visible="true" weight="0.20543806" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4996249" weight="0.44049248" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -312,7 +299,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/leetcodePython3$List.coverage" NAME="List Coverage Results" MODIFIED="1554276976703" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/class" />
     <SUITE FILE_PATH="coverage/leetcodePython3$Tree_Action.coverage" NAME="Tree_Action Coverage Results" MODIFIED="1554262240307" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/class" />
-    <SUITE FILE_PATH="coverage/leetcodePython3$Int_Action.coverage" NAME="Int_Action Coverage Results" MODIFIED="1554299510695" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/class" />
+    <SUITE FILE_PATH="coverage/leetcodePython3$Int_Action.coverage" NAME="Int_Action Coverage Results" MODIFIED="1554299769598" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/class" />
     <SUITE FILE_PATH="coverage/leetcodePython3$string_Aciton.coverage" NAME="string_Aciton Coverage Results" MODIFIED="1554285506613" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/class" />
   </component>
   <component name="editorHistoryManager">
@@ -352,13 +339,13 @@
     <entry file="file://$PROJECT_DIR$/class/string_Aciton.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="179">
-          <caret line="151" column="13" selection-start-line="151" selection-start-column="13" selection-end-line="151" selection-end-column="13" />
+          <caret line="151" column="13" lean-forward="true" selection-start-line="151" selection-start-column="13" selection-end-line="151" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/class/Int_Action.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1464">
+        <state relative-caret-position="200">
           <caret line="208" column="10" lean-forward="true" selection-start-line="208" selection-start-column="10" selection-end-line="208" selection-end-column="10" />
           <folding>
             <element signature="e#2214#3473#0" />
