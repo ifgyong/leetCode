@@ -111,23 +111,117 @@ def preorderTraversal( root: TreeNode) -> [int]:
     l = []
     proNode(root,l)
     return l
+#
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+class Solution:
+    def minDepth(self, root: TreeNode) -> int:
+        if root is None:return 0
+        left = self.minDepth(root.left)
+        right = self.minDepth(root.right)
+        if left==0 or right == 0:
+            return left+right+1
+        else:return min(left,right)+1;
+#66
+    def plusOne(self, digits: [int]) -> [int]:
+        i = len(digits)-1
+        isadd :int= 1
+        while i >=0:
+            if isadd == 0: break
+            n = digits[i]
+            if i == 0 and n==9:
+                digits[0] = 0
+                digits.insert(0,1)
+                break
+            else:
+                n +=isadd
+                isadd = int(n/10)
+                n %=10
+                digits[i] = n
+            i -= 1
+        return digits
+#67
+    def addBinary(self, a: str, b: str) -> str:
+        sub,s1,s2 = "",a,b
+        isAdd = False
+        while len(s1) or len(s2):
+            s_sub1 = s1[::-1][0] if len(s1)>0 else ""
+            s_sub2 = s2[::-1][0] if len(s2)>0 else ""
+            if len(s1) <= 1:
+                s1=""
+            else:
+                s1 = s1[:len(s1) - 1]
+            if len(s2) <= 1:
+                s2=""
+            else:
+                s2 = s2[:len(s2) - 1]
+            if s_sub2 is "1" and s_sub1 is "1":
+                new_sub = "0"
+                if isAdd:new_sub = "1"
+                sub = new_sub + sub
+                isAdd = True
+            elif s_sub1 is "1" or s_sub2 is "1":
+                if isAdd:
+                    sub = "0" + sub
+                    isAdd = True
+                else:
+                    sub = "1" + sub
+                    isAdd = False
+            else:
+                if isAdd:
+                    sub = "1" + sub
+                else:
+                    sub = "0" + sub
+                isAdd = False
+        if isAdd:
+            sub = "1"+sub
+        return sub
+    #83 链表去重
+    def deleteDuplicates(self, head: ListNode) -> ListNode:
+        if head is None:return None
+        h =ListNode(0)
+        h1 = head
+        h.next = h1
+        while h1.next:
+            if h1.val == h1.next.val:
+                h1.next = h1.next.next
+            else:
+                h1=h1.next
+            if h1 is None:break
+        return h.next
+    #112path sum  路径总和 sum减去根节点 等于root.val 而且左右无节点则true
+    def hasPathSum(self, root: TreeNode, sum: int) -> bool:
+        if not root:return False
+        if not root.left and not root.right and  root.val == sum:return True
+        sum -= root.val
+        return self.hasPathSum(root.left,sum) or self.hasPathSum(root.right,sum)
+
+ss = Solution()
+t = TreeNode(1)
+t2 = TreeNode(1)
+t3 = TreeNode(1)
+t.left = t2
+t2.right = t3
+
+
+
+s1=ss.hasPathSum(t,3)
+print(s1)
 
 
 
 
 
-
-
-
-
-
-n1 = TreeNode(5)
-n2 = TreeNode(1)
-n3 = TreeNode(4)
-n4 = TreeNode(3)
-n5 = TreeNode(6)
-n1.left = n2
-n1.right = n3
-n3.left = n4
-n3.right = n5
-print( isValidBST(n1))
+# n1 = TreeNode(5)
+# n2 = TreeNode(1)
+# n3 = TreeNode(4)
+# n4 = TreeNode(3)
+# n5 = TreeNode(6)
+# n1.left = n2
+# n1.right = n3
+# n3.left = n4
+# n3.right = n5
+# print( isValidBST(n1))

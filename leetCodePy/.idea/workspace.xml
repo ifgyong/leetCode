@@ -219,17 +219,17 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1554099474078</updated>
-      <workItem from="1554176626743" duration="15110000" />
+      <workItem from="1554176626743" duration="15204000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15110000" />
+    <option name="totallyTimeSpent" value="15204000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="46" y="27" width="1375" height="846" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2528132" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2528132" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" />

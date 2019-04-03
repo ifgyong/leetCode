@@ -158,19 +158,36 @@ def merge( intervals: [Interval]) -> [Interval]:
         else:
             i -= 1
     return  intervals
+class Solution:
+    #70爬楼梯
+    def climbStairs(self, n: int) -> int:
+        if n<3:return n
+        return self.climbStairs(n-1)+self.climbStairs(n-2)
+    #斐波那契额数列应用
+    def climbStairs2(self, n: int) -> int:
+        if n<3:return n
+        count,l1,l2=0,1,1
+        for i in range(3,n+2):
+            count = l1+l2
+            l1 = l2
+            l2 = count
+        return count
 
-ll = [
-  [ 5, 1, 9,11],
-  [ 2, 4, 8,10],
-  [13, 3, 6, 7],
-  [15,14,12,16]
-]
-res = Interval(1,3)
-res1 = Interval(0,2)
-res2 = Interval(3,5)
-rr = merge([res,res1,res2])
-for i in rr:
-    i.p()
+
+sol = Solution().climbStairs(6)
+print(sol)
+# ll = [
+#   [ 5, 1, 9,11],
+#   [ 2, 4, 8,10],
+#   [13, 3, 6, 7],
+#   [15,14,12,16]
+# ]
+# res = Interval(1,3)
+# res1 = Interval(0,2)
+# res2 = Interval(3,5)
+# rr = merge([res,res1,res2])
+# for i in rr:
+#     i.p()
 # def spiralOrder( matrix: [list[int]]) -> list[int]:
 #     if len(matrix) == 0:return []
 #     xMax = len(matrix)
@@ -183,13 +200,13 @@ for i in rr:
 
 
 
-ar =  [["5","3",".",".","7",".",".",".","."],
-       ["6",".",".","1","9","5",".",".","."],
-       [".","9","8",".",".",".",".","6","."],
-       ["8",".",".",".","6",".",".",".","3"],
-       ["4",".",".","8",".","3",".",".","1"],
-       ["7",".",".",".","2",".",".",".","6"],
-       [".","6",".",".",".",".","2","8","."],
-       [".",".",".","4","1","9",".",".","5"],
-       [".",".",".",".","8",".",".","7","9"]]
-print( isValidSudoku(ar))
+# ar =  [["5","3",".",".","7",".",".",".","."],
+#        ["6",".",".","1","9","5",".",".","."],
+#        [".","9","8",".",".",".",".","6","."],
+#        ["8",".",".",".","6",".",".",".","3"],
+#        ["4",".",".","8",".","3",".",".","1"],
+#        ["7",".",".",".","2",".",".",".","6"],
+#        [".","6",".",".",".",".","2","8","."],
+#        [".",".",".","4","1","9",".",".","5"],
+#        [".",".",".",".","8",".",".","7","9"]]
+# print( isValidSudoku(ar))
