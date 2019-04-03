@@ -16,54 +16,7 @@
     <SUITE FILE_PATH="coverage/leetCodePy$Int_Action.coverage" NAME="Int_Action Coverage Results" MODIFIED="1554175889176" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/string_Aciton.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="148" lean-forward="true" selection-start-line="148" selection-end-line="148" />
-              <folding>
-                <element signature="e#1101#1802#0" />
-                <element signature="e#1837#2437#0" />
-                <element signature="e#4429#4860#0" />
-                <element signature="e#4539#4826#0" />
-                <element signature="e#4616#4683#0" />
-                <element signature="e#4911#5149#0" />
-                <marker date="1554187738701" expanded="true" signature="1082:1086" ph="..." />
-                <marker date="1554187738701" expanded="true" signature="1818:1822" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Int_Action.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="148" lean-forward="true" selection-start-line="148" selection-end-line="148" />
-              <folding>
-                <element signature="e#1450#2171#0" />
-                <element signature="e#1766#2117#0" />
-                <element signature="e#3561#3912#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Tree_Action.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="102" column="7" selection-start-line="102" selection-start-column="7" selection-end-line="102" selection-end-column="7" />
-              <folding>
-                <element signature="e#1201#1879#0" />
-                <element signature="e#2406#2977#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -126,17 +79,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="leetCodePy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="leetCodePy" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -233,28 +176,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="string_action" type="PythonConfigurationType" factoryName="Python">
-      <module name="leetCodePy" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="/Library/Frameworks/Python.framework/Versions/3.6/bin/python3.6" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/string_Aciton.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="tree_action" type="PythonConfigurationType" factoryName="Python">
       <module name="leetCodePy" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -278,7 +199,6 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.string_action" />
       <item itemvalue="Python.list" />
       <item itemvalue="Python.tree_action" />
       <item itemvalue="Python.Int_Action" />
@@ -299,12 +219,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1554099474078</updated>
-      <workItem from="1554176626743" duration="14857000" />
+      <workItem from="1554176626743" duration="15110000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14857000" />
+    <option name="totallyTimeSpent" value="15110000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="46" y="27" width="1375" height="846" extended-state="0" />
@@ -322,7 +242,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5003751" side_tool="true" weight="0.32968536" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="8" sideWeight="0.4996249" visible="true" weight="0.32968536" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4996249" weight="0.32968536" />
       <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4996249" weight="0.32968536" />
       <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.4996249" weight="0.32968536" />
       <window_info anchor="right" id="SciView" />
@@ -379,8 +299,6 @@
             <element signature="e#4539#4826#0" />
             <element signature="e#4616#4683#0" />
             <element signature="e#4911#5149#0" />
-            <marker date="1554187738701" expanded="true" signature="1082:1086" ph="..." />
-            <marker date="1554187738701" expanded="true" signature="1818:1822" ph="..." />
           </folding>
         </state>
       </provider>
