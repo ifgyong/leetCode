@@ -1,3 +1,6 @@
+
+# leetcodePython3/.idea/*.xml
+/.idea
 # Xcode
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
@@ -107,8 +110,6 @@ venv.bak/
 ## Build generated
 build/
 DerivedData/
-# leetcodePython3/.idea/*.xml
-/.idea
 .DS_Store
 ## Various settings
 *.pbxuser
