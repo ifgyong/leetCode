@@ -107,7 +107,7 @@ venv.bak/
 ## Build generated
 build/
 DerivedData/
-*/.idea/*
+leetcodePython3/.idea/*.xml
 .DS_Store
 ## Various settings
 *.pbxuser
