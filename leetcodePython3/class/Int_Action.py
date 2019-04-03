@@ -158,31 +158,88 @@ def merge( intervals: [Interval]) -> [Interval]:
         else:
             i -= 1
     return  intervals
+class Solution:
+    #70爬楼梯
+    def climbStairs(self, n: int) -> int:
+        if n<3:return n
+        return self.climbStairs(n-1)+self.climbStairs(n-2)
+    #斐波那契额数列应用
+    def climbStairs2(self, n: int) -> int:
+        if n<3:return n
+        count,l1,l2=0,1,1
+        for i in range(3,n+2):
+            count = l1+l2
+            l1 = l2
+            l2 = count
+        return count
+    #买卖股票最佳时机I 121
+    def maxProfit(self, prices: [int]) -> int:
+        max_p,min_proice= 0,float("inf")
+        for i in prices:
+            min_proice = min(min_proice,i)
+            max_p = max(max_p,i-min_proice)
+        return max_p
+    #买卖股票最佳时机II 122
+    def maxProfit2(self, prices: [int]) -> int:
+       return  sum(max(prices[i+1]-prices[i],0) for i in range(len(prices)-1))
+#136 用异或取反操作进行处理，双数取2次还是0，单数则不变
+    def singleNumber(self, nums: list) -> int:
+        result = 0
+        for i in range(len(nums)):
+            result  ^= nums[i]
+        return result
+#172
+    def trailingZeroes(self, n: int) -> int:
+        return 0 if n == 0 else n // 5 + self.trailingZeroes(n // 5)
 
-ll = [
-  [ 5, 1, 9,11],
-  [ 2, 4, 8,10],
-  [13, 3, 6, 7],
-  [15,14,12,16]
-]
-res = Interval(1,3)
-res1 = Interval(0,2)
-res2 = Interval(3,5)
-rr = merge([res,res1,res2])
-for i in rr:
-    i.p()
+
+    def rotate(self, nums: list, k: int) -> None:
+        k = len(nums)%k
+        c = k
+        while c:
+            item = nums[len(nums)-1]
+            del  nums[len(nums)-1]
+            nums.insert(item,0)
+            c -=1
+
+
+sol = Solution().trailingZeroes(30)
+x = 1
+for i in range(1,31):
+    x *= i
+
+print(x)
+# ll = [
+#   [ 5, 1, 9,11],
+#   [ 2, 4, 8,10],
+#   [13, 3, 6, 7],
+#   [15,14,12,16]
+# ]
+# res = Interval(1,3)
+# res1 = Interval(0,2)
+# res2 = Interval(3,5)
+# rr = merge([res,res1,res2])
+# for i in rr:
+#     i.p()
+# def spiralOrder( matrix: [list[int]]) -> list[int]:
+#     if len(matrix) == 0:return []
+#     xMax = len(matrix)
+#     yMax = len(matrix[0])
+#     if yMax == 1:
+#         return  matrix[0]
+#     x,y = 0 ,0
 
 
 
 
 
-ar =  [["5","3",".",".","7",".",".",".","."],
-       ["6",".",".","1","9","5",".",".","."],
-       [".","9","8",".",".",".",".","6","."],
-       ["8",".",".",".","6",".",".",".","3"],
-       ["4",".",".","8",".","3",".",".","1"],
-       ["7",".",".",".","2",".",".",".","6"],
-       [".","6",".",".",".",".","2","8","."],
-       [".",".",".","4","1","9",".",".","5"],
-       [".",".",".",".","8",".",".","7","9"]]
-print( isValidSudoku(ar))
+# ar =  [["5","3",".",".","7",".",".",".","."],
+#        ["6",".",".","1","9","5",".",".","."],
+#        [".","9","8",".",".",".",".","6","."],
+#        ["8",".",".",".","6",".",".",".","3"],
+#        ["4",".",".","8",".","3",".",".","1"],
+#        ["7",".",".",".","2",".",".",".","6"],
+#        [".","6",".",".",".",".","2","8","."],
+#        [".",".",".","4","1","9",".",".","5"],
+#        [".",".",".",".","8",".",".","7","9"]]
+# print( isValidSudoku(ar))

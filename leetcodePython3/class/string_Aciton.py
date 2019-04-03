@@ -148,7 +148,55 @@ def longestValidParentheses( s: str) -> int:
             start = i-maxlen-1;
     return maxlen
 
-
-ss = "()()()";
-s = longestValidParentheses(ss)
+class Solution:
+    #波兰表达式计算器
+    def evalRPN(self, tokens: list) -> int:
+        if len(tokens) == 0:return 0
+        elif len(tokens)==1:return int(tokens[0])
+        else:
+            count = 0
+            i = 0
+            con = "+-*/"
+            while i<len(tokens):
+                if con.__contains__(tokens[i]):
+                    nu1 = int(tokens[i - 2])
+                    nu2 = int(tokens[i - 1])
+                    index = con.index(tokens[i],0,len(con))
+                    if index == 0:
+                        count = nu1 + nu2
+                    elif index == 1:
+                        count = nu1 - nu2
+                    elif index == 2:
+                        count = nu1 * nu2
+                    elif index == 3:
+                        count = int( nu1 / nu2)
+                    tokens.__delitem__(i)
+                    tokens.__delitem__(i-1)
+                    tokens.__delitem__(i-2)
+                    tokens.insert(i-2,str(count))
+                    i -=2
+                    if len(tokens) == 1:
+                        break
+                i +=1
+            return count
+    #125
+    def isPalindrome(self, s: str) -> bool:
+        new = ""
+        con = "0123456789"
+        for i in s:
+            if (i.lower() <= "z" and i.lower() >= 'a')or(con.__contains__(i)):
+                new +=i.lower()
+        return  new == new[::-1]
+    #171
+    def titleToNumber(self, s: str) -> int:
+        nums =[]
+        for i in range(1,26):
+            nums.append(i)
+        count = 0
+        for i in range(len(s)):
+            x = s[::-1][i]
+            xx = ((ord(x) - 65+1))* pow(26,i)
+            count += xx
+        return count
+s = Solution().evalRPN(["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"])
 print(s)
