@@ -148,7 +148,25 @@ def longestValidParentheses( s: str) -> int:
             start = i-maxlen-1;
     return maxlen
 
-
-ss = "()()()";
-s = longestValidParentheses(ss)
+class Solution:
+    #125
+    def isPalindrome(self, s: str) -> bool:
+        new = ""
+        con = "0123456789"
+        for i in s:
+            if (i.lower() <= "z" and i.lower() >= 'a')or(con.__contains__(i)):
+                new +=i.lower()
+        return  new == new[::-1]
+    #171
+    def titleToNumber(self, s: str) -> int:
+        nums =[]
+        for i in range(1,26):
+            nums.append(i)
+        count = 0
+        for i in range(len(s)):
+            x = s[::-1][i]
+            xx = ((ord(x) - 65+1))* pow(26,i)
+            count += xx
+        return count
+s = Solution().titleToNumber("ZY")
 print(s)

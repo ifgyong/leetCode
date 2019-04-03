@@ -102,7 +102,7 @@ class Solution(object):
                 sub = sub_new
                 result.append(sub_new)
         return result
-    #119
+    #119 获取行内容 杨辉三角
     def getRow(self, rowIndex: int) -> [[int]]:
         rowIndex += 1
         if rowIndex == 0:return []
@@ -117,10 +117,65 @@ class Solution(object):
                         sub_new.append(sub[j]+sub[j-1])
                 sub = sub_new
             return sub
+    #141链表是否有环
+    def hasCycle(self, head:ListNode):
+        if head is None:return False
+        h1,h2 = head,head
+        while h1 and h2:
+            if h1.next and h2.next and h2.next.next:
+                h1=h1.next
+                h2 = h2.next.next
+            else:return False
+            if h1 == h2:return True
+        return  False
+    def hasCycle2(self, head:ListNode):
+        try:
+            slow = head
+            fast :ListNode= head.next
+            while slow is not fast:
+                slow = slow.next
+                fast = fast.next.next
+        except:
+            return  False
+    #167
+    def twoSum(self, numbers: list, target: int) -> list:
+        hi = len(numbers)-1
+        low = 0
+        while low<hi:
+            if numbers[low]+numbers[hi]>target:
+                hi -=1
+                continue
+            if numbers[low]+numbers[hi] < target:
+                low +=1
+                continue
+            elif numbers[low]+numbers[hi] == target:
+                break
+        return [low+1,hi+1]
+    #168
+    def convertToTitle(self, n: int) -> str:
+        capitals = [chr(x) for x in range(ord('A'), ord('Z') + 1)]
+        result = []
+        while n > 0:
+            result.append(capitals[(n - 1) % 26])
+            n = (n - 1) // 26#取整数
+        result.reverse()
+        return ''.join(result)
+    #169
+    def majorityElement(self, nums: list) -> int:
+        lenth = len(nums)
+        major = nums[0]
+        count = 1
+        for i in range(1,lenth):
+            if nums[i] ==major:
+                count += 1
+            elif count == 0:
+                count +=1
+                major = nums[i]
+            else:
+                count -=1
+        return major
 sol = Solution()
-m = [2,0]
-n = [2]
-s=sol.getRow(5)
+s=sol.majorityElement([0,0,0,1,2,3,0])
 print(s)
 
 
@@ -128,11 +183,8 @@ print(s)
 
 l1 = ListNode(1)
 l2 = ListNode(4)
-
-
 c1= ListNode(1)
 c2= ListNode(2)
-
 d1 = ListNode(1)
 d2 = ListNode(3)
 
