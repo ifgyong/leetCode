@@ -194,6 +194,44 @@ class Solution(object):
                     dfs(grid,i,j)
                     count +=1
         return count
+#130. 被围绕的区域
+    def solve(self, board: [[str]]) -> None:
+        def issolve(b: [[str]], k: int, j: int) -> None:
+            if (k < 0 or j < 0 or k > len(b) - 1 or j > len(b[0]) - 1) == False:
+                if b[k][j] == 'O':
+                    b[k][k]='*'
+
+        w = len(board)
+        h = len(board[0])
+
+        for i in range(w):
+            if board[i][0] == 'O':
+                board[i][0] = '*'
+                
+            if board[i][h-1] == 'O':
+                board[i][h-1] = '*'
+
+        for i in range(h):
+            if board[0][i] == 'O':
+                board[0][i] = '*'
+            if board[w-1][i] == 'O':
+                board[w-1][i] = '*'
+        for i in range(w):
+            for j in range(h):
+                if board[i][j] == '*':
+                    issolve(board,i,j)
+        for i in range(w):
+            for j in range(h):
+                if board[i][j] == 'O':
+                    board[i][j] = 'X'
+                if board[i][j] == '*':
+                    board[i][j] = 'O'
+
+
+
+
+
+
     #147. 对链表进行插入排序
     def insertionSortList(self, head: ListNode) -> ListNode:
 
@@ -220,12 +258,15 @@ class Solution(object):
 
 
 sol = Solution()
-l =[["1","1","1","1","0"],
-    ["1","1","0","1","0"],
-    ["1","1","0","0","0"],
-    ["0","0","0","0","0"]]
-s=sol.numIslands(l)
-print(s)
+l =[["O","O","O","O","X","X"],
+     ["O","O","O","O","O","O"],
+     ["O","X","O","X","O","O"],
+     ["O","X","O","O","X","O"],
+     ["O","X","O","X","O","O"],
+     ["O","X","O","O","O","O"]]
+s=sol.solve(l)
+for i in l:
+    print(i)
 
 
 

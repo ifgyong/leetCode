@@ -220,14 +220,21 @@ class Solution:
             s = "0"
         return s
 #152. 乘积最大子序列
-    def maxProduct(self, nums: list[int]) -> int:
+    def maxProduct(self, nums: list) -> int:
         big=small=maxN=nums[0]
         for i in nums[1:]:
             big,small = max(i,i*big,i*small), min(i,i*big,i*small)
             maxN = max(big,maxN)
         return maxN
+#137 只出现一次的数 其他是三次
+    def singleNumber2(self, nums: list) -> int:
+            a=b=0
+            for i in nums:
+                b =b^i & ~a
+                a =a^i & ~b
+            return a|b
 
-sol = Solution().maxProduct([0,0])
+sol = Solution().maxProduct([1,2])
 print(sol)
 # ll = [
 #   [ 5, 1, 9,11],

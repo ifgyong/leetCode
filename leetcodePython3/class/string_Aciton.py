@@ -320,9 +320,23 @@ class Solution:
 
 
         return False
+#132 分割回文字符串
+    def partition(self, s: str) -> [[str]]:
+        if len(s)==1:return [[s]]
+        array=[]
+        for i in range(1,len(s)+1):
+            s_sub,item = s[0:i],[]
+            if s_sub == s_sub[::-1]:
+                item.append(s_sub)
+                if s_sub != s:
+                    item2 = self.partition(s[i:len(s)+1])
+                    if len(item2):
+                        for j in item2:
+                            if len(''.join(item + j)) == len(s):
+                                array.append(item + j)
+                else:
+                    array.append(item)
+        return array
 
-s_1 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"
-k=["a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"]
-
-s = Solution().wordBreak(s_1,k)
+s = Solution().partition("aabcc")
 print(s)
