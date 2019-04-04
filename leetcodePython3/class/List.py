@@ -197,29 +197,33 @@ class Solution(object):
 #130. 被围绕的区域
     def solve(self, board: [[str]]) -> None:
         def issolve(b: [[str]], k: int, j: int) -> None:
-            if (k < 0 or j < 0 or k > len(b) - 1 or j > len(b[0]) - 1) == False:
+            if k >= 0 and j >= 0 and k <= (len(b) - 1) and j <= (len(b[0]) - 1):
                 if b[k][j] == 'O':
-                    b[k][k]='*'
+                    b[k][j]='*'
+                    issolve(b,k-1,j)
+                    issolve(b, k+1, j)
+                    issolve(b, k, j-1)
+                    issolve(b, k, j+1)
 
+        if len(board)==0:return
         w = len(board)
         h = len(board[0])
 
         for i in range(w):
             if board[i][0] == 'O':
                 board[i][0] = '*'
-                
+                issolve(board,i,1)
             if board[i][h-1] == 'O':
                 board[i][h-1] = '*'
+                issolve(board, i, h-2)
 
         for i in range(h):
             if board[0][i] == 'O':
                 board[0][i] = '*'
+                issolve(board, 1, i)
             if board[w-1][i] == 'O':
                 board[w-1][i] = '*'
-        for i in range(w):
-            for j in range(h):
-                if board[i][j] == '*':
-                    issolve(board,i,j)
+                issolve(board, w-2, i)
         for i in range(w):
             for j in range(h):
                 if board[i][j] == 'O':
