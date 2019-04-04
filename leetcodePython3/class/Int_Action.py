@@ -202,13 +202,33 @@ class Solution:
             nums.insert(item,0)
             c -=1
 
+    def largestNumber(self, nums: list) -> str:
+        array  = []
+        for i in nums:
+            array.append(str(i))
+        for i in range(len(array)):
+            for j in range(i+1,len(array)):
+                a =array[i]
+                b = array[j]
+                if a+b<b+a:
+                    array[i] = b
+                    array[j] = a
 
-sol = Solution().trailingZeroes(30)
-x = 1
-for i in range(1,31):
-    x *= i
+        s = ''.join(array)
+        s = s.lstrip('0')
+        if len(s) == 0:
+            s = "0"
+        return s
+#152. 乘积最大子序列
+    def maxProduct(self, nums: list[int]) -> int:
+        big=small=maxN=nums[0]
+        for i in nums[1:]:
+            big,small = max(i,i*big,i*small), min(i,i*big,i*small)
+            maxN = max(big,maxN)
+        return maxN
 
-print(x)
+sol = Solution().maxProduct([0,0])
+print(sol)
 # ll = [
 #   [ 5, 1, 9,11],
 #   [ 2, 4, 8,10],

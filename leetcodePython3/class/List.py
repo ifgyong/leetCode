@@ -174,8 +174,57 @@ class Solution(object):
             else:
                 count -=1
         return major
+    #200 岛屿个数
+
+    def numIslands(self, grid: list) -> int:
+        def dfs( grid: list, x: int, y: int):
+            if x < 0 or y < 0 or x >= len(grid) or y >= len(grid[0]) or grid[x][y] != "1":
+                return
+            grid[x][y] = "#"
+            dfs(grid, x + 1, y)
+            dfs(grid, x - 1, y)
+            dfs(grid, x, y + 1)
+            dfs(grid, x, y - 1)
+        count = 0
+        h = len(grid)
+        for i in range(h):
+            w = len(grid[i])
+            for j in range(w):
+                if grid[i][j] == "1":
+                    dfs(grid,i,j)
+                    count +=1
+        return count
+    #147. 对链表进行插入排序
+    def insertionSortList(self, head: ListNode) -> ListNode:
+
+        def insert(head_new:ListNode,node:ListNode)->ListNode:
+            node.next = head_new
+            head_new  = node
+            while node.next and node.next and node.val > node.next.val:
+                node.val,node.next.val = node.next.val,node.val
+                node = node.next
+            return head
+
+        result = None
+
+        while head:
+            node = head
+            head=head.next
+            node.next = None
+            result= insert(result,node)
+        return result
+
+
+
+        return result
+
+
 sol = Solution()
-s=sol.majorityElement([0,0,0,1,2,3,0])
+l =[["1","1","1","1","0"],
+    ["1","1","0","1","0"],
+    ["1","1","0","0","0"],
+    ["0","0","0","0","0"]]
+s=sol.numIslands(l)
 print(s)
 
 

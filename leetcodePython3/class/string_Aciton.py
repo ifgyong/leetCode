@@ -29,6 +29,7 @@
 # @Site    : http://fgyong.cn 兜兜转转的技术博客
 # @File    : string_Aciton.py
 # @Software: PyCharm
+import math
 def isValid2( s: str) -> bool:
     sArray = [];
     for i in s:
@@ -113,13 +114,12 @@ def longesPalindrome(s:str)->str:
                 if isSub:
                     pali = sub
                     maxLength = sub_l
-                    break;
+                    break
             else:
                 maxLength = 1
-                pali = sub;
-                break;
-    return  pali;
-longstr = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabcaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                pali = sub
+                break
+    return  pali
 
 # 72 ms 最长回文字符串
 def longestPalindrome2( s: str) -> str:
@@ -138,14 +138,14 @@ def longestPalindrome2( s: str) -> str:
     return  s[start:start+maxLen]
 
 def longestValidParentheses( s: str) -> int:
-    maxlen = 1;
-    start = 0;
+    maxlen = 1
+    start = 0
     for i in range(len(s)):
         old = s[i-maxlen-1:i+1]
         new =  s[i-maxlen-1:i+1][::-1]
         if i-maxlen>=1 and old == new:
-            maxlen +=2;
-            start = i-maxlen-1;
+            maxlen +=2
+            start = i-maxlen-1
     return maxlen
 
 class Solution:
@@ -198,5 +198,131 @@ class Solution:
             xx = ((ord(x) - 65+1))* pow(26,i)
             count += xx
         return count
-s = Solution().evalRPN(["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"])
+    #187
+    def findRepeatedDnaSequences(self, s: str) -> list:
+        if len(s)<10:
+            return []
+        keys = set()
+        array = set()
+        for i in range(0,len(s)-9):
+            sub = s[i:i+10]
+            if sub in keys and sub not  in array:
+                array.add(sub)
+            else:
+                keys.add(sub)
+        return list(array)
+    #166. 分数到小数 未完成
+    def fractionToDecimal(self, numerator: int, denominator: int) -> str:
+        if numerator ==0 or denominator == 0:return ''
+        isReapt =False
+        s = ''
+        n = numerator
+        de = denominator
+        while not isReapt:
+            ne = math.floor(n/de)
+            if ne > 0:
+                item = ne
+                s += str(item)
+                n = n%de if n%de != 0 else 0
+                if n == 0:
+                    break
+            else:
+                if len(s) and not s.__contains__('.'):
+                    s += '.'
+                elif len(s)==0:
+                    s ='0.'
+                item = math.floor(n*10/de)
+                s += str(item)
+                n = n*10 % de if n*10 % de != 0 else 0
+                if n == 0:
+                    break
+        return  s
+    #165 比较版本号
+    def compareVersion(self, version1: str, version2: str) -> int:
+        v1 = version1.split(".")
+        v2 = version2.split(".")
+        length = max(len(v1), len(v2))
+        res = 0
+        for i in range(length):
+            l1 =int(v1[i] if i <len(v1) else 0)
+            l2 =int(v2[i] if i < len(v2) else 0)
+            if l1<l2:
+                res= -1
+                break
+            elif l1>l2:
+                res = 1
+                break
+        return res
+
+    # 162. 寻找峰值
+    def findPeakElement(self, nums: list) -> int:
+
+        def findPeak(ns:list,l:int,h:int)->int:
+            if l == h:return l
+            if l+1 == h:return l if ns[l]>ns[h] else h
+            m = math.floor((l+h)/2)
+            if ns[m] >ns[m-1] and ns[m]>ns[m+1]:return m
+            elif ns[m-1]>ns[m] and ns[m]>ns[m+1]:
+                return findPeak(ns,l,m)
+            else:return findPeak(ns,m+1,h)
+        return   findPeak(nums,0,len(nums)-1)
+    def findPeakElement2(self, nums: list) -> int:
+        if len(nums) == 1:return 0
+        l ,h= 0,len(nums)-1
+        ns = nums
+        while True:
+            m = math.floor((l + h) / 2)
+            if ns[m] >ns[m-1] and ns[m]>ns[m+1]:return m
+            elif ns[m-1]>ns[m] and ns[m]>ns[m+1]:
+                h=m
+            else:l=m+1
+            if l == h: return l
+    #153. 寻找旋转排序数组中的最小值
+    def findMin(self, nums: list) -> int:
+        return  min(nums)
+    def findMin2(self, nums: list) -> int:
+        l ,h= 0,len(nums)-1
+        if l == h:return nums[0]
+        while l!=h:
+            if l +1 == h:
+                l= l if nums[l]<nums[h] else h
+                break
+            m = int((l+h)/2)
+            if nums[m]<nums[h]:
+                h=m
+            elif nums[m]>nums[h]:
+                l=m
+        return nums[l]
+
+    #151
+    def reverseWords(self, s: str) -> str:
+        s_new:list = s.split(' ')[::-1]
+        s_array=[]
+        for i in s_new:
+            s_sub = i.strip()
+            if len(s_sub):
+                s_array.append(s_sub)
+        return ' '.join(s_array).strip()
+    #139. 单词拆分
+    def wordBreak(self, s: str, wordDict: list) -> bool:
+        if len(s) == 0:return True
+        i,j,h = 1,0,len(s)
+        isAll = True
+        while h:
+            ss=s[j:i]
+            if wordDict.count(ss)>0:
+                j = i
+                i+= len(ss)
+                isAll = True
+            else:
+                i+=1
+                isAll = False
+
+
+        return False
+
+s_1 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"
+k=["a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"]
+
+s = Solution().wordBreak(s_1,k)
 print(s)

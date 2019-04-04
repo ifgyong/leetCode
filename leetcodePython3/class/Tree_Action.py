@@ -179,7 +179,7 @@ class Solution:
         if isAdd:
             sub = "1"+sub
         return sub
-    #83 链表去重
+    #83 顺序链表去重
     def deleteDuplicates(self, head: ListNode) -> ListNode:
         if head is None:return None
         h =ListNode(0)
@@ -198,6 +198,40 @@ class Solution:
         if not root.left and not root.right and  root.val == sum:return True
         sum -= root.val
         return self.hasPathSum(root.left,sum) or self.hasPathSum(root.right,sum)
+    #199 思路是左边右边同时添加，取出来右边和左边的数组中的右半部分相加
+    def rightSideView(self, root: TreeNode) -> list:
+        if not root:
+            return []
+        right = self.rightSideView(root.right)
+        left = self.rightSideView(root.left)
+        return [root.val] + right + left[len(right):]
+
+
+class BSTIterator:
+
+    def __init__(self, root: TreeNode):
+        self.array=list()
+        self.findall(root)
+    def next(self) -> int:
+        """
+        @return the next smallest number
+        """
+        p :TreeNode= self.array.pop()
+        self.findall(p.right)
+        return p.val
+
+
+
+    def hasNext(self) -> bool:
+        """
+        @return whether we have a next smallest number
+        """
+        return len(self.array)>0
+
+    def findall(self,r:TreeNode):
+        while r:
+            self.array.append(r)
+            r=r.left
 
 ss = Solution()
 t = TreeNode(1)
