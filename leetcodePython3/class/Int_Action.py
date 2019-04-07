@@ -305,7 +305,6 @@ class Solution:
                                 res.append(new_item)
             return res
     def rotate(self, matrix: [[int]]) -> None:
-
         lenth = len(matrix)
         n = int(lenth/2)
         if lenth%2 ==1:
