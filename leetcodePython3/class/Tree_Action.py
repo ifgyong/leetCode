@@ -234,9 +234,7 @@ class Solution:
         left = self.rightSideView(root.left)
         return [root.val] + right + left[len(right):]
 
-
-
-
+    #23. 合并K个排序链表
     def mergeKLists(self, lists: [ListNode]) -> ListNode:
         if len(lists) == 0: return None
         if len(lists) == 1: return lists[0]
