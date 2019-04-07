@@ -112,12 +112,40 @@ def preorderTraversal( root: TreeNode) -> [int]:
     proNode(root,l)
     return l
 #
+class BSTIterator:
+
+    def __init__(self, root: TreeNode):
+        self.array=list()
+        self.findall(root)
+    def next(self) -> int:
+        """
+        @return the next smallest number
+        """
+        p :TreeNode= self.array.pop()
+        self.findall(p.right)
+        return p.val
+
+
+
+    def hasNext(self) -> bool:
+        """
+        @return whether we have a next smallest number
+        """
+        return len(self.array)>0
+
+    def findall(self,r:TreeNode):
+        while r:
+            self.array.append(r)
+            r=r.left
 class ListNode:
     def __init__(self, x):
         self.val = x
         self.next = None
 
 class Solution:
+
+
+
     def minDepth(self, root: TreeNode) -> int:
         if root is None:return 0
         left = self.minDepth(root.left)
@@ -207,43 +235,80 @@ class Solution:
         return [root.val] + right + left[len(right):]
 
 
-class BSTIterator:
-
-    def __init__(self, root: TreeNode):
-        self.array=list()
-        self.findall(root)
-    def next(self) -> int:
-        """
-        @return the next smallest number
-        """
-        p :TreeNode= self.array.pop()
-        self.findall(p.right)
-        return p.val
 
 
+    def mergeKLists(self, lists: [ListNode]) -> ListNode:
+        if len(lists) == 0: return None
+        if len(lists) == 1: return lists[0]
+        li: list = []
+        for i in lists:
+            if i:
+                li.append(i)
 
-    def hasNext(self) -> bool:
-        """
-        @return whether we have a next smallest number
-        """
-        return len(self.array)>0
+        if len(li) == 2:
+            new_li = ListNode(0)
+            re = new_li
+            new_li_1 = li[0]
+            new_li_2 = li[1]
 
-    def findall(self,r:TreeNode):
-        while r:
-            self.array.append(r)
-            r=r.left
+            while new_li_1 and new_li_2:
+                min_val = 0
+                if new_li_1.val <= new_li_2.val:
+                    min_val = new_li_1.val
+                    new_li_1 = new_li_1.next
+                else:
+                    min_val = new_li_2.val
+                    new_li_2 = new_li_2.next
+                new_sub = ListNode(min_val)
+                new_sub.next = None
+                new_li.next = new_sub
+                new_li = new_li.next
+            if new_li_2:
+                new_li.next = new_li_2
+            elif new_li_1:
+                new_li.next = new_li_1
+            return re.next
+        elif len(li) > 2:
+            count = len(li)//2
+            count_l = len(li) % 2
+            new_list_add = []
+            for i in range(0, len(li), 2):
+                if i+2 <= len(li):
+                    item = self.mergeKLists(li[i:i+2])
+                    if item:
+                        new_list_add.append(item)
+            if count_l:
+                new_list_add.append(li[len(li)-1])
+            if len(new_list_add) == 1:
+                return new_list_add[0]
+            elif len(new_list_add) > 1:
+                return self.mergeKLists(new_list_add)
+        elif len(li) == 1:
+            return li[0]
+        elif len(li) == 0:
+            return None
+ss= Solution()
+li = [[-8,-7,-7,-5,1,1,3,4],
+      [-2],
+      [-10,-10,-7,0,1,3],
+      [2]]
+res = []
+for i in li:
+    r = ListNode(0)
+    r2 = r
+    for j in i:
+        r_sub = ListNode(j)
+        r_sub.next = None
+        r.next = r_sub
+        r = r.next
+    res.append(r2.next)
 
-ss = Solution()
-t = TreeNode(1)
-t2 = TreeNode(1)
-t3 = TreeNode(1)
-t.left = t2
-t2.right = t3
 
-
-
-s1=ss.hasPathSum(t,3)
-print(s1)
+t = ListNode(1)
+s1 = ss.mergeKLists(res)
+while s1:
+    print(s1.val)
+    s1 = s1.next
 
 
 

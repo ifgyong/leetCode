@@ -37,7 +37,8 @@ class ListNode:
 class Solution(object):
     def mergeKLists(self, lists):
 
-        if len(lists) == 0:return None
+        if len(lists) == 0:
+            return None
         l_head = ListNode(0)
         l_head.next = lists[0]
         i = 0
