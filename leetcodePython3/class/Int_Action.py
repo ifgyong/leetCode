@@ -234,8 +234,102 @@ class Solution:
                 a =a^i & ~b
             return a|b
 
-sol = Solution().maxProduct([1,2])
-print(sol)
+    #18.四数之和
+    def fourSum(self, nums: list, target: int) -> [[int]]:
+        result = []
+        if len(nums) == 0:return []
+        def sumList(nu:list,tar:int,count:int) -> [[]]:
+            if count == 0 or len(nu) == 0:return []
+            if nu[0] * count > target or nu[len(nu) - 1] * count < target: return []
+            res = []
+            for i in range(len(nu)):
+                item1=[nu[i]]
+                if count == 1:
+                    if nu[i] == tar:
+                        res.append(item1)
+                else:
+                    item = sumList(nu[i+1:],tar-nu[i],count-1)
+                    if item:
+                        if len(item):
+                                for j in item:
+                                    if sum(item1 + j) == tar:
+                                        res.append(item1 + j)
+            return  res
+        nums.sort()
+        if nums[0] * 4 >target or nums[len(nums)-1] *4 < target: return[]
+
+        for i in range(len(nums)):
+            re = target - nums[i]
+            item = [nums[i]]
+            subItem = sumList(nums[i+1:],re,3)
+            if subItem:
+                if len(subItem):
+                    for j in subItem:
+                        new_item = item + j
+                        new_item.sort()
+                        if result.__contains__(new_item) == False and len(new_item) == 4:
+                            result.append(new_item)
+        return  result
+
+    def fourSum2(self, nums: list, target: int) -> [[int]]:
+        return []
+    #31 下一个排列
+    def nextPermutation(self, nums: list) -> None:
+        new_n = nums
+        new_n.sort()
+
+        print(new_n)
+    #46 全排列 47包含重复的元素
+    def permute(self, nums: list) -> [[int]]:
+        if len(nums) == 0:return []
+        elif len(nums) == 1 :return [nums]
+        # elif len(nums) == 2: return [nums,nums[::-1]]
+        else:
+            res = []
+            for k in range(len(nums)).__reversed__():
+                zero = nums[k]
+                newlist =[] + nums
+                newlist.pop(k)
+                item = self.permute(newlist)
+                for i in  item:
+                    if i:
+                        if len(i):
+                            for index in range(len(i)):
+                                new_item = []+i
+                                new_item.insert(index,zero)
+                                if res.__contains__(new_item) == False:
+                                    res.append(new_item)
+                            new_item = [] + i
+                            new_item.append(i)
+                            if res.__contains__(new_item):
+                                res.append(new_item)
+            return res
+    def rotate(self, matrix: [[int]]) -> None:
+
+        lenth = len(matrix)
+        n = int(lenth/2)
+        if lenth%2 ==1:
+            n+=1
+        for i in range(n):
+            for j in range(i,lenth-i-1):
+                ij=matrix[i][j]
+                n_j_1_i_1=matrix[lenth-j-1][i]
+                n_i_1_j_1=matrix[lenth-i-1][lenth-j-1]
+                j_n_i_1=matrix[j][lenth-i-1]
+                print(ij,n_j_1_i_1,n_i_1_j_1,j_n_i_1)
+                matrix[i][j]=n_j_1_i_1
+                matrix[lenth-j-1][i] = n_i_1_j_1
+                matrix[lenth-i-1][lenth-j-1] = j_n_i_1
+                matrix[j][lenth-i-1] = ij
+
+# l = [[1,2,3,4],
+#      [5,6,7,8],
+#      [9,10,11,12],
+#      [13,14,15,16]]
+l = [[1,2,3],[4,5,6],[7,8,9]]
+
+sol = Solution().rotate(l)
+print(l)
 # ll = [
 #   [ 5, 1, 9,11],
 #   [ 2, 4, 8,10],

@@ -285,6 +285,9 @@ class Solution:
             return li[0]
         elif len(li) == 0:
             return None
+
+
+
 ss= Solution()
 li = [[-8,-7,-7,-5,1,1,3,4],
       [-2],
