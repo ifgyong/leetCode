@@ -124,7 +124,7 @@ def rotate( matrix: [list]) -> None:
 
 # 保存左边的》0的值，小余0 则不保存 则保存的数据是从左往右的最大值
 def maxSubArray( nums: [int]) -> int:
-    maxNum=0;
+    maxNum=0
     for i in range(1,len(nums)):
         if nums[i-1]>0:
             nums[i] = nums[i] + nums[i-1]
@@ -304,6 +304,7 @@ class Solution:
                             if res.__contains__(new_item):
                                 res.append(new_item)
             return res
+        #旋转 二维数组
     def rotate(self, matrix: [[int]]) -> None:
         lenth = len(matrix)
         n = int(lenth/2)
