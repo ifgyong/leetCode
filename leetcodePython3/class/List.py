@@ -256,10 +256,74 @@ class Solution(object):
             node.next = None
             result= insert(result,node)
         return result
+    #82删除重复的节点
+    def deleteDuplicates(self, head: ListNode) -> ListNode:
+        array = []
+        while head:
+            array.append(head.val)
+            head = head.next
+        i = len(array)-1
+        last = -999
+        while i >=0 and i<len(array):
+            if array[i] == last:
+                del  array[i]
+                if i >=0 and i < len(array):
+                    if array[i] == last:
+                        del  array[i]
+            else:
+                last = array[i]
+            i -= 1
+        pro = ListNode(0)
+        res = pro
+        for i in range(len(array)):
+            new_node = ListNode(array[i])
+            res.next = new_node
+            res = res.next
+        return pro.next
+    def deleteDuplicates2(self, head: ListNode) -> ListNode:
+        dummy = pr = ListNode(0)
+        dummy.next = head
+        while head and head.next:
+            if head.val != head.next.val:
+                pr = pr.next
+                head = head.next
+            else:
+                while head and head.next and head.val == head.next.val:
+                    head = head.next
+                head = head.next
+                pr.next = head
+        return dummy.next
 
 
 
-        return result
+
+    def createListNode(self,nums:list) -> ListNode:
+        pro = ListNode(0)
+        res = pro
+        for i in nums:
+            new_node=ListNode(i)
+            res.next = new_node
+            res = res.next
+        return pro.next
+    def priNode(self,li:ListNode):
+        while li:
+            print(li.val)
+            li = li.next
+ #86分隔链表
+    def partition(self, head: ListNode, x: int) -> ListNode:
+        h1 = l1 =ListNode(0)
+        h2 = l2 =ListNode(0)
+        while head:
+            if head.val<x:
+                l1.next = head
+                l1 = l1.next
+            else:
+                l2.next = head
+                l2 = l2.next
+            head = head.next
+        l2.next = None#大数后边
+        l1.next = h2.next
+        return h1.next
 
 
 sol = Solution()
@@ -269,9 +333,11 @@ l =[["O","O","O","O","X","X"],
      ["O","X","O","O","X","O"],
      ["O","X","O","X","O","O"],
      ["O","X","O","O","O","O"]]
-s=sol.solve(l)
-for i in l:
-    print(i)
+
+s=sol.partition(sol.createListNode([1,2,4,2,5]),4)
+sol.priNode(s)
+# for i in l:
+#     print(i)
 
 
 

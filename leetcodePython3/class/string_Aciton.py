@@ -337,6 +337,89 @@ class Solution:
                 else:
                     array.append(item)
         return array
+#79 单词搜索 XXX
+    def exist(self, board: [[str]], word: str) -> bool:
+        if len(board) == 0:return False
+        if word is None:return False
+        def isExistin(bo:[[str]],ch: str,x:int,y:int) -> bool:
+            if x<len(bo[0]) and y<len(bo) and x >= 0 and y >= 0:
+                return bo[x][y] in  ch
 
-s = Solution().partition("aabcc")
+        w = len(board[0])
+        h = len(board)
+        index = 0
+        i,j = 0,0
+        res = []
+        while j<h:
+            item = board[j]
+            s_sub =  word[index:index+1]
+            if item.__contains__(s_sub) and ([i,j] in res) == False:
+                if len(res):
+                    last = res[len(res)-1]
+                    if abs(abs(last[0] -i) - abs(last[1]-j)) == 1:
+                        res.append([i,j])
+                    else:
+                        continue
+                else:
+                    res.append([i,j])
+                i = item.index(s_sub, 0, len(item))
+                indexs = []
+                while True:
+                    if indexs.__contains__([i,j]) == False:
+                        indexs.append([i,j])
+                        index +=1
+                        x,y= i,j
+                        if index >= len(word):
+                            return True
+                        s = word[index:index+1]
+                        if isExistin(board,s,x+1,y) and indexs.__contains__([x+1,y])==False:
+                                i = x + 1
+                        elif isExistin(board,s,x-1,y) and indexs.__contains__([x-1,y])==False:
+                                i = x - 1
+                        elif isExistin(board,s,x,y-1) and indexs.__contains__([x,y-1])==False:
+                                j = y - 1
+                        elif isExistin(board,s,x,y+1) and indexs.__contains__([x,y+1])==False:
+                                j = y + 1
+                        else:
+                            break
+            else:
+                j +=1
+        return False
+    #80删除重复选项
+    def removeDuplicates(self, nums: list) -> int:
+        i = len(nums)-1
+        isRepeat = False
+        while i >=1:
+            if nums[i] == nums[i-1] and isRepeat:
+                nums.pop(i)
+            elif nums[i] == nums[i-1]:
+                isRepeat = True
+            elif nums[i] != nums[i-1]:
+                isRepeat = False
+            i -= 1
+        return  len(nums)
+    #91解码方法
+    def numDecodings(self, s: str) -> int:
+        if len(s) == 0: return 0
+        if len(s) == 1:
+            if int(s) == 0: return 0
+            return 1
+        elif len(s) == 2 and int(s) < 27 and int(s) > 0:
+            if int(s[0:1]) == 0:
+                return 0
+            if int(s[1:2]) == 0:
+                return 1
+            return self.numDecodings(s[1:]) + 1
+        elif len(s) >= 2:
+            if int(s[0:1]) == 0:
+                return 0
+            x = self.numDecodings(s[1:])
+            y = self.numDecodings(s[2:])
+            m = x + y if x != 0 and y != 0 else 0
+            return m
+
+
+
+
+s = Solution().numDecodings("301")
 print(s)
