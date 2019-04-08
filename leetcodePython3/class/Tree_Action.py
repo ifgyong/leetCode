@@ -286,7 +286,17 @@ class Solution:
         elif len(li) == 0:
             return None
 
-
+#94二叉树 中序遍历
+    def inorderTraversal(self, root: TreeNode) -> [int]:
+        res =[ ]
+        def sortLeft(root:TreeNode,li:list):
+            if root.left:
+                sortLeft(root.left)
+            li.append(root.val)
+            if root.right:
+                sortLeft(root.right)
+        sortLeft(root,res)
+        return res
 
 ss= Solution()
 li = [[-8,-7,-7,-5,1,1,3,4],

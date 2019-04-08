@@ -398,7 +398,7 @@ class Solution:
                 isRepeat = False
             i -= 1
         return  len(nums)
-    #91解码方法
+    #91解码方法 迭代法 比较耗时
     def numDecodings(self, s: str) -> int:
         if len(s) == 0: return 0
         if len(s) == 1:
@@ -411,15 +411,56 @@ class Solution:
                 return 1
             return self.numDecodings(s[1:]) + 1
         elif len(s) >= 2:
-            if int(s[0:1]) == 0:
+            if int(s[0]) == 0:
                 return 0
-            x = self.numDecodings(s[1:])
-            y = self.numDecodings(s[2:])
-            m = x + y if x != 0 and y != 0 else 0
-            return m
+            s1 = s[1:]
+            s1_head = s[0]
+            s2 = s[2:]
+            s2_head =s[0:2]
+            if (s1[0] in '0' or s1_head[0] in '0'):
+                s2_head_zero = s2_head[0] in '0'
+                s2_zero = False
+                if len(s2):
+                    s2_zero = True if s2[0] in '0' else False
+                if (s2_head_zero or s2_zero):
+                    return 0
+                elif int(s2_head)<27:
+                    return self.numDecodings(s2)
+                else:return 0
+            else:
+                s2_head_zero = s2_head[0] in '0'
+                s2_zero = False
+                if len(s2):
+                    s2_zero = True if s2[0] in '0' else False
+                if (s2_head_zero or s2_zero):
+                    return self.numDecodings(s[1:])
+                elif int(s2_head)<27:
+                    x = self.numDecodings(s[1:])
+                    y = self.numDecodings(s[2:])
+                    m = x + y
+                    return m
+                else:
+                    x = self.numDecodings(s[1:])
+                    return x
+    def numDecodings2(self,s:str) -> int:
+        n = len(s)
+        if n == 0:return 0
+        memo = []
+        for i in  range(n+1):
+            memo.append(0)
+        memo[n] = 1
+        if s[n-1] in '0':
+            memo[n-1]= 0
+        else: memo[n-1] = 1
+
+        for i in  range(0,n-1).__reversed__():
+            if s[i] in '0':continue
+            else: memo[i] = memo[i+1] +memo[i+2] if int(s[i:i+2])<=26 else memo[i+1]
+        return memo[0]
 
 
 
 
-s = Solution().numDecodings("301")
+
+s = Solution().numDecodings2("")
 print(s)

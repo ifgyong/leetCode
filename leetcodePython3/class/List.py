@@ -237,6 +237,7 @@ class Solution(object):
 
 
 
+
     #147. 对链表进行插入排序
     def insertionSortList(self, head: ListNode) -> ListNode:
 
@@ -325,6 +326,31 @@ class Solution(object):
         l1.next = h2.next
         return h1.next
 
+    #92 翻转链表
+    def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:
+        if m >= n:
+            return head
+        l2 = ListNode(head.val)
+        l1 = ListNode(head.val)
+        l2.next  = head
+        m1=m2=ListNode(0)
+        for i in range(1,m):
+            head = head.next
+        l1.next = head#开始翻转的位置
+
+        for i in range(n-m+1):
+            if i == 0:
+                m2 = ListNode(head.val)
+                m1 = m2
+            else:
+                new =ListNode(head.val)
+                new.next = m1
+                m1 = new
+            head = head.next
+        m2.next = head
+        l1.next.next = m1
+        return l2.next
+
 
 sol = Solution()
 l =[["O","O","O","O","X","X"],
@@ -334,7 +360,7 @@ l =[["O","O","O","O","X","X"],
      ["O","X","O","X","O","O"],
      ["O","X","O","O","O","O"]]
 
-s=sol.partition(sol.createListNode([1,2,4,2,5]),4)
+s=sol.reverseBetween(sol.createListNode([1,5,6,7,8]),3,4)
 sol.priNode(s)
 # for i in l:
 #     print(i)
