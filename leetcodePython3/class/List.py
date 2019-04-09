@@ -440,6 +440,7 @@ class Solution(object):
 
 
 
+
 sol = Solution()
 # l =[["O","O","O","O","X","X"],
 #      ["O","O","O","O","O","O"],

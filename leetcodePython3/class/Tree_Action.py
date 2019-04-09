@@ -313,6 +313,127 @@ class Solution:
             if not root.left and not root.right:
                 self.res += value*10 + root.val
 
+    # 114  二叉树展开为链表
+    def __init__(self):
+        self.prev = None
+    def flatten(self, root: TreeNode) -> None:
+        """
+        Do not return anything, modify root in-place instead.
+        """
+        #先讲右链表组装到做链表 然后左链表在组装到root的右链表
+        if not root:
+            return None
+        self.flatten(root.right)
+        self.flatten(root.left)
+
+        root.right = self.prev
+        root.left = None
+        self.prev = root
+#113 路径总和 将总和减去当前节点
+    def pathSum(self, root: TreeNode, sum: int) -> [[int]]:
+        if not  root:
+            return []
+        if root.val == sum and root.left is None and root.right is None:
+            return [[root.val]]
+        res = []
+        if root.left:
+            item = self.pathSum(root.left,sum-root.val)
+            if len(item):
+                for i in item:
+                    if len(i):
+                        res.append([root.val]+i)
+        if root.right:
+            item = self.pathSum(root.right,sum-root.val)
+            if len(item):
+                for i in item:
+                    if len(i):
+                        res.append([root.val]+i)
+        return res
+    #109 链表转化成 平衡二叉树
+    def sortedListToBST(self, head: ListNode) -> TreeNode:
+        li = []
+        while head:
+            li.append(head.val)
+            head = head.next
+        return self.listToBST(li,0,len(li)-1)
+    def listToBST(self,li:list,start:int,end:int)->TreeNode:
+        if len(li) == 0:return None
+        if start == end:return TreeNode(li[start])
+        elif start>end:
+            return None
+        mi = (start+end) >> 1
+        root = TreeNode(li[mi])
+        root.left = self.listToBST(li,start,mi-1)
+        root.right = self.listToBST(li,mi+1,end)
+        return root
+        #106 后续中序遍历的数组 组成二叉树
+    def buildTree(self, inorder:list, postorder:list) -> TreeNode:
+        if not  inorder or not  postorder:return None
+        root = TreeNode(postorder.pop())
+        index = inorder.index(root.val)
+        root.right = self.buildTree(inorder[index+1:],postorder)
+        root.left = self.buildTree(inorder[:index],postorder)
+        return root
+
+    #105 前续中序遍历的数组 组成二叉树
+    def buildTree2(self, inorder:list, preorder:list) -> TreeNode:
+        if not  inorder or not  preorder:return None
+        root = TreeNode(preorder.pop(0))
+        index = inorder.index(root.val)
+        root.left = self.buildTree(preorder,inorder[:index])
+        root.right = self.buildTree(preorder,inorder[index+1:])
+        return root
+
+    # 96.
+    # 不同的二叉搜索树 https://leetcode.com/problems/unique-binary-search-trees/discuss/31666/DP-Solution-in-6-lines-with-explanation.-F(i-n)-G(i-1)-*-G(n-i)
+    #public int numTrees(int n) {
+    #     int [] G = new int[n+1];
+    #     G[0] = G[1] = 1;
+    #
+    #     for(int i=2; i<=n; ++i) {
+    #         for(int j=1; j<=i; ++j) {
+    #             G[i] += G[j-1] * G[i-j];
+    #         }
+    #     }
+    #     return G[n];
+    # }
+    def numTrees(self,n:int)->int:
+        li = []
+        for i in range(n+1):
+            li[i] = 0
+        li[0] = li[1] = 1
+        for i in  range(2,n):
+            for j in range(1,i):
+                li[i]+= li[j-1] *li[i-j]
+        return li[n]
+    #95 不同的二叉搜索树
+    def generateTrees(self, n: int) -> [TreeNode]:
+        if n==0:return []
+        elif n ==1:return [TreeNode(1)]
+        self.genTrees(1,n)
+    def genTrees(self,start:int,end:int)-> [TreeNode]:
+        list = []
+        if start > end:
+            list.append(None)
+            return list
+        elif start == end:
+            list.append(TreeNode(start))
+            return list
+
+        left = []
+        right = []
+        for i in  range(start,end+1):
+            left = self.genTrees(start,i-1)
+            right = self.genTrees(i+1,end)
+            for l_node in left:
+                for r_node in right:
+                    root = TreeNode(i)
+                    root.left = l_node
+                    root.right = r_node
+                    list.append(root)
+        return list
+
+
 
 
 ss= Solution()

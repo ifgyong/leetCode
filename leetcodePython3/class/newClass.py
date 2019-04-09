@@ -15,6 +15,13 @@ class Node2:
     def __init__(self, val, neighbors):
         self.val = val
         self.neighbors = neighbors
+
+class Node3:
+    def __init__(self, val, left, right, next):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
 class So:
     #深拷贝 随机链表
     def copyRandomList(self, head: Node) -> Node:
@@ -55,6 +62,25 @@ class So:
     #     while node.neighbors != rr.neighbors:
     #
     #     return rr
+    #117 填充下每个节点下一个节点的右侧结点指针
+    def connect(self, root: Node3) -> Node3:
+        if root is None:return None
+        if root.left:
+            root.left.next = root.right if root.right else self.fineNextNode(root.next)
+        if root.right:
+            root.right.next = self.fineNextNode(root.next)
+        self.connect(root.right)#先链接右侧 再连接左侧
+        self.connect(root.left)
+        return root
+
+    def fineNextNode(self,root:Node3) ->Node3:
+        if not root:
+            return None
+        if root.left:
+            return root.left
+        if root.right:
+            return  root.right
+        return self.fineNextNode(root.next)
 
 
 s = So().copyRandomList(Node(1,None,None))

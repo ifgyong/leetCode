@@ -457,10 +457,42 @@ class Solution:
             if s[i] in '0':continue
             else: memo[i] = memo[i+1] +memo[i+2] if int(s[i:i+2])<=26 else memo[i+1]
         return memo[0]
+    #93所有 的ip 地址
+    def restoreIpAddresses(self, s: str) -> [str]:
+        if len(s) < 4:return []
+        res = []
+        l = len(s)
+        for i in range(1,4):
+            i_s = s[:i]
+            if len(i_s) > 1 and i_s[0] in '0':break
+            if len(i_s) > 3 or int(i_s) > 255: break
+            for j in range(i+1,i+5):
+                j_s = s[i:j]
+                if len(j_s) > 1 and j_s[0] in '0': break
+                if len(j_s) > 3 or int(j_s)>255: break
+                for k in range(j+1,j+5):
+                    if k<l:
+                        k_s = s[j:k]
+                        l_s = s[k:]
+                        if len(k_s) > 1 and k_s[0] in '0': continue
+                        if len(l_s) > 1 and l_s[0] in '0': continue
+                        if len(k_s) == 0 or len(l_s) == 0:continue
+                        if len(l_s)>3 or int(l_s)>255 or len(k_s)>3 or int(k_s)>255:continue
+                        i1 = str(int(i_s))
+                        i2 = str(int(j_s))
+                        i3 = str(int(k_s))
+                        i4 = str(int(l_s))
+                        s_last = i1+'.'+i2+'.'+i3+'.'+i4
+                        if res.__contains__(s_last) == False:
+                            res.append(i1+'.'+i2+'.'+i3+'.'+i4)
+                    else:break
+        return res
 
 
 
 
 
-s = Solution().numDecodings2("")
+ss = "101023"
+print(ss)
+s = Solution().restoreIpAddresses(ss)
 print(s)
