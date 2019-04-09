@@ -460,7 +460,44 @@ class Solution(object):
 
         board[i][j] = tmp
         return res
+#61 旋转链表
+    def rotateRight(self, head: ListNode, k: int) -> ListNode:
+        if k == 0 or not head:return head
+        if head.next is None:return head
+        count_head = head
+        count = 0
+        #链表长度
+        while count_head:
+            count_head = count_head.next
+            count +=1
+            #整数倍 直接返回原链表
+        if k // count *count == k:
+            return head
+        if k>1:
+            k = k%count
+        bhead = head
+        while k > 0:
+            if bhead.next:
+                bhead = bhead.next
+            else:return head
+            k -=1
+            if k and not bhead:
+                return head
+        b_new_head =head
+        pro = None
+        while bhead:
+            bhead = bhead.next
+            pro,b_new_head = b_new_head,b_new_head.next
+        pro.next = None
 
+        ahead = b_new_head
+        while ahead:
+            if ahead.next:
+                ahead = ahead.next
+            else:
+                ahead.next = head
+                break
+        return b_new_head
 
 
 
@@ -477,7 +514,9 @@ l =[["O","g","f","O","X","X"],
      ["O","X","O","O","X","O"],
      ["O","X","O","X","O","O"],
      ["O","X","O","O","O","O"]]
-li = sol.exist(l,"abcdefg")
+n = sol.createListNode([1])
+li = sol.rotateRight(n,1)
+sol.priNode(li)
 print(li)
 # for i in l:
 #     print(i)
