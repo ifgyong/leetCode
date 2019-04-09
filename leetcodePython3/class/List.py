@@ -307,9 +307,10 @@ class Solution(object):
             res = res.next
         return pro.next
     def priNode(self,li:ListNode):
-        while li:
-            print(li.val)
-            li = li.next
+        node = li
+        while node:
+            print(node.val)
+            node = node.next
  #86分隔链表
     def partition(self, head: ListNode, x: int) -> ListNode:
         h1 = l1 =ListNode(0)
@@ -350,28 +351,107 @@ class Solution(object):
         m2.next = head
         l1.next.next = m1
         return l2.next
+#143重排链表
+    def reorderList(self, head: ListNode) -> None:
+        """
+        Do not return anything, modify head in-place instead.
+        """
+        if head is None or head.next is None :return
+        slow = head
+        faster = head
+        #分隔链表
+        while slow.next and  faster.next:
+            if faster.next.next is None:
+                break
+            else:
+                slow = slow.next
+                faster = faster.next
+                faster = faster.next
+        currentNode = slow.next
+
+        last = None#翻转后边的链表
+        while currentNode:
+            nexNode = currentNode.next
+            currentNode.next = last
+            last = currentNode
+            currentNode = nexNode
+        slow_new1 = head
+
+        while True:#拼接链表
+            nextNode = slow_new1.next
+            next_last = last.next
+            last.next = nextNode
+            slow_new1.next = last
+            slow_new1 = nextNode
+            if next_last is None:#最后一个节点的next置None
+                slow_new1.next = None
+                break
+            last = next_last
+            #148排序链表
+    def sortList(self, head: ListNode) -> ListNode:
+        if head is None or head.next is None:
+            return head
+        pro,slow,faster = None,head,head
+        while faster and faster.next:
+            pro ,slow,faster = slow,slow.next,faster.next.next
+        if pro:
+            pro.next = None#切断链表
+        if head and slow:
+            l1 = self.sortList(head)
+            l2 = self.sortList(slow)
+            return self.mergeListnode(l1,l2)
+        return None
+#合并两个链表
+    def mergeListnode(self,low:ListNode,hi:ListNode)->ListNode:
+            dummy = tail = ListNode(None)
+            while low and hi:
+                if low.val<hi.val:
+                    tail.next,tail,low = low,low,low.next
+                else:
+                    tail.next,tail,hi = hi,hi,hi.next
+            tail.next = hi or low
+            return dummy.next
+#127 单词接龙
+    def ladderLength(self, beginWord: str, endWord: str, wordList: [str]) -> int:
+        visited = set()
+        queue = [(beginWord, 1)]
+        while queue:
+            word, dist = queue.pop(0)
+            if word == endWord:
+                return dist
+            for i in range(len(word)):
+                for j in 'abcdefghijklmnopqrstuvwxyz':
+                    tmp = word[:i] + j + word[i + 1:]
+                    if tmp not in visited and tmp in wordList:
+                        queue.append((tmp, dist + 1))
+                        visited.add(tmp)
+        return 0
+#120 三角形最小路径和
+    def minimumTotal(self, triangle:list):
+        if len(triangle) == 0:return 0
+        for row in  range(len(triangle)-2,-1,-1):
+            for i in range(0,len(triangle[row])):
+                triangle[row][i] +=  min(triangle[row+1][i],triangle[row+1][i+1])
+        return  triangle[0][0]
+
+
+
+
+
 
 
 sol = Solution()
-l =[["O","O","O","O","X","X"],
-     ["O","O","O","O","O","O"],
-     ["O","X","O","X","O","O"],
-     ["O","X","O","O","X","O"],
-     ["O","X","O","X","O","O"],
-     ["O","X","O","O","O","O"]]
-
-s=sol.reverseBetween(sol.createListNode([1,5,6,7,8]),3,4)
-sol.priNode(s)
+# l =[["O","O","O","O","X","X"],
+#      ["O","O","O","O","O","O"],
+#      ["O","X","O","X","O","O"],
+#      ["O","X","O","O","X","O"],
+#      ["O","X","O","X","O","O"],
+#      ["O","X","O","O","O","O"]]
+li = sol.minimumTotal([[1],
+                       [1,2],
+                       [3,4,5],
+                       [6,7,8,9]])
+print(li)
 # for i in l:
 #     print(i)
-
-
-
-
-l1 = ListNode(1)
-l2 = ListNode(4)
-c1= ListNode(1)
-c2= ListNode(2)
-d1 = ListNode(1)
-d2 = ListNode(3)
 

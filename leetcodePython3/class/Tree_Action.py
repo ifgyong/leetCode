@@ -28,6 +28,9 @@
 # @Site    : http://fgyong.cn 兜兜转转的技术博客
 # @File    : Tree_Action.py
 # @Software: PyCharm
+import sys
+
+
 class TreeNode:
     def __init__(self, x):
         self.val = x
@@ -297,6 +300,20 @@ class Solution:
                 sortLeft(root.right)
         sortLeft(root,res)
         return res
+#129 二叉树 和
+    def sumNumbers(self, root: TreeNode) -> int:
+        self.res = 0
+        self.dfs(root, 0)
+        return self.res
+
+    def dfs(self, root, value):
+        if root:
+            self.dfs(root.left, value*10+root.val)
+            self.dfs(root.right, value*10+root.val)
+            if not root.left and not root.right:
+                self.res += value*10 + root.val
+
+
 
 ss= Solution()
 li = [[-8,-7,-7,-5,1,1,3,4],
@@ -315,11 +332,20 @@ for i in li:
     res.append(r2.next)
 
 
-t = ListNode(1)
-s1 = ss.mergeKLists(res)
-while s1:
-    print(s1.val)
-    s1 = s1.next
+t = TreeNode(1)
+t1 = TreeNode(2)
+t2 = TreeNode(3)
+t11 = TreeNode(4)
+t22 = TreeNode(5)
+t.left= t1
+t1.left = t11
+t1.right = t22
+t.right = t2
+s1 = ss.sumNumbers(t)
+print(s1)
+# while s1:
+#     print(s1.val)
+#     s1 = s1.next
 
 
 
