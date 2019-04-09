@@ -176,3 +176,15 @@
                     root.right = r_node
                     list.append(root)
         return list
+   #### [格雷编码答案](https://leetcode.com/problems/gray-code/discuss/29884/What-is-the-best-solution-for-Gray-Code-problem-No-extra-space-used-and-no-recursion) 
+        0 00
+        1 01
+        2 10
+        3 11
+        相邻的必须是一位不同总结 使用异或实现
+        
+        def grayCode(self, n: int) -> List[int]:
+            res = []
+            for i in range(1<<n):
+                res .append(i^i>>1)
+            return res

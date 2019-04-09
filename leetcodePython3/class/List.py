@@ -434,6 +434,35 @@ class Solution(object):
                 triangle[row][i] +=  min(triangle[row+1][i],triangle[row+1][i+1])
         return  triangle[0][0]
 
+#89格雷编码
+    def grayCode(self, n: int) -> [int]:
+        res = []
+        for i in range(1<<n):
+            res .append(i^i>>1)
+        return res
+    def exist(self, board: [[str]], word: str) -> bool:
+        if not board:return False
+        for i in range(len(board)):
+            for j  in range(len(board[0])):
+                if self.dfsStr(board,i,j,word):
+                    return True
+        return False
+
+    def dfsStr(self,board:list,i:int,j:int,word:str) -> bool:
+        if len(word) == 0:return True
+        if i<0 or i >= len(board) or j < 0 or j >= len(board[0]) or word[0] != board[i][j]:
+            return False
+        tmp = board[i][j]
+        board[i][j] = "#"
+        resultStr:str = word[1:]
+        res = self.dfsStr(board,i+1,j,resultStr) or self.dfsStr(board,i-1,j,resultStr)\
+              or self.dfsStr(board,i,j+1,resultStr) or self.dfsStr(board,i,j-1,resultStr)
+
+        board[i][j] = tmp
+        return res
+
+
+
 
 
 
@@ -442,16 +471,13 @@ class Solution(object):
 
 
 sol = Solution()
-# l =[["O","O","O","O","X","X"],
-#      ["O","O","O","O","O","O"],
-#      ["O","X","O","X","O","O"],
-#      ["O","X","O","O","X","O"],
-#      ["O","X","O","X","O","O"],
-#      ["O","X","O","O","O","O"]]
-li = sol.minimumTotal([[1],
-                       [1,2],
-                       [3,4,5],
-                       [6,7,8,9]])
+l =[["O","g","f","O","X","X"],
+     ["a","O","e","O","O","O"],
+     ["b","c","d","X","O","O"],
+     ["O","X","O","O","X","O"],
+     ["O","X","O","X","O","O"],
+     ["O","X","O","O","O","O"]]
+li = sol.exist(l,"abcdefg")
 print(li)
 # for i in l:
 #     print(i)
