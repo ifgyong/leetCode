@@ -188,3 +188,47 @@
             for i in range(1<<n):
                 res .append(i^i>>1)
             return res
+   ###60全排列的 第k个排列
+    def getPermutation(self, n, k):
+        numbers = [x for x in range(1, n + 1)]
+        permutation = ''
+        k -= 1
+        while n > 0:
+            n -= 1
+            # get the index of current digit
+            index, k = divmod(k, math.factorial(n))
+            permutation += str(numbers[index])
+            # remove handled number
+            numbers.remove(numbers[index])
+
+        return permutation
+   ####40 组合总和 元素不能重复 
+    def combinationSum2(self, candidates: list, target: int) -> [[int]]:
+        if len(candidates) == 0:return []
+        elif len(candidates) == 1 and candidates[0] != target:
+            return []
+        li = candidates
+        li.sort()
+        res = []
+        self.combine_sum_m(start=0,li=li,path=[],res=res,target=target)
+        return res
+
+    def combine_sum_m(self,start:int,li:list,path:list,res:list,target:int):
+        if target == 0:
+            res.append(path)
+            return
+        for i in range(start,len(li)):
+            if i > start and li[i] == li[i-1]:#相同的过滤
+                continue
+            if li[i] > target:#大于 中断掉
+                break
+                #重复的话i+1 换成i
+            self.combine_sum_m(i+1,li,path+[li[i]],res,target-li[i])
+            
+   #### 6字符串 z 形状输出
+    def convert(self, s: str, numRows: int) -> str:
+        if numRows == 1 or numRows >= len(s): return s
+        res = [[] for _ in range(numRows)]
+        for i in range(len(s)):
+            res[numRows -1 - abs(numRows - 1 - i % (2 * numRows - 2))].append(s[i])
+        return "".join(["".join(res[i]) for i in range(numRows)])

@@ -487,12 +487,132 @@ class Solution:
                             res.append(i1+'.'+i2+'.'+i3+'.'+i4)
                     else:break
         return res
+#49  字母异位词分组
+    def groupAnagrams(self, strs: list) -> [[str]]:
+        res = {}
+        for i in sorted(strs):
+            item = tuple(sorted(i))
+            res[item] = res.get(item, []) + [i]
+        keyvalues = res.items()
+        result = []
+        for key, value in keyvalues:
+            result.append(value)
+        return result
+    #31 下一个排列
+    def nextPermutation(self, nums: list) -> None:
+        if len(nums) == 0:return
+        isUp = True
+        for i in  range(1,len(nums)):
+            if nums[i]>nums[i-1]:
+                isUp = False
+                break
+        if isUp:
+            nums.sort()
+            return
+        for i in range(len(nums)-1,-1,-1):
+            new_m = nums[i:]
+            if len(new_m) == 0:continue
+            m = max(new_m)
+            if m > nums[i-1]:
+                new_m.sort()
+                mi = 0
+                for j in  range(len(new_m)):
+                    if new_m[j] >nums[i-1]:
+                        mi = new_m[j]
+                        break
+                index = nums.index(mi, i, len(nums))
+                nums[index] = nums[i-1]
+                nums[i-1] = mi
+                new = nums[i:]
+                new.sort()
+                del  nums[i:]
+                nums+=(new)
+                break
+#43大数 乘法
+    def multiply(self, num1: str, num2: str) -> str:
+        len_1 = len(num1)
+        len_2 = len(num2)
+        if len_2 == 0 or len_1 == 0 or (len_2 ==1 and int(num2) == 0) or (len_1 ==1 and int(num1) == 0):return '0'
+        lastNum = '0'
+        for i in  range(len_1-1,-1,-1):
+            inTen = 0
+            for j in  range(len_2-1,-1,-1):
+                int_i = int(num1[i])
+                int_j = int(num2[j])
+                append = '0'*(len_1-1-i + len_2-1-j)
+                count = int_i * int_j
+                if inTen:
+                    count += inTen
+                    inTen = 0
+                if count>9:
+                    if j >0:
+                        inTen = count//10
+                        count%=10
+                crrentNum = str(count)+append
+                lastNum = self.addBigBumber(lastNum,crrentNum)
+        lastList = list(lastNum)
+        k = 0
+        while k<len(lastList) :
+            if lastList[k] in '0':
+                del lastList[k]
+                k = 0
+            else:break
+            k +=1
+        return ''.join(lastList)
+    def addBigBumber(self,num1:str,num2:str) -> str:
+        len_1 = len(num1)
+        len_2 = len(num2)
+        isTen = False
+        new_str = num2 if len_2>len_1 else num1
+        res = []
+
+        len_str = len(new_str)
+        i = 1
+        while i <= len_str:
+
+            s_1 = num1[len_1-i:len_1 - i+1] if i<=len_1 else '0'
+            s_2 = num2[len_2-i:len_2 - i+1] if i<= len_2 else '0'
+
+            s_sum = int(s_1) + int(s_2)
+            if isTen:
+                s_sum +=1
+                isTen = False
+            if s_sum>9:
+                isTen = True
+                s_sum %= 10
+            res.insert(0,str(s_sum))
+            if i == len_str:
+                if isTen:
+                    res.insert(0, str(1))
+            i += 1
+
+        return ''.join(res)
+    #利用位运算
+    def multiply2(self, num1: str, num2: str) -> str:
+        a = int(num1)
+        b = int(num2)
+        res = 0
+        k = 0
+        while a:
+            if a & 1:
+                res += b << k
+            a >>= 1
+            k += 1
+        return str(res)
+    #6字符串 z 形状输出
+    def convert(self, s: str, numRows: int) -> str:
+        if numRows == 1 or numRows >= len(s): return s
+        res = [[] for _ in range(numRows)]
+        for i in range(len(s)):
+            res[numRows -1 - abs(numRows - 1 - i % (2 * numRows - 2))].append(s[i])
+        return "".join(["".join(res[i]) for i in range(numRows)])
 
 
 
 
 
-ss = "101023"
-print(ss)
-s = Solution().restoreIpAddresses(ss)
+
+
+ss = [1,2,3]
+s = Solution().multiply("123","456")
 print(s)

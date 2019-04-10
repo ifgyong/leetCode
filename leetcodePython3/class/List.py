@@ -29,6 +29,7 @@
 # @File    : List.py
 # @Software: PyCharm
 import types
+import math
 class ListNode:
     def __init__(self, x):
         self.val = x
@@ -460,6 +461,9 @@ class Solution(object):
 
         board[i][j] = tmp
         return res
+
+
+
 #61 旋转链表
     def rotateRight(self, head: ListNode, k: int) -> ListNode:
         if k == 0 or not head:return head
@@ -498,8 +502,20 @@ class Solution(object):
                 ahead.next = head
                 break
         return b_new_head
+#60全排列的 第k个排列
+    def getPermutation(self, n, k):
+        numbers = [x for x in range(1, n + 1)]
+        permutation = ''
+        k -= 1
+        while n > 0:
+            n -= 1
+            # get the index of current digit
+            index, k = divmod(k, math.factorial(n))
+            permutation += str(numbers[index])
+            # remove handled number
+            numbers.remove(numbers[index])
 
-
+        return permutation
 
 
 
