@@ -42,13 +42,11 @@ def selection_sort(list2):
 
 #插入排序 时间复杂度 0(n^2) 辅助内存0(1) 最好：0(n) 最坏0(n^2)
 def insert_sort(lis:list):
-    Length = len(lis)
-    list = lis
-    for i in range(1,Length):                   #默认第一个元素已经在有序序列中，从后面元素开始插入
+    for i in range(1,len(lis)):                   #默认第一个元素已经在有序序列中，从后面元素开始插入
         for j in range(i,0,-1):                 #逆向遍历比较，交换位置实现插入
-            if list[j] < list[j-1]:
-                list[j],list[j-1] = list[j-1],list[j]
-    return list
+            if lis[j] < lis[j-1]:
+                lis[j],lis[j-1] = lis[j-1],lis[j]
+    return lis
 #冒泡排序 时间复杂度 0(n^2) 辅助内存0(1) 最好：0(n) 最坏0(n^2)
 def bubble_sort(nums):
     for i in range(len(nums) - 1):  # 这个循环负责设置冒泡排序进行的次数
@@ -72,6 +70,8 @@ def quick_sort(li:list,low:int,hi:int) ->None:
     li[i] = tmp
     quick_sort(li,low,i-1)
     quick_sort(li,i+1,hi)
+
+
 
 def main():
    l = [1,3,2,0,12,10,8]
