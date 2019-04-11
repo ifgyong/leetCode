@@ -1,4 +1,4 @@
-####得出root为最大值 左右儿子为左右堆的最大值
+#### 得出root为最大值 左右儿子为左右堆的最大值
 
     def big_endian(arr:list,start:int,end:int):
         root = start
@@ -24,7 +24,7 @@
             big_endian(arr,0,end-1)#顶部和尾部交换，调整大小堆
         return arr
 ### 选择排序  时间复杂度0(n^2) 辅助内存0(1)
-######每次挑选最大或者最小值放到最前边
+###### 每次挑选最大或者最小值放到最前边
     def selection_sort(list2):
       for i in range(0, len (list2)-1):
         min_ = i
@@ -34,14 +34,14 @@
         list2[i], list2[min_] = list2[min_], list2[i]  # swap
         return list2
 
-####插入排序 时间复杂度 0(n^2) 辅助内存0(1) 最好：0(n) 最坏0(n^2)
+#### 插入排序 时间复杂度 0(n^2) 辅助内存0(1) 最好：0(n) 最坏0(n^2)
     def insert_sort(lis:list):
         for i in range(1,len(lis)):                   #默认第一个元素已经在有序序列中，从后面元素开始插入
             for j in range(i,0,-1):                 #逆向遍历比较，交换位置实现插入
                 if lis[j] < lis[j-1]:
                     lis[j],lis[j-1] = lis[j-1],lis[j]
     return lis
-####冒泡排序 时间复杂度 0(n^2) 辅助内存0(1) 最好：0(n) 最坏0(n^2)
+#### 冒泡排序 时间复杂度 0(n^2) 辅助内存0(1) 最好：0(n) 最坏0(n^2)
     def bubble_sort(nums):
         for i in range(len(nums) - 1):  # 这个循环负责设置冒泡排序进行的次数
             for j in range(len(nums) - i - 1):  # j为列表下标
