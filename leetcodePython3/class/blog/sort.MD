@@ -73,3 +73,25 @@
             for i in range(step, len(li)):
                 if li[i - step] > li[i]:
                 li[i], li[i - step] = li[i - step], li[i]
+
+### 归并排序
+    def merge_sort(li:list):
+        if len(li)<=1:return li
+        mi = len(li)//2
+        l = merge_sort(li[:mi])
+        r = merge_sort(li[mi:])
+        return merge(l,r)
+##### 归并排序_合并数组
+    def merge(left:list,right:list)->list:
+        i,j=0,0
+        res = []
+        while i<len(left) and j<len(right):
+            if left[i]<right[j]:
+                res.append(left[i])
+                i +=1
+            else:
+                res.append(right[j])
+                j+=1
+        res +=left[i:]
+        res += right[j:]
+        return res
