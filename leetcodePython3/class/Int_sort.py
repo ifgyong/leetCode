@@ -71,11 +71,19 @@ def quick_sort(li:list,low:int,hi:int) ->None:
     quick_sort(li,low,i-1)
     quick_sort(li,i+1,hi)
 
+#希尔排序 step 由大变小 最后变成有序时间复杂度0(n^1.3-2)最坏0(n^2)
+def shell_sort(li:list)->None:
+    step = len(li)
+    while step > 1:
+        step = step // 3 + 1
+        for i in range(step, len(li)):
+            if li[i - step] > li[i]:
+                li[i], li[i - step] = li[i - step], li[i]
 
 
 def main():
    l = [1,3,2,0,12,10,8]
-   print(quick_sort(l,0,len(l)-1))  # 原地排序
+   print(shell_sort(l))  # 原地排序
    print(l)
 
 if __name__ == "__main__":
