@@ -1,11 +1,12 @@
+### 二叉树类
     class TreeNode:
-        val = 0
-        left = None
-        right = None
-        def __init__(self, x):
-            self.val = x
-            self.left = None
-            self.right = None
+            val = 0
+            left = None
+            right = None
+            def __init__(self, x):
+                self.val = x
+                self.left = None
+                self.right = None
    ### 递归前序遍历
         def ergodicFont(self,root:TreeNode,li:list):
             if not  root:return
