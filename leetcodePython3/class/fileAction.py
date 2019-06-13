@@ -9,18 +9,7 @@ import os
 import shutil
 import time
 
-class FileManger:
-
-    def getAllFileAndDir(self,pwd):
-        if not pwd:
-            print(os.listdir(pwd))
-        else:
-            print('path is null')
-# manger = FileManger()
-# path = os.getcwd()
-# manger.getAllFileAndDir(path)
-
-
+# 定是移动文件文件夹到固定目录脚本
 
 old_path = "/Users/Jerry/Desktop/11"
 new_path = "/Users/Jerry/Desktop/11_copy"
@@ -32,6 +21,7 @@ def getSubDic(old_p):
         if item[0] == '.':
             continue
         sub_path = '/'+item
+        print(sub_path)
         full_sub_path = old_p+sub_path
         # if os.path.exists(full_sub_path):
         if os.path.isdir(full_sub_path):#遍历目录
@@ -57,8 +47,6 @@ def getMoveToPath(sub_Path):
                 else:
                     print('正在复制文件:' + full_new_path)
                     shutil.move(full_old_path,full_new_path)
-
-
             else:
                 os.makedirs(new_path_dir)
                 getMoveToPath(sub_Path)
