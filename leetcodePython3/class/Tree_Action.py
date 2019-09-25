@@ -433,10 +433,19 @@ class Solution:
                     list.append(root)
         return list
 
-
-
+#树的最大深度
+    def maxDepth(self, root: TreeNode) -> int:
+        if  root:
+            if not root.left and not root.right:
+                return 1
+        else:
+            return 0
+        return max(self.maxDepth(root.left),self.maxDepth(root.right))+1
 
 ss= Solution()
+
+
+
 li = [[-8,-7,-7,-5,1,1,3,4],
       [-2],
       [-10,-10,-7,0,1,3],
