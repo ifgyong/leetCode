@@ -516,7 +516,31 @@ class Solution(object):
             numbers.remove(numbers[index])
 
         return permutation
+    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+        if not l1 or not l2:
+            if l1:return l1
+            elif l2:return l2
+            return None
+        ret = ListNode(0)
+        nn = ListNode(0)
+        ret.next = nn
+        while l1 and l2:
+            if l1.val <= l2.val:
+                now = ListNode(l1.val)
+                nn.next = now
+                nn = now
+                l1 = l1.next
+            else:
+                now = ListNode(l2.val)
+                nn.next = now
+                nn = now
+                l2 = l2.next
 
+        if l1:
+            nn.next = l1
+        elif l2:
+            nn.next = l2
+        return  ret.next
 
 
 
