@@ -2,6 +2,8 @@
 1.0.0
 
 [平时练习的算法](https://github.com/ifgyong/leetCode/blob/master/leetcodePython3/class/blog/sort.MD)
+
+[leetcode 题解 持续更新中。。。](https://github.com/ifgyong/leetCode/wiki)
 - 快排
 - 希尔排序
 - 堆排序
