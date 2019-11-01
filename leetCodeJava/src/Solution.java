@@ -1,10 +1,13 @@
 /**
  * Created by Yong on 2019/10/17.
  */
+import apple.laf.JRSUIUtils;
 import javafx.util.Pair;
 import org.w3c.dom.NodeList;
+import sun.security.util.SecurityConstants;
 
 import java.*;
+import java.nio.file.CopyOption;
 import java.sql.Array;
 import java.util.*;
 class TopVotedCandidate2 {
@@ -1261,32 +1264,22 @@ public class Solution {
     }
     public boolean isValidBST(TreeNode root) {
         if (root ==null){return true;}
-//        if (root.left != null){
-//            if (root.left.val >= root.val){
-//                return false;
-//            }
-//        }
-//        if (root.right != null){
-//            if (root.val >= root.right.val){
-//                return false;
-//            }
-//        }
+        if (root.left == null && root.right == null)return true;
         addBST(root);
         return ret;
     }
-    Integer lastItem = Integer.MAX_VALUE;
+    long lastMAX = Long.MIN_VALUE;
     boolean ret = true;
+
     public void addBST(TreeNode root){
         if (root == null)return;
         if (ret == false)return;
         addBST(root.left);
-        if (lastItem == Integer.MAX_VALUE){
-            lastItem = root.val;
-        }else {
-            if (root.val <= lastItem){
-                ret = false;
-            }
+        if (root.val <= lastMAX){
+            ret=false;
+            return;
         }
+        lastMAX = Math.max(root.val,lastMAX);
         addBST(root.right);
     }
 //    打家劫舍1 11 111
@@ -1405,11 +1398,739 @@ Arrays.sort(nums);
         return ret;
     }
     public boolean isPowerOfThree(int n) {
-         int val = 1;
-        for (; val < n; ) {
-            val=val*3;
-        }
-        return val == n;
+        //int 最大值在3 的幂次方最大值来计算
+        return n > 0 && 1162261467 % n == 0;
+
     }
+    public String intToRoman(int num) {
+        StringBuffer b = new StringBuffer();
+        while (num > 0){
+            if (num >= 1000){
+                b.append("M");
+                num -= 1000;
+            }else if (num >= 900){
+                b.append("CM");
+                num -= 900;
+            }else if (num >= 500){
+                b.append("D");
+                num -= 500;
+            }else if (num >= 400){
+                b.append("CD");
+                num -= 400;
+            }else if (num >= 100){
+                num -= 100;
+                b.append("C");
+            }else if (num >= 90){
+                b.append("XC");
+                num -= 90;
+            }else if (num >=50){
+                b.append("L");
+                num -= 50;
+            }else if (num >=40){
+                num-= 40;
+                b.append("XL");
+            }else if (num >= 10){
+                b.append("X");
+                num -= 10;
+            }else if (num >= 9){
+                b.append("IX");
+                num -= 9;
+            }else if (num >=5){
+                b.append("V");
+                num -= 5;
+            }else if (num >=4){
+                b.append("IV");
+                num -= 4;
+            }else if (num >=1){
+                b.append("I");
+                num -=1;
+            }
+        }
+        return b.toString();
+    }
+    public int romanToInt(String s){
+        StringBuffer b = new StringBuffer(s);
+        int num = 0;
+        HashMap<String,Integer> map = new HashMap<>();
+        map.put("M",1000);
+        map.put("CM",900);
+        map.put("D",500);
+        map.put("CD",400);
+        map.put("C",100);
+        map.put("XC",90);
+        map.put("L",50);
+        map.put("XL",40);
+        map.put("X",10);
+        map.put("IX",9);
+        map.put("V",5);
+        map.put("IV",4);
+        map.put("I",1);
+
+
+
+        while (b.length() > 0){
+            if (b.length() > 1){
+
+                if ( map.containsKey(b.substring(0,2).toString())){
+                    num += map.get(b.substring(0,2));
+                    b.delete(0,2);
+                    continue;
+                }
+            }
+            if (b.length() == 0)break;
+
+            if ( map.containsKey(b.substring(0,1).toString())){
+                num += map.get(b.substring(0,1));
+                b.deleteCharAt(0);
+                continue;
+            }
+        }
+        return num;
+    }
+
+    public  List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> ret = new ArrayList<>();
+
+        ArrayList<TreeNode> arrayList = new ArrayList();
+
+        if (root != null){
+            arrayList.add(root);
+        }
+
+        while (arrayList.size()>0){
+            List<Integer> arr_sub = new ArrayList<>();
+            List<TreeNode> nextNode = new ArrayList<>();
+
+            while (arrayList.size() > 0){
+                TreeNode node = arrayList.remove(0);
+                if (node != null){
+                    arr_sub.add(node.val);
+                }
+                if (node.left != null) nextNode.add(node.left);
+                if (node.right != null) nextNode.add(node.right);
+            }
+            ret.add(arr_sub);//添加一层数据
+            //下一层数据
+            for (int i = 0; i < nextNode.size(); i++) {
+                arrayList.add(nextNode.get(i));
+            }
+        }
+
+        return ret;
+    }
+    public boolean isSymmetric(TreeNode root) {
+        if (root == null)return true;
+        return isMirror(root.left,root.right);
+    }
+    public boolean isMirror(TreeNode l,TreeNode r){
+        if (l==null && r!=null ||(l !=null && r==null)){
+            return false;
+        }
+        if (l == null && r==null)return true;
+        if (l.val != r.val)return false;
+        return isMirror(l.left,r.right)&&isMirror(l.right,r.left);
+    }
+    public boolean isValidSudoku(char[][] board) {
+        for (int i = 0; i <9 ; i++) {
+            HashMap<String,Integer> map = new HashMap<>();
+            HashMap<String,Integer> map2 = new HashMap<>();
+
+            for (int j = 0; j < 9 ; j++) {
+                String s1 =String.valueOf(board[i][j]).toString();
+                String s2 =String.valueOf(board[j][i]).toString();
+
+                if (map.containsKey(s1) && s1.equals(".")==false){
+                    return false;
+                }
+                if (map2.containsKey(s2) && s2.equals(".")==false){
+                    return false;
+                }
+                map.put(s1,1);
+                map2.put(s2,1);
+            }
+        }
+
+        for (int i = 0; i <9 ; i+=3) {
+
+            for (int j = 0; j < 9 ; j+=3) {
+                HashMap<String,Integer> map = new HashMap<>();
+                for (int k = 0; k < 3; k++) {
+                    for (int l = 0; l <3 ; l++) {
+                        String s = String.valueOf(board[j+k][i+l]);
+                        if (map.containsKey(s)&&s.equals(".")==false){
+                            return false;
+                        }
+                        map.put(s,1);
+                    }
+                }
+            }
+
+        }
+
+
+        return true;
+    }
+//二进制相加
+    public String addBinary(String a, String b) {
+        int length = Math.max(a.length(),b.length());
+        StringBuffer s = new StringBuffer();
+        boolean big = false;
+        int sum = 0;
+        for (int i = 0; i < length; i++) {
+
+            if (i< a.length()){
+                sum += Integer.parseInt(String.valueOf(a.charAt(a.length()-1-i)));
+            }
+            if (i < b.length()){
+                sum += Integer.parseInt(String.valueOf(b.charAt(b.length()-1-i)));
+            }
+            if (sum == 2){
+                if (big){
+                    s.insert(0,"1");
+                }else {
+                    s.insert(0,"0");
+                }
+                big = true;
+                sum = 0;
+            }else {
+                if (big){
+                    sum ++;
+                }
+                if (sum == 2){
+                    s.insert(0,"0");
+                    big = true;
+                }else {
+                    s.insert(0,Integer.toString(sum));
+                    big = false;
+                }
+                sum =0;
+            }
+        }
+        if (big){
+            s.insert(0,"1");
+        }
+        return s.toString();
+    }
+
+
+
+
+    public ListNode detectCycle(ListNode head) {
+        if (head == null){return null;}
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast!= null){
+
+            slow = slow.next;
+            fast = fast.next;
+            if (fast == null || fast.next == null) return null;
+            fast = fast.next;
+            if (slow == fast)break;
+        }
+        //走到这里一定有换
+         fast = head;
+        while (fast != slow){
+            fast = fast.next;
+            slow = slow.next;
+        }
+        return fast;
+    }
+
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        HashMap <ListNode,Integer> map = new HashMap<>();
+        while (headA != null){
+
+            map.put(headA,1);
+            headA = headA.next;
+        }
+        while (headB != null){
+            if (map.containsKey(headB)){
+                return headB;
+            }
+            headB = headB.next;
+        }
+        return null;
+    }
+
+    public ListNode removeElements(ListNode head, int val) {
+        ArrayList<ListNode> arrayList = new ArrayList<>();
+        ListNode node = head;
+        while (node != null){
+            if (node.val != val){
+                arrayList.add(node);
+            }
+            node = node.next;
+        }
+        for (int i = 0; i < arrayList.size()-1; i++) {
+            arrayList.get(i).next = arrayList.get(i+1);
+
+        }
+
+        if (arrayList.size()>0){
+            arrayList.get(arrayList.size()-1).next = null;
+            return arrayList.get(0);
+        }
+        return null;
+    }
+    public int[] intersection(int[] nums1, int[] nums2) {
+        HashSet<Integer> set =new HashSet<>();
+        for (int i = 0; i < nums1.length; i++) {
+            set.add(nums1[i]);
+        }
+        ArrayList<Integer> integers = new ArrayList<>();
+        for (int i = 0; i < nums2.length; i++) {
+            if (set.contains(nums2[i]) && integers.contains(nums2[i]) ==false){
+                integers.add(nums2[i]);
+            }
+        }
+        int[] ret = new int[integers.size()];
+
+        for (int i = 0; i < integers.size(); i++) {
+            ret[i] = integers.get(i);
+        }
+        return ret;
+    }
+    public boolean isHappy(int n) {
+        int sum = 0;
+        while (n>9){
+            int mod = n%10;
+            sum += mod * mod;
+            n=n/10;
+            if (n < 10){
+                n = sum + n*n;
+                sum = 0;
+            }
+        }
+        return n == 1;
+    }
+//  同构字符串
+    public boolean isIsomorphic(String s, String t) {
+        Map<String,Integer> map = new HashMap();
+        Map<String,Integer> map2 = new HashMap();
+
+        for (int i = 0; i <s.length() ; i++) {
+            String s1= String.valueOf(s.charAt(i));
+            String s2= String.valueOf(t.charAt(i));
+            if (map.containsKey(s1)){
+                map.put(s1,map.get(s1)+1);
+            }else {
+                map.put(s1,1);
+            }
+            if (map2.containsKey(s2)){
+                map2.put(s2,map2.get(s2)+1);
+            }else {
+                map2.put(s2,1);
+            }
+        }
+        Object[] a = map.values().toArray() ;
+        Object[] b = map2.values().toArray() ;
+        Arrays.sort(a);
+        Arrays.sort(b);
+        if (a.length != b.length)return false;
+        for (int i = 0; i < a.length ; i++) {
+            if (a[i] != b[i])return false;
+        }
+         return true;
+    }
+    public String[] findRestaurant(String[] list1, String[] list2) {
+        Map<String,Integer> map = new HashMap<>();
+        for (int i = 0; i < list1.length; i++) {
+            map.put(list1[i],i);
+        }
+        int minN = 2000;
+        ArrayList<String> arrayList = new ArrayList<>();
+        for (int i = 0; i < list2.length ; i++) {
+            if (map.containsKey(list2[i])){
+                int now = map.get(list2[i])+i;
+                if (now <= minN){
+                    if (now < minN){
+                        arrayList.clear();
+                    }
+                    arrayList.add( list2[i]);
+                    minN = now;
+                }
+            }
+        }
+        String[] ret = new String[arrayList.size()];
+        for (int i = 0; i < arrayList.size(); i++) {
+            ret[i] = arrayList.get(i);
+        }
+        return ret;
+    }
+
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i+1; j <nums.length ; j++) {
+                if (nums[i] == nums[j] && j-i <= k)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public int numJewelsInStones(String J, String S) {
+        Map<String,Integer> map = new HashMap();
+        for (int i = 0; i < J.length(); i++) {
+            map.put(String.valueOf(J.charAt(i)),1);
+        }
+        int ret = 0;
+        for (int i = 0; i < S.length(); i++) {
+            String key = String.valueOf(S.charAt(i));
+            if (map.containsKey(key)){
+                ret ++;
+            }
+        }
+        return ret;
+    }
+
+    public int lengthOfLongestSubstring(String s) {
+        Map<String,Integer> map = new HashMap<>();
+        int ret = 0;
+        int count = 0,indexDel = 0;
+        for (int i = 0; i < s.length(); i++) {
+            String key = String.valueOf(s.charAt(i));
+
+            if (map.containsKey(key)){
+                int index = map.get(key);
+                for (int j = indexDel; j < index+1; j++) {
+                    String key2 = String.valueOf(s.charAt(j));
+                    map.remove(key2);
+                }
+                indexDel = index+1;
+                map.put(key,i);
+                ret = Math.max(ret,count);
+                count = i-index;
+            }else {
+                count++;
+                map.put(key,i);
+            }
+        }
+        return ret>count?ret:count;
+    }
+    //超时
+    public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> arr = new ArrayList<>();
+        if (nums.length<3)return arr;
+        Arrays.sort(nums);
+        Map<String,Integer> map= new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i+1; j < nums.length; j++) {
+                String key = nums[i]+","+nums[j]+','+i+","+j;
+                if (map.containsKey(key)){continue;}
+                map.put(key,nums[i]+nums[j]);
+            }
+        }
+        Map<String,Integer> newMap = new HashMap<>();
+
+        for (String key:map.keySet()) {
+            int value = map.get(key);
+             newMap.put(String.valueOf(value),1);
+        }
+        Map<String,Integer> new2Map = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            int t = -nums[i];
+            if (newMap.containsKey(String.valueOf(t))){
+                if (i != 0){
+                    if (nums[i]==nums[i-1]){
+                        continue;
+                    }
+                }
+                for (String key:map.keySet()) {
+                    int value = map.get(key);
+                    if (value == t){
+                        String[]  subItemList = key.split("\\,");
+                        if (subItemList.length == 4){
+                            List<Integer> sub = new ArrayList<>();
+                            int a = Integer.parseInt(subItemList[0]);
+                            int b = Integer.parseInt(subItemList[1]);
+                            int index1 = Integer.parseInt(subItemList[2]);
+                            int index2 = Integer.parseInt(subItemList[3]);
+                            if (index1 == i || index2 == i)continue;
+                            if (-t < a){
+                                sub.add(-t);
+                                sub.add(a);
+                                sub.add(b);
+                            }else if (-t < b){
+                                sub.add(a);
+                                sub.add(-t);
+                                sub.add(b);
+                            }else {
+                                sub.add(a);
+                                sub.add(b);
+                                sub.add(-t);
+                            }
+                            if (new2Map.containsKey(sub.toString()) ==false){
+                                new2Map.put(sub.toString(),1);
+                                arr.add(sub);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return arr;
+    }
+
+    public void setZeroes(int[][] matrix) {
+        List<Integer> lines = new ArrayList<>();
+        List<Integer> rows = new ArrayList<>();
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j <matrix[0].length ; j++) {
+                if (matrix[i][j]==0){
+
+                }
+            }
+        }
+
+    }
+
+    public List<List<String>> groupAnagrams(String[] strs) {
+        List<List<String>> arr = new ArrayList<>();
+        Map<String,List<String>>map = new HashMap<>();
+        for (int i = strs.length-1; i >= 0; i--) {
+            String s = strs[i];
+            char[] newS= s.toCharArray();
+            Arrays.sort(newS);
+            String key = Arrays.toString(newS);
+            if (map.containsKey(key)){
+                List<String> sub = map.get(key);
+                sub.add(s);
+                map.put(key,sub);
+            }else{
+                List<String> sub = new ArrayList<>();
+                sub.add(s);
+                map.put(key,sub);
+            }
+        }
+        for (List<String>item:map.values()) {
+            arr.add(item);
+        }
+        return arr;
+    }
+
+    public boolean increasingTriplet(int[] nums) {
+
+        if (nums.length < 3) return false;
+
+        int a = Integer.MAX_VALUE,b = a ;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i]<=a){
+                a = nums[i];
+            }else if (nums[i]<=b){
+                b = nums[i];
+            }else {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public List<String> letterCombinations(String digits) {
+        List<String> ret = new ArrayList<>();
+        Map<String,char[]>map = new HashMap();
+        map.put("2",new char[]{'a','b','c'});
+        map.put("3",new char[]{'d','e','f'});
+        map.put("4",new char[]{'g','h','i'});
+        map.put("5",new char[]{'j','k','l'});
+        map.put("6",new char[]{'m','n','o'});
+        map.put("7",new char[]{'p','q','r','s'});
+        map.put("8",new char[]{'t','u','v'});
+        map.put("9",new char[]{'w','x','y','z'});
+
+        for (int i = 0; i < digits.length(); i++) {
+            String key = String.valueOf(digits.charAt(i));
+            char[] chars = map.get(key);
+            int size = ret.size();
+            for (int j = 0; j < chars.length; j++) {
+                String addKey = String.valueOf(chars[j]);
+                if (i == 0){//一个数字字节添加
+                    ret.add(addKey);
+                }else {
+
+                    for (int k = 0; k < size; k++) {
+                        if (j == 0){
+                            ret.add(k,ret.get(k)+chars[j]);
+                            ret.remove(k+1);
+                        }else {
+                            String getk =  ret.get(k);
+                            String old = getk.substring(0,getk.length()-1);
+                            ret.add(old+chars[j]);
+                        }
+                    }
+                }
+            }
+        }
+        return ret;
+    }
+
+
+    public int findKthLargest(int[] nums, int k) {
+        Arrays.sort(nums);
+        if (nums .length == 0)return -1;
+        else if (nums.length == 1)return nums[0];
+        if (k == 1)return nums[0];
+        int ret = 0;
+        for (int i = 1; i < k; i++) {
+            if (nums[i] >nums[i-1]){
+                ret ++;
+            }
+        }
+        return 0;
+    }
+    public int findPeakElement(int[] nums) {
+        if (nums.length == 0)return -1;
+        else if (nums.length == 1)return 0;
+
+         int l=1,r = nums.length-2;
+         if (nums.length > 1){
+             if (nums[0] > nums[1])return 0;
+             if (nums[nums.length-1]>nums[nums.length-2]){
+                 return nums.length-1;
+             }
+         }
+        while (l<r){
+            int mid = l+(r-l)/2;
+            if (mid == l){
+                if (nums[mid] < nums[mid+1]){
+                    return mid+1;
+                }
+                return mid;
+            }
+            if (nums[mid]>nums[mid-1] && nums[mid]>nums[mid+1]){
+                return mid;
+            }else if (nums[mid-1] < nums[mid] ){
+                l = mid;
+            }else if (nums[mid] == nums[l] && mid != l){
+                r = mid;
+            }else if (nums[mid-1] > nums[mid] ) {
+                r = mid;
+            }
+        }
+        return r;
+    }
+
+    public int[] searchRange(int[] nums, int target) {
+        if (nums.length == 0)return new int[]{-1,-1};
+        else if (nums.length ==1){
+            if (nums[0] == target)return new int[]{0,0};
+            return new int[]{-1,-1};
+        }
+        int l =0,r=nums.length-1;
+        int subT = target;
+        while (l<=r){
+            int mid = l+(r-l)/2;
+            if (l == r && nums[l] != target){
+                return new int[]{-1,-1};
+            }
+            if (nums[mid] < subT){
+                l=mid+1;
+            }else if (nums[mid] == target){
+                l=mid;
+                for (int i = l; i >=0 ; i--) {
+                    if (nums[i]!=target){
+                        l = i+1;
+                        break;
+                    }else if (i==0){
+                        l=0;
+                    }
+                }
+
+                break;
+            }else{
+                r=mid-1;
+            }
+        }
+
+        if (nums[l]!= target)return new int[]{-1,-1};
+        List<Integer> arr = new ArrayList<>();
+        for (int i = l; i < nums.length; i++) {
+            if (target == nums[i]) arr.add(i);
+        }
+        if (arr.size() ==1){
+            arr.add(arr.get(0));
+        }
+        int[] ret = new int[2];
+        ret[0] = arr.get(0);
+        ret[1] = arr.get(arr.size()-1);
+         return ret;
+    }
+
+
+
+
+    public boolean canJump(int[] nums) {
+        int[][] dp = new int[nums.length][1];
+        dp[0][0] = 1;
+        for (int i = 0; i < nums.length; i++) {
+            if (dp[i][0] != 1)continue;
+            for (int j = i+1; j <= i+nums[i] && j<nums.length; j++) {
+                dp[j][0] = 1;
+            }
+        }
+        return dp[nums.length-1][0]==1;
+    }
+
+
+    public int uniquePaths(int m, int n) {
+        if (m<=1 || n <=1)return 1;
+        int[][] dp = new int[n][m];
+        for (int i = 0; i <n ; i++) {
+            for (int j = 0; j <m ; j++) {
+                if (i == 0){
+                    dp[i][j] = 1;
+                }else
+                if (j == 0){
+                    dp[i][j] = 1;
+                }else{
+                    dp[i][j]=dp[i-1][j] +dp[i][j-1];
+                }
+            }
+        }
+        return dp[n-1][m-1];
+    }
+    //连续最长子序列
+    public int lengthOfLIS2(int[] nums) {
+        int[] dp=new int[nums.length];
+        Arrays.fill(nums,1);
+        int m = Integer.MIN_VALUE;
+        if (nums.length>0)dp[0]=1;
+        for (int i = 1; i <nums.length ; i++) {
+            if (nums[i] > nums[i-1]){
+                dp[i] = dp[i] + 1;
+            }
+            m=Math.max(m,dp[i]);
+        }
+        return m;
+    }
+
+    public int lengthOfLIS(int[] nums) {
+        int[] dp=new int[nums.length];
+        Arrays.fill(nums,1);
+        int m = Integer.MIN_VALUE;
+        if (nums.length>0)dp[0]=1;
+        for (int i = 1; i <nums.length ; i++) {
+            if (nums[i] > nums[i-1]){
+                dp[i] = dp[i] + 1;
+            }
+            m=Math.max(m,dp[i]);
+        }
+        return m;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
