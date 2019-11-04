@@ -2106,7 +2106,7 @@ Arrays.sort(nums);
         return m;
     }
 
-    public int lengthOfLIS(@org.jetbrains.annotations.NotNull int[] nums) {
+    public int lengthOfLIS( int[] nums) {
         int[] dp=new int[nums.length];
         Arrays.fill(nums,1);
         int m = Integer.MIN_VALUE;

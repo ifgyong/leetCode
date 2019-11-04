@@ -34,6 +34,30 @@ public class Solution2 {
 
 //42 接雨水
     public int trap(int[] height) {
-
+return 1;
     }
+    //45 跳跃游戏2
+    public int jump(int[] nums) {
+        int index = 0,count=0;
+        while (index < nums.length-1){
+            int maxIndex=index;
+            if (nums[index] > 0){
+                if (nums[index]+index >= nums.length-1){
+                    return count+1;
+                }
+                int maxStep = 0;
+                for (int i = index+1; i < nums.length && i<=nums[index]+index; i++) {
+                    if (nums[i]+i > maxStep){
+                        maxStep = nums[i]+i;
+                        maxIndex = i;
+                    }
+                }
+                index = maxIndex;
+                count++;
+            }
+
+        }
+        return count;
+    }
+
 }

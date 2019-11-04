@@ -6,7 +6,7 @@ public class Main {
 
 
     public static void main(String[] args) {
-        Solution s = new Solution();
+        Solution2 s = new Solution2();
 //        char [] ch1 = new char[]{'5','3','.','.','7','.','.','.','.'};
 //        char [] ch2 = new char[]{'6','.','.','1','9','.','.','.','.'};
 //        char [] ch3 = new char[]{'.','9','8','.','.','.','.','6','.'};
@@ -33,7 +33,7 @@ ListNode node = ListNode.listNode(new int[]{1,2});
 String[] a = new String[]{"Shogun","Tapioca Express","Burger King","KFC"};
 String[] a2 = new String[]{"Piatti","The Grill at Torrey Pines","Hungry Hunter Steakhouse","Shogun"};
 
-        boolean a3 = s.canJump(new int[]{3,2,1,0,4});
+        int a3 = s.jump(new int[]{3,2,1});
         System.out.println(a3);
 //        for (int i = 0; i <a3.length ; i++) {
 //            System.out.println(a3[i]);
