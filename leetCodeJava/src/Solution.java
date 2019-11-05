@@ -2106,7 +2106,7 @@ Arrays.sort(nums);
         return m;
     }
 
-    public int lengthOfLIS(int[] nums) {
+    public int lengthOfLIS( int[] nums) {
         int[] dp=new int[nums.length];
 
         int m = Integer.MIN_VALUE;
@@ -2134,18 +2134,5 @@ Arrays.sort(nums);
 
         return m;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
