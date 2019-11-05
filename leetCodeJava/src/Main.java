@@ -33,7 +33,7 @@ ListNode node = ListNode.listNode(new int[]{1,2});
 String[] a = new String[]{"Shogun","Tapioca Express","Burger King","KFC"};
 String[] a2 = new String[]{"Piatti","The Grill at Torrey Pines","Hungry Hunter Steakhouse","Shogun"};
 
-        boolean a3 = s.canJump(new int[]{3,2,1,0,4});
+        int a3 = s.lengthOfLIS(new int[]{1,3,6,7,9,4,10,5,6});
         System.out.println(a3);
 //        for (int i = 0; i <a3.length ; i++) {
 //            System.out.println(a3[i]);

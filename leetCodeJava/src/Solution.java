@@ -2108,15 +2108,30 @@ Arrays.sort(nums);
 
     public int lengthOfLIS(int[] nums) {
         int[] dp=new int[nums.length];
-        Arrays.fill(nums,1);
+
         int m = Integer.MIN_VALUE;
-        if (nums.length>0)dp[0]=1;
+        if (nums.length > 0){dp[0]=1;}else {return 0;}
+        if (nums.length == 1){
+            return 1;
+        }
         for (int i = 1; i <nums.length ; i++) {
             if (nums[i] > nums[i-1]){
-                dp[i] = dp[i] + 1;
+                dp[i] = dp[i-1] + 1;
+            }else {
+                int j = i-1;
+                int sub_max = Integer.MIN_VALUE;
+                while (j>=0){
+                    if (nums[i] > nums[j]){
+                        dp[i] = dp[j] + 1;
+                        break;
+                    }
+                    j--;
+                }
+                if (j==-1 &&dp[i]==0){dp[i]=1;}
             }
             m=Math.max(m,dp[i]);
         }
+
         return m;
     }
 
