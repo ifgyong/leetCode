@@ -33,7 +33,8 @@ ListNode node = ListNode.listNode(new int[]{1,2});
 String[] a = new String[]{"Shogun","Tapioca Express","Burger King","KFC"};
 String[] a2 = new String[]{"Piatti","The Grill at Torrey Pines","Hungry Hunter Steakhouse","Shogun"};
 
-          int a3 = s.longestValidParentheses("()(())");
+int[][] list = {{1,0}};
+          boolean a3 = s.canFinish(2,list);
          System.out.println(a3);
 //        for (int i = 0; i <a3.length ; i++) {
 //            System.out.println(a3[i]);

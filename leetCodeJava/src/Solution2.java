@@ -389,6 +389,7 @@ class ObjIndexAndVal{
         }
         size = N;
     }
+    Solution2(){}
 
     public int pick() {
         while (rand>0){
@@ -402,5 +403,88 @@ class ObjIndexAndVal{
             }
         }
         return -1;
+    }
+
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        if (prerequisites.length == 0)return true;
+        int[][] p = new int[numCourses][numCourses];
+        int[] d = new int[numCourses];//入度
+        for (int i = 0; i < prerequisites.length; i++) {
+            int a = prerequisites[i][1];
+            int b = prerequisites[i][0];
+            //a -> b
+            p[a][b] = 1;
+            d[b] ++;
+        }
+        Stack<Integer> stack = new Stack<>();
+        Set<Integer> set = new HashSet<>();
+        for (int i = 0; i < numCourses; i++) {
+            if (d[i] == 0)
+            {stack.add(i);
+            set.add(i);}
+        }
+
+        while (stack.size()>0){
+            int i = stack.pop();
+            for (int j = 0; j <numCourses ; j++) {
+                if (p[i][j] == 1){
+                    p[i][j]=0;
+                    d[j]--;
+                    if (d[j] == 0){
+                        stack.add(j);
+                        set.add(j);
+                    }
+                }
+            }
+        }
+        if (set.size() != numCourses)return false;
+        return true;
+    }
+    //210 课程表2
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+        int[] ret = new int[numCourses];
+        if (prerequisites.length == 0){
+            for (int i = 0; i < numCourses; i++) {
+                ret[i] = i;
+            }
+            return ret;
+        }
+        int[][] p = new int[numCourses][numCourses];
+        int[] d = new int[numCourses];//入度
+        for (int i = 0; i < prerequisites.length; i++) {
+            int a = prerequisites[i][1];
+            int b = prerequisites[i][0];
+            //a -> b
+            p[a][b] = 1;
+            d[b] ++;
+        }
+        Stack<Integer> stack = new Stack<>();
+        Set<Integer> set = new HashSet<>();
+        int index =0 ;
+        for (int i = 0; i < numCourses; i++) {
+            if (d[i] == 0)
+            {
+                stack.add(i);
+                set.add(i);
+                ret[index++] = i;
+            }
+        }
+
+        while (stack.size()>0){
+            int i = stack.pop();
+            for (int j = 0; j <numCourses ; j++) {
+                if (p[i][j] == 1){
+                    p[i][j]=0;
+                    d[j]--;
+                    if (d[j] == 0){
+                        stack.add(j);
+                        set.add(j);
+                        ret[index++] = j;
+                    }
+                }
+            }
+        }
+        if (set.size() == numCourses)return ret;
+        return new int[]{};
     }
 }
