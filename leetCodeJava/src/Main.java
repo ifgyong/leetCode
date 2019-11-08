@@ -6,6 +6,8 @@ public class Main {
 
 
     public static void main(String[] args) {
+
+
         Solution2 s = new Solution2();
 //        char [] ch1 = new char[]{'5','3','.','.','7','.','.','.','.'};
 //        char [] ch2 = new char[]{'6','.','.','1','9','.','.','.','.'};
@@ -29,12 +31,13 @@ public class Main {
 //        chars[8] =ch9;
 
 
-ListNode node = ListNode.listNode(new int[]{1,2});
-String[] a = new String[]{"Shogun","Tapioca Express","Burger King","KFC"};
-String[] a2 = new String[]{"Piatti","The Grill at Torrey Pines","Hungry Hunter Steakhouse","Shogun"};
+//ListNode node = ListNode.listNode(new int[]{1,2});
+//String[] a = new String[]{"Shogun","Tapioca Express","Burger King","KFC"};
+//String[] a2 = new String[]{"Piatti","The Grill at Torrey Pines","Hungry Hunter Steakhouse","Shogun"};
 
-          int a3 = s.longestValidParentheses("()(())");
-         System.out.println(a3);
+int[][] a = {{1,0},{1,2},{0,1}};
+        boolean a3 = s.canFinish(2,a);
+        System.out.println(a3);
 //        for (int i = 0; i <a3.length ; i++) {
 //            System.out.println(a3[i]);
 //

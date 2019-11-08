@@ -1,3 +1,5 @@
+import com.sun.java.swing.plaf.windows.WindowsTextAreaUI;
+
 import java.lang.reflect.Array;
 import java.util.*;
 class NumMatrix {
@@ -383,6 +385,7 @@ class ObjIndexAndVal{
     Map<Integer,Integer>map = new HashMap<>();
     int rand = 0;
     int size ;
+    Solution2(){}
     Solution2(int N, int[] blacklist) {
         for (int i = 0; i < blacklist.length; i++) {
             map.put(blacklist[i],1);
@@ -402,5 +405,179 @@ class ObjIndexAndVal{
             }
         }
         return -1;
+    }
+
+
+    public int swimInWater(int[][] grid) {
+        class Point{
+            int x,y,val;
+            Point(int x,int y,int val){
+                this.x = x;
+                this.y = y;
+                this.val =val;
+            }
+        }
+        List<Point> list = new ArrayList<>();
+        List<Integer> doneArround = new ArrayList<>();//走过的路的周围
+        Map<String,Integer> map =new HashMap<>();//路过的点
+        int ret = 0,x=0,y=0;
+        list.add(new  Point(x,y,grid[0][0]));
+        String key = "0,0";
+        map.put(key,1);
+        while (true){
+            if (x == 0){
+                if (y == grid[0].length){
+                    String key_r = "0,"+(y+1);
+                }else {
+                    String key_r = "1,"+(y);
+                }
+            }
+            break;
+        }
+        return ret;
+    }
+    public int candy(int[] ratings) {
+        if (ratings.length == 0)return 0;
+        else if (ratings.length == 1){return 1;}
+        else if (ratings.length == 2){
+            if (ratings[0] == ratings[1]){
+                return 2;
+            }
+            return 3;
+        }
+
+        int[] t = new int[ratings.length];
+
+        int index=0,min = Integer.MAX_VALUE;
+        for (int i = 0; i < ratings.length; i++) {
+            if (ratings[i] < min){
+                min = ratings[i];
+                index = i;
+            }
+        }
+
+        return 1;
+    }
+
+
+//997 法官
+    public int findJudge(int N, int[][] trust) {
+        int[][] t = new int[N][2];
+        //0 入度 1是出度
+        Map<Integer,Integer> map = new HashMap<>();//不是法官的人
+        for (int i = 0; i < trust.length; i++) {
+            t[trust[i][1]-1][0] += 1;
+            t[trust[i][0]-1][1] -= 1;
+        }
+        //法官一定是1
+        //法官位子一定的人一定是 0
+        for (int i = 0; i < N; i++) {
+            if (t[i][1] == 0 && t[i][0] == N-1){
+                return i+1;
+            }
+        }
+        return -1;
+    }
+// 1042 不相邻植花
+    public int[] gardenNoAdj(int N, int[][] paths) {
+        //花园A 是二维数组，二维数组存储了 花园A相连的其他花园
+        int[][] locations = new int[N][3];
+        for (int i = 0; i < paths.length; i++) {
+            int[] l_sub = locations[paths[i][0]];
+            for (int j = 0; j < l_sub.length; j++) {
+                if (l_sub[j] != 0){
+                    l_sub[j] = paths[i][1];
+                    break;
+                }
+            }
+        }
+        int[] colors = new int[4];
+        colors[0] = 1;
+        for (int i = 0; i < locations.length; i++) {
+            for (int j = 0; j < locations[i].length; j++) {
+
+            }
+        }
+        return new int[]{1,2};
+    }
+
+    class Node {
+        public int val;
+        public List<Node> neighbors;
+
+        public Node() {}
+
+        public Node(int _val,List<Node> _neighbors) {
+            val = _val;
+            neighbors = _neighbors;
+        }
+    };
+    public Node cloneGraph(Node node) {
+        if (node == null)return null;
+        Set<Integer> visited = new HashSet<>();
+        Map<Integer,Node> map = new HashMap<>();
+        Queue<Node> queue = new LinkedList<>();
+        queue.offer(node);
+        while (!queue.isEmpty()){
+            Node sub = queue.poll();
+            Node n_sub = new Node();
+            n_sub.val = sub.val;
+            n_sub.neighbors = sub.neighbors;
+            map.put(sub.val,sub);
+            for (Node temp:sub.neighbors
+                 ) {
+                if (visited.contains(temp.val))continue;
+                queue.offer(temp);
+                visited.add(temp.val);
+            }
+        }
+
+        queue.clear();
+        queue.offer(node);
+        visited.clear();
+        while (!queue.isEmpty()){
+            Node n = queue.poll();
+            for (Node temp:n.neighbors
+            ) {
+                if (visited.contains(temp)){
+                    continue;
+                }
+                else {
+                    queue.offer(temp);
+                    visited.add(temp.val);
+                }
+            }
+        }
+        return map.get(node.val);
+    }
+
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        Set<Integer> set = new HashSet<>();
+        Map<Integer,Integer>map = new HashMap<>();// 1->2 1指向2
+        for (int i = 0; i < prerequisites.length; i++) {
+            map.put(prerequisites[i][0],prerequisites[i][1]);
+        }
+
+        for (int i = 0; i < prerequisites.length; i++) {
+            set.clear();
+            List<Integer> link = new ArrayList<>();
+
+            set.add(prerequisites[i][0]);//记录访问过的点
+            link.add(prerequisites[i][0]);
+            while (link.isEmpty() ==false){
+                Integer last = link.remove(link.size()-1);
+                if (map.containsKey(last)){
+                    Integer next = map.get(last);
+                    if (set.contains(next)){
+                        return false;
+                    }
+                    set.add(next);
+                    link.add(next);
+                }else {
+                    break;
+                }
+            }
+        }
+        return true;
     }
 }
