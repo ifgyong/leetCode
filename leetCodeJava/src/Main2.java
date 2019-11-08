@@ -1,8 +1,5 @@
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main2 {
     public Main2() {
@@ -21,69 +18,36 @@ public static void  getFi(int n){
         System.out.println(v2);
     }
 }
-public static  int getCircle(){
-    int n = 0, m = 0, l = 0;
-    Scanner cin = new Scanner(System.in);
-    if (cin.hasNext()){
-        n = cin.nextInt();//顶点个数
-        m = cin.nextInt();//边的个数
-        l= cin.nextInt();
-        int[][] p = new int[n+1][n+1];
-        int[] p2 = new int[m+1];
-        for (int i = 1; i <= m; i++) {
-            p2[i] =i;
+public static boolean canFinish(int numCourses, int[][] prerequisites) {
+        Set<Integer> set = new HashSet<>();
+        Map<Integer, Integer> map = new HashMap<>();// 1->2 1指向2
+        for (int i = 0; i < prerequisites.length; i++) {
+            map.put(prerequisites[i][0], prerequisites[i][1]);
         }
-        //构造邻接表
-        for (int i = 0; i < m; i++) {
-            int p_l = cin.nextInt();
-            int p_r = cin.nextInt();
-            if (l == 1){//无向图
-                p[p_l][p_r] =1;
-                p[p_r][p_l] = 1;
-            }else {
-                p[p_l][p_r] = 1;
-            }
-        }
-        //
-printArray(p);
-        for (int i = 1; i < p.length ; i++) {
-                HashMap<Integer,Integer> map = new HashMap<>();
-                map.put(i,1);
-                List<Integer> arr = new ArrayList<>();
-                for (int j = 1; j < p[0].length; j++) {
-                    if (p[i][j] == 1){
-                        map.put(j,1);
-                        arr.add(j);
+
+        for (int i = 0; i < prerequisites.length; i++) {
+            set.clear();
+            List<Integer> link = new ArrayList<>();
+
+            set.add(prerequisites[i][0]);//记录访问过的点
+            link.add(prerequisites[i][0]);
+            while (link.isEmpty() == false) {
+                Integer last = link.remove(link.size() - 1);
+                if (map.containsKey(last)) {
+                    Integer next = map.get(last);
+                    if (set.contains(next)) {
+                        return false;
                     }
-                    if (arr.size() == 0)continue;
-                    while (arr.size() > 0){
-                        int last = arr.remove(arr.size()-1);
-                        for (int k = 0; k <= n; k++) {
-                            if (p[last][k] == 1){
-                                //无向图 1->2  2->1 同时存在在存在第三个点的时候才是环
-                                if (l == 1){
-                                    if (map.containsKey(k) && map.keySet().size() > 2){
-                                        return 1;
-                                    }else {
-                                        map.put(k,1);
-                                        arr.add(k);//添加一个点
-                                    }
-                                }else {
-                                    if (map.containsKey(k) && map.keySet().size() > 1){
-                                        return 1;
-                                    }else {
-                                        map.put(k,0);
-                                        arr.add(k);//添加一个点
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    set.add(next);
+                    link.add(next);
+                } else {
+                    break;
                 }
             }
+        }
+        return true;
+
     }
-    return -1;
-}
 public static boolean haveCircle(int[][] p){
     int[][] p2= new  int[p.length][];
     for (int i = 2; i < p.length; i++) {
@@ -105,11 +69,106 @@ public static void printArray(int[][] p){
     }
 }
     public static void main(String[] var0) {
-        if (getCircle() == -1){
-            System.out.println(false);
-        }else {
-            System.out.println(true);
+        int n = 0;
+        int m = 0;
+        int l = 0;
+        Scanner cin = new Scanner(System.in);
+        while (cin.hasNext()){
+            n = cin.nextInt();
+            m = cin.nextInt();
+            l = cin.nextInt();//1无向图 0有向图
+            int[][] v= new int[n+1][n+1];
+            for (int i = 0; i < m; i++) {
+                int l_sub = cin.nextInt();
+                int r_sub = cin.nextInt();
+                v[l_sub][r_sub] = 1;
+                if (l == 1){
+//                    v[r_sub-1][l_sub-1] = 1;
+                }
+            }
+//            if (l == 0){
+//                if (haveCircle(n,v)){
+//                    System.out.println("Yes");
+//                }else {
+//                    System.out.println("No");
+//                }
+//            }else {//无向图
+            printArray(v);
+                boolean[][] visited = new boolean[n+1][n+1];
+                int i1 = -1,i2=-1;
+                for (int i = 1; i <= n ; i++) {
+                    if (i1 != -1 || i2!=-1)break;
+                    for (int j = 1; j <= n; j++) {
+                        if (v[i][j] == 1){
+                            i1 = i;
+                            i2 = j;
+                            break;
+                        }
+                    }
+                }
+                if (i1 != -1 && i2 != -1){
+                    boolean haveCircle = dfsHaveCiecle(i1,i2,v,visited,l==0);
+                    if (haveCircle){
+                        System.out.println("Yes");
+                    }else {
+                        System.out.println("No");
+                    }
+                }else {
+                    System.out.println("No");
+                }
+//            }
         }
+    }
+    public static boolean haveCircle(int n,int[][] v){
+        int[] inGree = new int[n];
+        for (int i = 0; i < v.length; i++) {
+            for (int j = 0; j <v[i].length ; j++) {
+                if (v[i][j] == 1){
+                    inGree[j]++;//入度+1
+                }
+            }
+        }
+        Stack<Integer>stack = new Stack<>();
+        Set<Integer> set = new HashSet<>();
+        for (int i = 0; i < inGree.length; i++) {
+            if (inGree[i] == 0)stack.add(i);
+        }
+        while (!stack.empty()){
+            int last = stack.pop();
+            set.add(last);
+            for (int j = 0; j < n ; j++) {
+                if (v[last][j] == 1){
+                    v[last][j] = 0;
+                    inGree[j]--;
+                    if (inGree[j] == 0)stack.add(j);
+                }
+            }
+        }
+        if (set.size() == n){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public static  boolean dfsHaveCiecle(int i,int next,int[][] v,boolean[][] visited,boolean l){
+        if (visited[i][next] == true){
+            return true;
+        }
+        visited[i][next] = true;
+        for (int j = 1; j < v.length; j++) {
+            if (v[next][j] == 1){
+                return dfsHaveCiecle(next,j,v,visited,l);
+            }
+        }
+        return false;
+    }
+    public  static  boolean haveCircle2(int from,int[][] v,int size){
+        Stack<Integer> stack = new Stack<>();
+
+        boolean[] visited = new boolean[size];
+
+        return false;
     }
 }
 

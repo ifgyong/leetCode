@@ -35,10 +35,15 @@ public class Main {
 //String[] a = new String[]{"Shogun","Tapioca Express","Burger King","KFC"};
 //String[] a2 = new String[]{"Piatti","The Grill at Torrey Pines","Hungry Hunter Steakhouse","Shogun"};
 
-int[][] a = {{1,0},{1,2},{0,1}};
-        boolean a3 = s.canFinish(2,a);
-        System.out.println(a3);
-//        for (int i = 0; i <a3.length ; i++) {
+char[][] chars= {{'X','X','X','X'},
+        {'X','O','O','X'},
+        {'X','X','O','X'},
+        {'X','O','X','X'}};
+
+int[][] list = {{1,0}};
+            s.solve(chars);
+//         System.out.println(a3);
+ //        for (int i = 0; i <a3.length ; i++) {
 //            System.out.println(a3[i]);
 //
 //        }

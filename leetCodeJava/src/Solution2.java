@@ -408,6 +408,7 @@ class ObjIndexAndVal{
     }
 
 
+
     public int swimInWater(int[][] grid) {
         class Point{
             int x,y,val;
@@ -553,9 +554,9 @@ class ObjIndexAndVal{
 
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         Set<Integer> set = new HashSet<>();
-        Map<Integer,Integer>map = new HashMap<>();// 1->2 1指向2
+        Map<Integer, Integer> map = new HashMap<>();// 1->2 1指向2
         for (int i = 0; i < prerequisites.length; i++) {
-            map.put(prerequisites[i][0],prerequisites[i][1]);
+            map.put(prerequisites[i][0], prerequisites[i][1]);
         }
 
         for (int i = 0; i < prerequisites.length; i++) {
@@ -564,20 +565,166 @@ class ObjIndexAndVal{
 
             set.add(prerequisites[i][0]);//记录访问过的点
             link.add(prerequisites[i][0]);
-            while (link.isEmpty() ==false){
-                Integer last = link.remove(link.size()-1);
-                if (map.containsKey(last)){
+            while (link.isEmpty() == false) {
+                Integer last = link.remove(link.size() - 1);
+                if (map.containsKey(last)) {
                     Integer next = map.get(last);
-                    if (set.contains(next)){
+                    if (set.contains(next)) {
                         return false;
                     }
                     set.add(next);
                     link.add(next);
-                }else {
+                } else {
                     break;
                 }
             }
         }
         return true;
+
     }
+    //210 课程表2
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+        int[] ret = new int[numCourses];
+        if (prerequisites.length == 0){
+            for (int i = 0; i < numCourses; i++) {
+                ret[i] = i;
+            }
+            return ret;
+        }
+        int[][] p = new int[numCourses][numCourses];
+        int[] d = new int[numCourses];//入度
+        for (int i = 0; i < prerequisites.length; i++) {
+            int a = prerequisites[i][1];
+            int b = prerequisites[i][0];
+            //a -> b
+            p[a][b] = 1;
+            d[b] ++;
+        }
+        Stack<Integer> stack = new Stack<>();
+        Set<Integer> set = new HashSet<>();
+        int index =0 ;
+        for (int i = 0; i < numCourses; i++) {
+            if (d[i] == 0)
+            {
+                stack.add(i);
+                set.add(i);
+                ret[index++] = i;
+            }
+        }
+
+        while (stack.size()>0){
+            int i = stack.pop();
+            for (int j = 0; j <numCourses ; j++) {
+                if (p[i][j] == 1){
+                    p[i][j]=0;
+                    d[j]--;
+                    if (d[j] == 0){
+                        stack.add(j);
+                        set.add(j);
+                        ret[index++] = j;
+                    }
+                }
+            }
+        }
+        if (set.size() == numCourses)return ret;
+        return new int[]{};
+    }
+// 332 重新安排行程  https://leetcode-cn.com/problems/reconstruct-itinerary/
+    public List<String> findItinerary(List<List<String>> tickets) {
+        int deep = 0; // new int[入度，出度]
+        Map<String,List<Integer>> map = new HashMap<>();
+
+        for (int i = 0; i < tickets.size(); i++) {
+            String k1 = tickets.get(i).get(0);
+            String k2 = tickets.get(i).get(1);
+
+            if (map.containsKey(k1)){
+                List<Integer> list = map.get(k1);
+                list.add(list.get(0)+1);
+                list.remove(2);
+                map.put(k1,list);
+            }else {
+                List<Integer> list = new ArrayList<>();
+                list.add(0);
+                list.add(1);
+                map.put(tickets.get(i).get(0),list);
+            }
+
+            if (map.containsKey(k2)){
+                List<Integer> list = map.get(k2);
+                list.add(1,list.get(1)+1);
+                list.remove(0);
+                map.put(k2,list);
+            }else {
+                List<Integer> list2 = new ArrayList<>();
+                list2.add(1);
+                list2.add(0);
+                map.put(k2,list2);
+            }
+        }
+        return new ArrayList<>();
+    }
+
+    public int minDepth(TreeNode root) {
+        if (root == null)return 0;
+        if ((root.left == null) && (root.right == null)){
+            return 1;
+        }
+        int min_dept = Integer.MAX_VALUE;
+        if (root.left != null){
+            min_dept = Math.min(minDepth(root.left),min_dept);
+        }
+        if (root.right != null){
+            min_dept = Math.min(minDepth(root.right),min_dept);
+        }
+        return min_dept+1;
+    }
+    public void solve(char[][] board) {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                if (i == 0 ||i == board.length-1){
+                    if (board[i][j] == 'O'){
+                        bfs(board,i,j,'Y','O');
+                    }
+                }
+                if (j == 0 || j == board[0].length-1){
+                    if (board[i][j] == 'O'){
+                        bfs(board,i,j,'Y','O');
+                    }
+                }
+            }
+        }
+print(board);
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                if (board[i][j] == 'Y'){
+                    board[i][j]='O';
+                }else {
+                    board[i][j]='X';
+                }
+            }
+        }
+        print(board);
+
+    }
+    //
+    public  void  bfs(char[][] board,int x,int y,char t,char old){
+        if (x < 0 || y < 0 || x>board.length-1 || y > board[0].length-1)return;
+        if (board[x][y] != old)return;
+        board[x][y] = t;
+        bfs(board,x+1,y,t,old);
+        bfs(board,x-1,y,t,old);
+        bfs(board,x,y+1,t,old);
+        bfs(board,x,y-1,t,old);
+    }
+    public void print(char[][] chars){
+        for (int i = 0; i < chars.length; i++) {
+            for (int j = 0; j < chars[0].length; j++) {
+                System.out.print(chars[i][j]+",");
+            }
+            System.out.println("");
+        }
+    }
+
+    
 }
