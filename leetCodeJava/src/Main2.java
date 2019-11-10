@@ -82,18 +82,18 @@ public static void printArray(int[][] p){
                 int l_sub = cin.nextInt();
                 int r_sub = cin.nextInt();
                 v[l_sub][r_sub] = 1;
-                if (l == 1){
-//                    v[r_sub-1][l_sub-1] = 1;
+                if (l == 1){//无向图
+                    v[r_sub][l_sub] = 1;
                 }
             }
-//            if (l == 0){
-//                if (haveCircle(n,v)){
-//                    System.out.println("Yes");
-//                }else {
-//                    System.out.println("No");
-//                }
-//            }else {//无向图
-            printArray(v);
+            if (l == 1){
+                printArray(v);
+                if (haveCircle2(v)){
+                    System.out.println("Yes");
+                }else {
+                    System.out.println("No");
+                }
+            }else {//无向图
                 boolean[][] visited = new boolean[n+1][n+1];
                 int i1 = -1,i2=-1;
                 for (int i = 1; i <= n ; i++) {
@@ -116,38 +116,7 @@ public static void printArray(int[][] p){
                 }else {
                     System.out.println("No");
                 }
-//            }
-        }
-    }
-    public static boolean haveCircle(int n,int[][] v){
-        int[] inGree = new int[n];
-        for (int i = 0; i < v.length; i++) {
-            for (int j = 0; j <v[i].length ; j++) {
-                if (v[i][j] == 1){
-                    inGree[j]++;//入度+1
-                }
             }
-        }
-        Stack<Integer>stack = new Stack<>();
-        Set<Integer> set = new HashSet<>();
-        for (int i = 0; i < inGree.length; i++) {
-            if (inGree[i] == 0)stack.add(i);
-        }
-        while (!stack.empty()){
-            int last = stack.pop();
-            set.add(last);
-            for (int j = 0; j < n ; j++) {
-                if (v[last][j] == 1){
-                    v[last][j] = 0;
-                    inGree[j]--;
-                    if (inGree[j] == 0)stack.add(j);
-                }
-            }
-        }
-        if (set.size() == n){
-            return true;
-        }else {
-            return false;
         }
     }
 
@@ -163,11 +132,38 @@ public static void printArray(int[][] p){
         }
         return false;
     }
-    public  static  boolean haveCircle2(int from,int[][] v,int size){
-        Stack<Integer> stack = new Stack<>();
-
-        boolean[] visited = new boolean[size];
-
+    public  static  boolean haveCircle2(int[][] v){
+        int p1 = -1,p2= -1;
+        for (int i = 1; i < v.length; i++) {
+            for (int j = 1; j < v[0].length; j++) {
+                if (v[i][j] == 1){
+                    p1=i;
+                    p2=j;
+                    break;
+                }
+            }
+            if (p1 != -1)break;
+        }
+        if (p1 ==-1)return false;
+        Stack<Integer> stack1 = new Stack<>();
+        int[] color = new int[v.length];
+        color[p1] = 1;
+        stack1.add(p1);
+        v[p2][p1] = 0;
+        while (stack1.empty()==false){
+            Integer index = stack1.pop();
+            for (int i = 1; i < v.length; i++) {
+                if (v[index][i] == 1){
+                    if (color[i] == 1){
+                        return true;
+                    }else {
+                        v[i][index]=0;
+                        stack1.add(i);
+                        color[i] = 1;
+                    }
+                }
+            }
+        }
         return false;
     }
 }

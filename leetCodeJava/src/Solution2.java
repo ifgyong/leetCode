@@ -1,3 +1,4 @@
+import apple.laf.JRSUIUtils;
 import com.sun.java.swing.plaf.windows.WindowsTextAreaUI;
 
 import java.lang.reflect.Array;
@@ -725,6 +726,34 @@ print(board);
             System.out.println("");
         }
     }
+    List<Integer> arr = new ArrayList<>();
+    public List<Integer> postorderTraversal(TreeNode root) {
+        Stack<TreeNode> stack = new Stack<>();
+        if (root == null)return arr;
+        stack.add(root);
+        while (stack.isEmpty() ==false){
+            TreeNode n = stack.pop();
+            if (n.left != null)stack.add(n.left);
+            if (n.right!= null)stack.add(n.right);
+            arr.add(0,n.val);
+        }
+//        postorderTraversal(root.left);
+//        postorderTraversal(root.right);
+//        arr.add(root.val);
+        return arr;
+    }
+
+    public TreeNode invertTree(TreeNode root) {
+        if (root == null ||(root.left ==null && root.right == null))return root;
+        else{
+            TreeNode nodel = invertTree(root.left);
+            TreeNode noder = invertTree(root.right);
+            root.left = noder;
+            root.right = nodel;
+        }
+        return root;
+    }
+
 
     
 }
