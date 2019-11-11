@@ -1,3 +1,4 @@
+import apple.laf.JRSUIUtils;
 import sun.jvm.hotspot.utilities.HashtableEntry;
 
 import java.lang.reflect.Array;
@@ -159,5 +160,51 @@ public class Solution3 {
         return -1;
     }
 
+    public TreeNode sortedArrayToBST(int[] nums) {
+        Arrays.sort(nums);
+        if (nums .length == 0)return null;
+        return toBST(nums,0,nums.length-1);
+    }
+    public TreeNode toBST(int[] nums,int l,int r){
+        if (l > r)return null;
+        int mid = l+(r-l)/2;
+        TreeNode root = new TreeNode(nums[mid]);
+        root.left = toBST(nums,l,mid-1);
+        root.right = toBST(nums,mid+1,r);
+        return root;
+    }
+//是否是高度平衡二叉树
+    public boolean isBalanced(TreeNode root) {
+        if (root == null)return true;
+        int dis = getHeight(root.left) - getHeight(root.right);
+        if (dis >= -1 && dis <= 1)return isBalanced(root.left) && isBalanced(root.right);
+        return false;
+    }
+    public int getHeight(TreeNode node){
+        if (node == null)return 0;
+        return Math.max(getHeight(node.left),getHeight(node.right))+1;
+    }
+
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> ret = new ArrayList<>();
+        if (root == null)return ret;
+        ret.add(root.val);
+        List<TreeNode> arr = new ArrayList<>();
+        arr.add(root);
+        while (arr.isEmpty() ==false){
+            List<TreeNode> sub = new ArrayList<>();
+            for (int i = 0; i < arr.size(); i++) {
+                TreeNode node = arr.get(i);
+                if (node.left != null)sub.add(node.left);
+                if (node.right != null)sub.add(node.right);
+            }
+            if (sub.size() > 0){
+                ret.add(sub.get(sub.size()-1).val);
+            }
+            arr = sub;
+        }
+        return ret;
+
+    }
 
 }
