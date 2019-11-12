@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.awt.*;
 import java.util.Stack;
@@ -9,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
 
 
-        Solution2 s = new Solution2();
+//        Solution2 s = new Solution2();
 //        char [] ch1 = new char[]{'5','3','.','.','7','.','.','.','.'};
 //        char [] ch2 = new char[]{'6','.','.','1','9','.','.','.','.'};
 //        char [] ch3 = new char[]{'.','9','8','.','.','.','.','6','.'};
@@ -36,31 +37,25 @@ public class Main {
 //String[] a = new String[]{"Shogun","Tapioca Express","Burger King","KFC"};
 //String[] a2 = new String[]{"Piatti","The Grill at Torrey Pines","Hungry Hunter Steakhouse","Shogun"};
 
-char[][] chars= {{'X','X','X','X'},
-        {'X','O','O','X'},
-        {'X','X','O','X'},
-        {'X','O','X','X'}};
+//char[][] chars= {{'X','X','X','X'},
+//        {'X','O','O','X'},
+//        {'X','X','O','X'},
+//        {'X','O','X','X'}};
+        Solution3 s = new Solution3();
 
-int[][] list = {{1,0}};
-            s.solve(chars);
-//         System.out.println(a3);
- //        for (int i = 0; i <a3.length ; i++) {
-//            System.out.println(a3[i]);
-//
-//        }
+int[][] list = {{1,1,0},
+                {1,1,0},
+                {0,0,1}};
+            int a= s.findCircleNum(list);
+System.out.println(a);
 
 
-//   [感受递归的艺术吧](https://github.com/ifgyong/leetCode/wiki)
+//   [感受迭代的艺术吧 欢迎交流 欢迎start 持续分享好玩的题目和解法](https://github.com/ifgyong/leetCode/wiki)
 
 
     }
-    public static void print(int[] n1){
-        System.out.print("[");
-        for (int i = 0; i <n1.length ; i++) {
-            System.out.print(n1[i] +",");
-        }
-        System.out.println("]");
-    }
+
+
     public static void print(SummaryRanges summaryRanges){
         int[][] ret = summaryRanges.getIntervals();
         for (int i = 0; i <ret.length ; i++) {

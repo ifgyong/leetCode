@@ -1,6 +1,7 @@
 import apple.laf.JRSUIUtils;
 import com.sun.java.swing.plaf.windows.WindowsTextAreaUI;
 
+import javax.management.Descriptor;
 import java.lang.reflect.Array;
 import java.util.*;
 class NumMatrix {
@@ -754,6 +755,29 @@ print(board);
         return root;
     }
 
+// 472 火柴拼正方形
+    public boolean makesquare(int[] nums) {
+        int s =  0;
+        for (int item:nums) {
+            s+=item;
+        }
+        Arrays.sort(nums);
+        int line_width = s/4;
+        if (nums[nums.length-1] > line_width)return false;
+        if (s%4 == 0){
+            int count = 0;
+            List<Integer> arr = new ArrayList<>();
+            for (int i = 0; i < nums.length; i++) {
+                arr.add(nums[i]);
+            }
+            Map<Integer,Integer> map = new HashMap<>();
+            while (true){
 
-    
+                for (int i = 0; i < arr.size(); i++) {
+                    int val = arr.get(i);
+                }
+            }
+        }
+        return false;
+    }
 }
