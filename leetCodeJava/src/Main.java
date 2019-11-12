@@ -46,7 +46,9 @@ public class Main {
 int[][] list = {{1,1,0},
                 {1,1,0},
                 {0,0,1}};
-            int a= s.findCircleNum(list);
+
+
+            int a= s.candy(new int[]{1,0,2});
 System.out.println(a);
 
 

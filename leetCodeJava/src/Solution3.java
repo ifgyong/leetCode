@@ -329,7 +329,6 @@ public class Solution3 {
     public int findCircleNum(int[][] M) {
         Set<Integer> set = new HashSet<>();
         Stack<Integer> stack = new Stack<>();
-
         for (int i = 0; i < M.length ; i++) {
             if (M[i][0] == -1){continue;}
             for (int j = 0; j < M[0].length; j++) {
@@ -356,6 +355,47 @@ public class Solution3 {
         }
         return 1 + findCircleNum(M);
     }
+    public TreeNode sortedArrayToBST(int[] nums) {
+        Arrays.sort(nums);
+        if (nums .length == 0)return null;
+        return toBST(nums,0,nums.length-1);
+    }
+    public TreeNode toBST(int[] nums,int l,int r){
+        if (l > r)return null;
+        int mid = l+(r-l)/2;
+        TreeNode root = new TreeNode(nums[mid]);
+        root.left = toBST(nums,l,mid-1);
+        root.right = toBST(nums,mid+1,r);
+        return root;
+    }
+    //获取二叉树高度
+    public int getHeight(TreeNode node){
+        if (node == null)return 0;
+        return Math.max(getHeight(node.left),getHeight(node.right))+1;
+    }
+
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> ret = new ArrayList<>();
+        if (root == null)return ret;
+        ret.add(root.val);
+        List<TreeNode> arr = new ArrayList<>();
+        arr.add(root);
+        while (arr.isEmpty() ==false){
+            List<TreeNode> sub = new ArrayList<>();
+            for (int i = 0; i < arr.size(); i++) {
+                TreeNode node = arr.get(i);
+                if (node.left != null)sub.add(node.left);
+                if (node.right != null)sub.add(node.right);
+            }
+            if (sub.size() > 0){
+                ret.add(sub.get(sub.size()-1).val);
+            }
+            arr = sub;
+        }
+        return ret;
+
+    }
+
     public List<List<String>> accountsMerge(List<List<String>> accounts) {
         for (int i = 0; i < accounts.size(); i++) {
             for (int j = i+1; j < accounts.size(); j++) {
@@ -366,5 +406,157 @@ public class Solution3 {
                 }
             }
         }
+        return null;
     }
+
+//删除已排序的链表的重复节点  83
+    public ListNode deleteDuplicates(ListNode head) {
+        ListNode node = head;
+        while (node != null){
+            if (node.next != null){
+                if (node.val == node.next.val){
+                    node.next = node.next.next;
+                }else {
+                    node = node.next;
+                }
+            }else {
+                node = node.next;
+            }
+        }
+        return head;
+    }
+//120 三角形最小路径和
+    public int minimumTotal(List<List<Integer>> triangle) {
+        //子上而下计算每个位置的最小值 最终 最后一行的最小值则是 最短路径
+        for (int i = 1; i < triangle.size(); i++) {
+            List<Integer> sub0 = triangle.get(i-1);
+            List<Integer> sub = triangle.get(i);
+            for (int j = 0; j < sub.size(); j++) {
+                if (j == 0){
+                    sub.set(j,sub.get(j)+sub0.get(j));
+                }else if (j == sub.size()-1){
+                    sub.set(j,sub.get(j)+sub0.get(j-1));
+                }else {
+                    Integer min = Math.min(sub0.get(j),sub0.get(j-1));
+                    sub.set(j,min+sub.get(j));
+                }
+            }
+            triangle.set(i,sub);
+        }
+        List<Integer> sub = triangle.get(triangle.size()-1);
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i <sub.size() ; i++) {
+            min = Math.min(sub.get(i),min);
+        }
+        return min;
+    }
+    public int minimumTotal2(List<List<Integer>> triangle) {
+        //子下而上计算每个位置的最小值 最终 第一行的值则是 最短路径
+        if (triangle.size() == 0)return 0;
+        for (int i = triangle.size()-2; i >-1; i--) {
+            List<Integer> sub0 = triangle.get(i);
+            List<Integer> sub = triangle.get(i+1);
+            for (int j = 0; j < sub.size()-1; j++) {
+                Integer min = Math.min(sub.get(j),sub.get(j+1));
+                sub0.set(j,min+sub0.get(j));
+            }
+        }
+        return triangle.get(0).get(0);
+    }
+
+
+    public int longestConsecutive(int[] nums) {
+        Map<Integer,Integer> map = new HashMap<>();
+        Integer intMax = 0,intMin = Integer.MAX_VALUE;
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(nums[i])==false){
+                map.put(nums[i],1);
+            }else {
+                map.put(nums[i],map.get(nums[i])+1);
+            }
+            intMax = Math.max(intMax,nums[i]);
+            intMin = Math.min(intMin,nums[i]);
+        }
+        int ret = 0;
+        for (Integer item:map.keySet()) {
+
+            if (map.containsKey(item-1)==false){
+                int now = item;
+                while (map.containsKey(now)){
+                    now ++;
+                }
+                ret = Math.max(now-1 - item,ret);
+            }
+        }
+        return ret;
+    }
+    public int canCompleteCircuit(int[] gas, int[] cost) {
+        int[] dp = new  int[gas.length];
+        for (int i = 0; i < gas.length; i++) {
+            int j = 0,jj=0;
+            for (; j <= gas.length; j++) {
+                jj = (i+j)%gas.length;
+                if (j == 0)dp[jj] = gas[jj];
+                else {
+                    if (jj == 0){
+                        int maxIndex = gas.length-1;
+                        dp[jj] = dp[maxIndex] - cost[maxIndex];
+                    }else {
+                        dp[jj] = dp[jj-1] - cost[jj-1] ;
+                    }
+                    if (dp[jj] < 0){
+                        break;//这次不行了
+                    }
+                    if (jj != i)
+                    {
+                        dp[jj] += gas[jj];//添加当前的加油站的油
+                    }
+                }
+            }
+            //循环一遍 回到原点中间没有 <=0的油量
+            if (dp[jj] >= 0){
+                return i;
+            }
+        }
+        return -1;
+    }
+    public int canCompleteCircuit2(int[] gas, int[] cost) {
+        int total = 0,current = 0,start = 0;
+        for (int i = 0; i < gas.length; i++) {
+            total += gas[i];
+            total -= cost[i];
+            current += gas[i];
+            current -= cost[i];
+            if (current < 0){
+                current = 0;
+                start = i+1;
+            }
+        }
+        if (total >= 0)return start;
+        return -1;
+    }
+
+    public int candy(int[] ratings) {
+
+        int[] d = new int[ratings.length];
+        Arrays.fill(d,1);
+        //从左向右计算应该发多少钱
+        for (int i = 1; i < ratings.length; i++) {
+            if (ratings[i] > ratings[i-1]){
+                d[i] = d[i-1]+1;
+            }
+        }
+        int s  = d[d.length-1];
+        //从右向左发糖果
+        //最后的结果就是 中间大的比两边小的 都大。
+        for (int i = ratings.length-2; i > -1 ; i--) {
+            if (ratings[i] > ratings[i+1]){
+                d[i] = Math.max(d[i],d[i+1]+1);
+            }
+            s += d[i];
+        }
+        return s;
+
+    }
+
 }
