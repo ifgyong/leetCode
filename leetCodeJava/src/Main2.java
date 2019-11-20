@@ -69,54 +69,58 @@ public static void printArray(int[][] p){
     }
 }
     public static void main(String[] var0) {
-        int n = 0;
-        int m = 0;
-        int l = 0;
+        ds1007();
+    }
+    public static void ds1007(){
         Scanner cin = new Scanner(System.in);
         while (cin.hasNext()){
-            n = cin.nextInt();
-            m = cin.nextInt();
-            l = cin.nextInt();//1无向图 0有向图
-            int[][] v= new int[n+1][n+1];
-            for (int i = 0; i < m; i++) {
-                int l_sub = cin.nextInt();
-                int r_sub = cin.nextInt();
-                v[l_sub][r_sub] = 1;
-                if (l == 1){//无向图
-                    v[r_sub][l_sub] = 1;
-                }
-            }
-            if (l == 1){
-                printArray(v);
-                if (haveCircle2(v)){
-                    System.out.println("Yes");
-                }else {
-                    System.out.println("No");
-                }
-            }else {//无向图
-                boolean[][] visited = new boolean[n+1][n+1];
-                int i1 = -1,i2=-1;
-                for (int i = 1; i <= n ; i++) {
-                    if (i1 != -1 || i2!=-1)break;
-                    for (int j = 1; j <= n; j++) {
-                        if (v[i][j] == 1){
-                            i1 = i;
-                            i2 = j;
-                            break;
+            int line = cin.nextInt();
+            Stack<Character> stack = new Stack<>();
+            int ret = 0;
+            for (int j = 0; j < line; j++) {
+                stack.clear();
+                String s = cin.next();
+                for (int i = 0; i < s.length(); i++) {
+                    if (stack.size() > 0){
+                        Character character = stack.pop();
+                        if (character.equals('(') && s.charAt(i) == ')'){
+                            continue;
+                        }else if (character.equals('[') && s.charAt(i) == ']'){
+                            continue;
+                        }else if (character.equals('{') && s.charAt(i) == '}'){
+                            continue;
+                        }else {
+                            stack.push(character);
+                            stack.push(s.charAt(i));
                         }
-                    }
-                }
-                if (i1 != -1 && i2 != -1){
-                    boolean haveCircle = dfsHaveCiecle(i1,i2,v,visited,l==0);
-                    if (haveCircle){
-                        System.out.println("Yes");
                     }else {
-                        System.out.println("No");
+                        stack.push(s.charAt(i));
                     }
-                }else {
-                    System.out.println("No");
                 }
+
+                
+                ret += stack.size();
             }
+            System.out.println(ret);
+        }
+    }
+
+    public static void mergeList(String[] arg){
+        Scanner cin = new Scanner(System.in);
+        int listSize = cin.nextInt();
+        int listCount = 0;
+        while (cin.hasNext()){
+           int n = cin.nextInt();
+           listCount += n;
+           int[] nlist = new int[n];
+            for (int i = 0; i < n; i++) {
+                nlist[i] = cin.nextInt();
+            }
+        }
+        //合并
+        int[] ret = new int[listCount];
+        for (int i = 0; i < listCount; i++) {
+
         }
     }
 

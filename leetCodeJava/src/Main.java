@@ -48,8 +48,8 @@ int[][] list = {{1,1,0},
                 {0,0,1}};
 
 
-            int a= s.candy(new int[]{1,0,2});
-System.out.println(a);
+            int[] a= s.reser(new int[]{1,2,3,4,5,6,7,8,9},1);
+            Log.print(a);
 
 
 //   [感受迭代的艺术吧 欢迎交流 欢迎start 持续分享好玩的题目和解法](https://github.com/ifgyong/leetCode/wiki)

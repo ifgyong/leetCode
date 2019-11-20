@@ -3,7 +3,20 @@ import sun.jvm.hotspot.utilities.HashtableEntry;
 
 import java.lang.reflect.Array;
 import java.util.*;
+class NumArray {
+    int[] a;
+    public NumArray(int[] nums) {
+        a = nums;
+    }
 
+    public int sumRange(int i, int j) {
+        int ret = 0;
+        for (int k = i; k <=j ; k++) {
+            ret += a[k];
+        }
+        return ret;
+    }
+}
 public class Solution3 {
 //    class Node {
 //        public int val;
@@ -559,4 +572,61 @@ public class Solution3 {
 
     }
 
+//221
+    public int maximalSquare(char[][] matrix) {
+        int ret = 0;
+        if (matrix.length == 0)return 0;
+        int[][] dp = new int[matrix.length+1][matrix[0].length+1];
+        for (int i = 1; i < matrix.length+1; i++) {
+            for (int j = 1; j < matrix[0].length+1; j++) {
+                if (matrix[i-1][j-1] == '1'){
+                    int m = Math.min(dp[i-1][j-1],dp[i-1][j]);
+                    m = Math.min(m,dp[i][j-1]);
+                    dp[i][j] = 1 + m;
+                    ret = Math.max(dp[i][j],ret);
+                }
+            }
+        }
+        return ret*ret;
+    }
+//246
+    public int nthUglyNumber(int n) {
+        if (n <0)return -1;
+        List<Integer> arr= new ArrayList<>();
+        arr.add(1);
+        int i3 = 0,i2=0,i5=0;
+        while (arr.size() < n){
+            int i22 = arr.get(i2) * 2;
+            int i33=  arr.get(i3) * 3;
+            int i55 = arr.get(i5) * 5;
+            int min = Math.min(i22,i33);
+            min = Math.min(min,i55);
+            if (min == i22)i2++;
+            if (min == i33)i3++;
+            if (min == i55)i5++;
+            arr.add(min);
+        }
+        return arr.get(arr.size()-1);
+    }
+    public int[] reser(int[] ints,int index){
+        if (index <0 || index>ints.length-1)return null;
+        for (int i = 0; i < index/2; i++) {
+            int tap = ints[i];
+            ints[i] = ints[index - i];
+            ints[index-i] = tap;
+        }
+        int resetSecond = index+1+ (ints.length-index)/2;
+        for (int i = index+1; i < resetSecond; i++) {
+            int tap = ints[i];
+            ints[i] = ints[ints.length - 1-i];
+            ints[ints.length-i-1] = tap;
+        }
+        for (int i = 0; i <= ints.length/2; i++) {
+            int tap = ints[i];
+            ints[i] = ints[ints.length - 1-i];
+            ints[ints.length-1-i] = tap;
+        }
+        return ints;
+    }
 }
+
